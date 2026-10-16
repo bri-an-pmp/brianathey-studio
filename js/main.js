@@ -459,6 +459,7 @@ setInterval(() => {
 /* ---------- Start ---------- */
 function refreshAll() {
   applyPage();
+  document.querySelectorAll('[data-i18n-alt]').forEach((el) => { el.alt = tr(el.dataset.i18nAlt); });
   typeArchive();
   refreshLangButton();
   refreshSoundButton();
