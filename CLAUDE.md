@@ -4,8 +4,8 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 
 ## Status (2026-10-16)
 
-- Built locally; not yet on GitHub. Plan: new repo `bri-an-pmp/brianathey-studio`, GitHub Pages from `main`, then GoDaddy DNS (A records 185.199.108-111.153, CNAME `www` → `bri-an-pmp.github.io`). Never ask for GoDaddy passwords or API keys.
-- Ask before creating the repo, committing or pushing. Nothing goes live until the owner says "publish".
+- Live on GitHub Pages from `main` of `bri-an-pmp/brianathey-studio` (custom domain in `CNAME`). DNS at GoDaddy: A records 185.199.108-111.153, CNAME `www` → `bri-an-pmp.github.io`. Never ask for GoDaddy passwords or API keys.
+- Pushing to `main` publishes the site. Preview first, and push only when the owner says "publish".
 - Open items: Santiago de Chile photo collection (photos not received yet), Notary Confi services and quote contact.
 
 ## Rules
