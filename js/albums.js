@@ -180,7 +180,7 @@ export const ALBUMS = [
       { w: 1800, h: 1350, tw: 560, th: 420, en: 'Rooftops of the Valle de Aburrá', es: 'Techos del Valle de Aburrá' },
       { w: 1350, h: 1800, tw: 420, th: 560, en: 'Iglesia neogótica amarilla', es: 'Iglesia neogótica amarilla' },
       { w: 1800, h: 1350, tw: 560, th: 420, en: 'Light poles, Parque de las Luces', es: 'Postes de luz, Parque de las Luces' },
-      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Painted doorway', es: 'Puerta pintada' },
+      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Puerta pintada', es: 'Puerta pintada' },
       { w: 1350, h: 1800, tw: 420, th: 560, en: 'Street in the Comuna 13', es: 'Calle de la Comuna 13' },
       { w: 1800, h: 1350, tw: 560, th: 420, en: 'Graffiti, Comuna 13', es: 'Grafiti, Comuna 13' },
       { w: 1800, h: 1350, tw: 560, th: 420, en: 'Murals and motorcycles, Comuna 13', es: 'Murales y motos, Comuna 13' },
