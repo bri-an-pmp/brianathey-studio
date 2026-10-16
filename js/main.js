@@ -204,6 +204,30 @@ window.addEventListener('scroll', updateDust, { passive: true }); // one cheap m
 window.addEventListener('resize', updateDust);
 updateDust();
 
+/* ---------- Scan lines ---------- */
+// Every block gets a red or blue scan line that keeps sweeping (no hover needed, so it shows on phones).
+const SCAN_BLOCKS = '.file-card, .panel, .player, .repo, .album-tile, .social-card, .photo-slot';
+let scanCount = 0;
+function attachScans() {
+  document.querySelectorAll(SCAN_BLOCKS).forEach((el) => {
+    if (el.querySelector(':scope > .scan')) return;
+    const line = document.createElement('span');
+    line.className = `scan ${scanCount % 2 ? 'scan-blue' : 'scan-red'}`;
+    line.setAttribute('aria-hidden', 'true');
+    line.style.setProperty('--scan-delay', `${((scanCount * 0.7) % 3).toFixed(1)}s`);
+    scanCount += 1;
+    el.classList.add('scan-host');
+    el.append(line);
+  });
+}
+// Projects, photo tiles and players are drawn later (and redrawn on language change).
+let scanQueued = false;
+new MutationObserver(() => {
+  if (scanQueued) return;
+  scanQueued = true;
+  requestAnimationFrame(() => { scanQueued = false; attachScans(); });
+}).observe(document.querySelector('main'), { childList: true, subtree: true });
+
 /* ---------- Clock ---------- */
 const clock = document.getElementById('clock');
 function tickClock() {
@@ -447,6 +471,7 @@ function refreshAll() {
 
 document.getElementById('year').textContent = String(new Date().getFullYear());
 refreshAll();
+attachScans();
 loadRepos();
 if (!reducedMotion()) startRain(document.getElementById('rain'));
 startSpinners(document.getElementById('spinners'), { still: reducedMotion() });

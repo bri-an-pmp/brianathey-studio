@@ -469,13 +469,24 @@ main, .site-footer { position: relative; z-index: 1; }
   padding: 24px; text-decoration: none; color: var(--text); background: var(--ink); overflow: hidden;
   transition: background .3s;
 }
-.file-card::after { /* scan line on hover */
-  content: ""; position: absolute; left: 0; right: 0; top: -2px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0;
+/* Scan lines: every block gets one (added by main.js) that keeps sweeping.
+   Works on phones too, since it doesn't depend on hover. */
+.scan-host { position: relative; }
+.scan { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.scan::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -4px; height: 2px; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--scan, #ff4058) 20%, var(--scan, #ff4058) 80%, transparent);
+  box-shadow: 0 0 10px var(--scan, #ff4058), 0 0 22px var(--scan, #ff4058);
 }
-.file-card:hover, .file-card:focus-visible { background: var(--ink-hover); color: var(--text); }
-.file-card:hover::after, .file-card:focus-visible::after { opacity: 1; animation: scan 1.4s linear infinite; }
-@keyframes scan { to { top: 100%; } }
+.scan-red { --scan: #ff4058; }
+.scan-blue { --scan: #5cc8ff; }
+.scan::before { animation: scan-sweep 5s ease-in-out var(--scan-delay, 0s) infinite; }
+@keyframes scan-sweep {
+  0% { top: -4px; opacity: 0; }
+  4% { opacity: 1; }
+  40% { top: 100%; opacity: 1; }
+  44%, 100% { top: 100%; opacity: 0; }
+}
 .file-pending {
   color: var(--text-dim);
   background: repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px), var(--well);
