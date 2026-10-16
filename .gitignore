@@ -1,2 +1,4 @@
 .DS_Store
 _*.html
+photo-inbox/*
+!photo-inbox/README.txt

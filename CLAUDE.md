@@ -6,7 +6,7 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 
 - Live on GitHub Pages from `main` of `bri-an-pmp/brianathey-studio` (custom domain in `CNAME`). DNS at GoDaddy: A records 185.199.108-111.153, CNAME `www` → `bri-an-pmp.github.io`. Never ask for GoDaddy passwords or API keys.
 - Pushing to `main` publishes the site. Preview first, and push only when the owner says "publish".
-- Open items: Santiago de Chile photo collection (photos not received yet), Notary Confi services and quote contact.
+- Open items: Santiago de Chile gallery (waiting for photos in `photo-inbox/Santiago de Chile/`), Notary Confi services and quote contact, Index tiles 07 and 08.
 
 ## Rules
 
@@ -18,15 +18,14 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 
 ## Photos
 
-Each collection lives in `assets/photos/<id>/` (`01.jpg` + `01-thumb.jpg`, …) and is listed in `js/albums.js` with English and Spanish captions. Make web copies with the helper, which also strips camera/GPS data:
+New galleries come through the drop folder, not chat uploads:
 
-```
-swiftc -O tools/resize.swift -o /tmp/resize
-/tmp/resize original.jpg assets/photos/<id>/01.jpg 1800 0.7
-/tmp/resize original.jpg assets/photos/<id>/01-thumb.jpg 560 0.66
-```
+1. The owner copies photos into `photo-inbox/<Gallery Name>/` (gitignored; never published).
+2. Run `tools/add-album.sh "<Gallery Name>"`. It resizes to 1800px (thumbnails 560px), strips camera/GPS data, numbers the files oldest-first into `assets/photos/<slug>/` and prints a starter entry for `js/albums.js`.
+3. Look at the **thumbnails** (`*-thumb.jpg`, small) to write captions in English and Spanish, pick a cover and six preview photos, and remove near-duplicates (delete the files and renumber).
+4. Preview, then publish when the owner says so.
 
-Remove near-duplicate photos. The helper prints width and height for the album entry.
+Use Spanish place names when in doubt (e.g. "Mercado de las Brujas", "Catedral de La Paz").
 
 ## Preview
 
