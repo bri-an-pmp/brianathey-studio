@@ -129,6 +129,37 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 /* haze between layers: farther buildings sink into gold, nearer ones into red dust */
 .dust-fog-1 { bottom: 0; height: 70%; background: linear-gradient(to top, rgba(206, 110, 46, .75), rgba(214, 128, 52, .45) 40%, rgba(224, 150, 64, 0)); }
 .dust-fog-2 { bottom: -4%; height: 38%; background: linear-gradient(to top, rgba(120, 34, 14, .7), rgba(150, 50, 20, .35) 50%, rgba(150, 50, 20, 0)); }
+/* Rolling wind: streaky dust clouds drift across the city, and gusts sweep through. */
+.dust-storm { left: 0; right: 0; background-repeat: repeat-x; pointer-events: none; }
+.dust-storm-far {
+  bottom: 20%; height: 55%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='400'%3E%3Cfilter id='n' x='0' y='0' width='100%' height='100%'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0025 0.012' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.62 0 0 0 0 0.34 0 0 0 1.6 -0.62'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 1200px 100%;
+  opacity: .55; filter: blur(3px); animation: wind 55s linear infinite;
+  -webkit-mask-image: linear-gradient(transparent, #000 30%, #000 75%, transparent);
+          mask-image: linear-gradient(transparent, #000 30%, #000 75%, transparent);
+}
+.dust-storm-near {
+  bottom: -4%; height: 46%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='360'%3E%3Cfilter id='n' x='0' y='0' width='100%' height='100%'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.02' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.42 0 0 0 0 0.2 0 0 0 1.8 -0.7'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 900px 100%;
+  opacity: .6; filter: blur(2px); animation: wind-near 24s linear infinite, swell 11s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(transparent, #000 40%);
+          mask-image: linear-gradient(transparent, #000 40%);
+}
+.dust-gust {
+  top: 15%; bottom: 0; left: -60%; width: 60%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='500'%3E%3Cfilter id='n' x='0' y='0' width='100%' height='100%'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.003 0.016' numOctaves='4' seed='27' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.7 0 0 0 0 0.42 0 0 0 2.0 -0.78'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(90deg, transparent, rgba(226, 150, 80, .5) 45%, rgba(226, 150, 80, .5) 60%, transparent);
+  background-size: 1000px 100%, 100% 100%;
+  filter: blur(6px); opacity: 0; transform: skewX(-12deg);
+  animation: gust 17s ease-in-out infinite;
+}
+.dust-gust-2 { top: 40%; width: 45%; animation-duration: 23s; animation-delay: -9s; }
+@keyframes wind { to { background-position-x: -1200px; } }
+@keyframes wind-near { to { background-position-x: -900px; } }
+@keyframes swell { 0%, 100% { opacity: .45; } 50% { opacity: .75; } }
+@keyframes gust {
+  0% { transform: translateX(0) skewX(-12deg); opacity: 0; }
+  10% { opacity: .85; }
+  45% { transform: translateX(290%) skewX(-12deg); opacity: .7; }
+  55%, 100% { transform: translateX(290%) skewX(-12deg); opacity: 0; }
+}
 .dust-grain { /* fine dust texture over everything */
   inset: 0; opacity: .18; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -143,9 +174,9 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
     radial-gradient(circle at 89% 61%, rgba(255, 214, 150, .25) 0 .8px, transparent 1.5px);
   background-size: 233px 197px, 151px 263px, 317px 241px, 109px 173px;
   filter: blur(.4px);
-  animation: motes 70s linear infinite;
+  animation: motes 26s linear infinite;
 }
-@keyframes motes { to { transform: translate(-140px, 60px); } }
+@keyframes motes { to { transform: translate(-466px, 40px); } }
 .dust-frame { /* edge of the apartment window */
   top: 0; bottom: 0; left: 0; width: clamp(14px, 3vw, 46px);
   background: linear-gradient(90deg, #1e0c06, #3a1a0c 70%, #5a2a14);
