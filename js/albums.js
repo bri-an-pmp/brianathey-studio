@@ -169,6 +169,31 @@ export const ALBUMS = [
       { w: 1012, h: 1800, tw: 315, th: 560, en: 'Ornate pavilion, Cerro Santa Lucía', es: 'Pabellón ornamentado, Cerro Santa Lucía' },
     ],
   },
+  {
+    id: 'medellin-colombia',
+    title: { en: 'Medellín Colombia', es: 'Medellín Colombia' },
+    subtitle: { en: 'Comuna 13 murals, hillside views and bandeja paisa', es: 'Murales de la Comuna 13, vistas de las laderas y bandeja paisa' },
+    cover: 10,
+    preview: [10, 15, 7, 12, 3, 16],
+    photos: [
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Medellín from a rooftop', es: 'Medellín desde una azotea' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Rooftops of the Valle de Aburrá', es: 'Techos del Valle de Aburrá' },
+      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Iglesia neogótica amarilla', es: 'Iglesia neogótica amarilla' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Light poles, Parque de las Luces', es: 'Postes de luz, Parque de las Luces' },
+      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Painted doorway', es: 'Puerta pintada' },
+      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Street in the Comuna 13', es: 'Calle de la Comuna 13' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Graffiti, Comuna 13', es: 'Grafiti, Comuna 13' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Murals and motorcycles, Comuna 13', es: 'Murales y motos, Comuna 13' },
+      { w: 1800, h: 1742, tw: 560, th: 542, en: '“Parce Medellín” sign', es: 'Letrero «Parce Medellín»' },
+      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Mural, Comuna 13', es: 'Mural, Comuna 13' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'View over the Comuna 13', es: 'Vista sobre la Comuna 13' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Comuna 13 on the hillside', es: 'La Comuna 13 en la ladera' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Hillside homes under summer clouds', es: 'Casas en la ladera bajo nubes de verano' },
+      { w: 1350, h: 1800, tw: 420, th: 560, en: 'Stairways of the Comuna 13', es: 'Escaleras de la Comuna 13' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Bandeja paisa', es: 'Bandeja paisa' },
+      { w: 1800, h: 1350, tw: 560, th: 420, en: 'Medellín de noche', es: 'Medellín de noche' },
+    ],
+  },
 ];
 
 export const photoSrc = (album, i, thumb = false) =>
