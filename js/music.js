@@ -1,7 +1,7 @@
 // "Haze": an original, slow neo-noir ambient soundtrack, played live in the browser.
 // Deep drones, swelling vintage-synth brass, a gliding lead, distant metal and rain,
 // all inside a large generated reverb. No audio files.
-import { audioCtx } from './sound.js?v=20261016184256';
+import { audioCtx } from './sound.js?v=20261016184403';
 
 const STEP = 0.25; // seconds per step (sixteenth notes at 60 BPM)
 const BLOCK = 64; // steps per chord (16 seconds)

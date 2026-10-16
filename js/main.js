@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016184256';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261016184256';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016184256';
-import { startRain } from './rain.js?v=20261016184256';
-import { startSpinners } from './spinners.js?v=20261016184256';
-import { ALBUMS, photoSrc } from './albums.js?v=20261016184256';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261016184256';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016184403';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261016184403';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016184403';
+import { startRain } from './rain.js?v=20261016184403';
+import { startSpinners } from './spinners.js?v=20261016184403';
+import { ALBUMS, photoSrc } from './albums.js?v=20261016184403';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261016184403';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
