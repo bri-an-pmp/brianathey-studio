@@ -7,6 +7,8 @@ import { ALBUMS, photoSrc } from './albums.js';
 import { openAlbum, refreshGallery } from './gallery.js';
 
 const GITHUB_USER = 'bri-an-pmp';
+// Repositories to leave out of the Code section.
+const HIDDEN_REPOS = ['Agile-Bud'];
 
 // Music players load only when the visitor asks (faster page, no tracking until then).
 const EMBEDS = {
@@ -31,6 +33,16 @@ const EMBEDS = {
     src: 'https://www.youtube-nocookie.com/embed/videoseries?list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM',
     height: 315,
   },
+  amazon: {
+    name: 'Amazon Music',
+    src: 'https://music.amazon.com/embed/B096DX88Z7',
+    height: 352,
+  },
+  // Pandora doesn't allow its player inside other sites, so this tile links out.
+  pandora: {
+    name: 'Pandora',
+    link: 'https://www.pandora.com/AL:10506770',
+  },
   soundcloud: {
     name: 'SoundCloud',
     src: 'https://w.soundcloud.com/player/?url=' + encodeURIComponent('https://soundcloud.com/user-473502514') +
@@ -43,9 +55,8 @@ const EMBEDS = {
 const FALLBACK_REPOS = [
   { name: 'the-morning-frequency', description: 'Ambient journaling app: write a paragraph, press Enter twice, hear choir-and-organ music for its mood.', language: 'JavaScript' },
   { name: 'Brian-AI-Agent-Career', description: '', language: 'Python' },
-  { name: 'Agile-Bud', description: 'An agile buddhist LLM', language: '' },
   { name: 'claude-skills', description: 'A collection of Claude skills.', language: 'JavaScript' },
-  { name: 'twilioquest-extension-template', description: '', language: 'JavaScript' },
+  { name: 'twilioquest-extension-template', description: 'TwilioQuest mission: the Notary Confi appointment-confirmation workflow (mock scenario).', language: 'JavaScript' },
 ];
 
 const PHOTO_PLACEHOLDERS = 6;
@@ -222,6 +233,16 @@ function renderPlayers() {
     if (slot.querySelector('iframe')) return;
     const embed = EMBEDS[slot.dataset.embed];
     if (!embed) return;
+    if (embed.link) {
+      const a = document.createElement('a');
+      a.className = 'load-btn';
+      a.href = embed.link;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = `${tr('listenOn')} ${embed.name} ↗`;
+      slot.replaceChildren(a);
+      return;
+    }
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'load-btn';
@@ -256,7 +277,7 @@ async function loadRepos() {
     const data = await res.json();
     if (!Array.isArray(data)) throw new Error('Unexpected reply');
     repos = data
-      .filter((r) => r && !r.fork && typeof r.name === 'string')
+      .filter((r) => r && !r.fork && typeof r.name === 'string' && !HIDDEN_REPOS.includes(r.name))
       .slice(0, 12)
       .map((r) => ({
         name: r.name,

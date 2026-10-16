@@ -477,6 +477,7 @@ main, .site-footer { position: relative; z-index: 1; }
   font: 500 14px var(--font-mono); letter-spacing: .16em;
   color: var(--cyan); background: transparent; border: 1px solid var(--line-cool); cursor: pointer;
 }
+a.load-btn { display: inline-flex; align-items: center; text-decoration: none; text-transform: uppercase; }
 .load-btn:hover, .load-btn:focus-visible { border-color: var(--cyan); box-shadow: 0 0 18px color-mix(in srgb, var(--cyan) 25%, transparent); }
 .ext-link { font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; gap: .3em; margin-top: auto; }
 
