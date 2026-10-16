@@ -1,0 +1,176 @@
+// English and Spanish text. Page elements use data-i18n="key".
+export const T = {
+  en: {
+    skip: 'Skip to main content',
+    local: 'LOCAL',
+    langButton: 'Español',
+    langButtonLabel: 'Ver el sitio en español',
+    soundOff: 'Effects off',
+    soundOn: 'Effects on',
+    musicOff: 'Soundtrack off',
+    musicOn: 'Soundtrack on',
+    playTheme: 'Play soundtrack',
+    stopTheme: 'Stop soundtrack',
+    musicOnStatus: 'Soundtrack playing.',
+    musicOffStatus: 'Soundtrack stopped.',
+    musicError: 'The soundtrack couldn’t start in this browser. Try another browser or update this one.',
+    soundOnStatus: 'Sound effects on.',
+    soundOffStatus: 'Sound effects off.',
+    archiveTitle: 'PERSONAL ARCHIVE',
+    archiveSubject: 'SUBJECT',
+    archiveRecord: 'RECORD',
+    archiveStatus: 'STATUS',
+    archiveGranted: 'ACCESS GRANTED',
+    tagline: 'Music · Code · Photography · Translation',
+    enter: 'ENTER',
+    bizLink: 'Need a Notarization or Translation?',
+    indexReadout: '// SELECT A FILE',
+    indexTitle: 'INDEX',
+    fileSound: 'SOUND',
+    fileSoundSub: 'My music and my band from Argentina',
+    fileCode: 'CODE',
+    fileCodeSub: 'Projects on GitHub',
+    fileMemories: 'MEMORIES',
+    fileMemoriesSub: 'Photography',
+    fileTranslation: 'TRANSLATION',
+    fileTranslationSub: 'Notary Confi · Spanish ⇄ English',
+    accessing: 'ACCESSING',
+    solo: 'SOLO',
+    band: 'BAND',
+    company: 'COMPANY',
+    musicIntro: 'My own music, including the album 1008 W 25th St (2021). Choose a platform and press Load player to listen here, or open it in your favorite app.',
+    bandIntro: 'The band I played in while living in Argentina. Album: Smoke Sale (2016).',
+    openIn: 'Open in',
+    alsoOn: 'ALSO STREAMING ON',
+    loadPlayer: '▶ LOAD PLAYER',
+    loadPlayerLabel: 'Load the {name} player',
+    playerLoaded: '{name} player loaded.',
+    codeIntro: 'Things I build, pulled live from my GitHub.',
+    loadingRepos: 'Loading projects…',
+    reposError: 'GitHub didn’t respond, so here is a saved list. Use the button below to see the latest.',
+    noDescription: 'No description yet.',
+    updated: 'Updated',
+    star: 'star',
+    stars: 'stars',
+    allGithub: 'See everything on GitHub',
+    photoIntro: 'Collections of my photography. Open one to see every photo.',
+    photoSoon: 'NEXT COLLECTION PENDING',
+    collection: 'COLLECTION',
+    photoCount: '{n} PHOTOS',
+    openGallery: 'Open gallery',
+    memory: 'MEMORY',
+    backToGrid: '▦ All photos',
+    toCarousel: '▶ Carousel',
+    slideOf: '{n} of {total}',
+    closeGallery: 'Close gallery',
+    prevPhoto: 'Previous photo',
+    nextPhoto: 'Next photo',
+    photoError: 'This photo didn’t load. Check your connection and try again.',
+    translationIntro: 'My translation company, Notary Confi, offers professional translation between Spanish and English.',
+    esToEn: 'Spanish to English',
+    enToEs: 'English to Spanish',
+    quote: 'Visit Notary Confi to request a quote',
+    backTop: '↑ Back to top',
+  },
+  es: {
+    skip: 'Saltar al contenido principal',
+    local: 'HORA',
+    langButton: 'English',
+    langButtonLabel: 'View the site in English',
+    soundOff: 'Efectos apagados',
+    soundOn: 'Efectos encendidos',
+    musicOff: 'Banda sonora apagada',
+    musicOn: 'Banda sonora encendida',
+    playTheme: 'Escuchar la banda sonora',
+    stopTheme: 'Detener la banda sonora',
+    musicOnStatus: 'La banda sonora está sonando.',
+    musicOffStatus: 'Se detuvo la banda sonora.',
+    musicError: 'La banda sonora no pudo iniciar en este navegador. Pruebe con otro navegador o actualice este.',
+    soundOnStatus: 'Efectos de sonido encendidos.',
+    soundOffStatus: 'Efectos de sonido apagados.',
+    archiveTitle: 'ARCHIVO PERSONAL',
+    archiveSubject: 'SUJETO',
+    archiveRecord: 'REGISTRO',
+    archiveStatus: 'ESTADO',
+    archiveGranted: 'ACCESO CONCEDIDO',
+    tagline: 'Música · Código · Fotografía · Traducción',
+    enter: 'ENTRAR',
+    bizLink: '¿Necesita un servicio notarial o una traducción?',
+    indexReadout: '// ELIJA UN ARCHIVO',
+    indexTitle: 'ÍNDICE',
+    fileSound: 'SONIDO',
+    fileSoundSub: 'Mi música y mi banda de Argentina',
+    fileCode: 'CÓDIGO',
+    fileCodeSub: 'Proyectos en GitHub',
+    fileMemories: 'RECUERDOS',
+    fileMemoriesSub: 'Fotografía',
+    fileTranslation: 'TRADUCCIÓN',
+    fileTranslationSub: 'Notary Confi · español ⇄ inglés',
+    accessing: 'ABRIENDO',
+    solo: 'SOLISTA',
+    band: 'BANDA',
+    company: 'EMPRESA',
+    musicIntro: 'Mi propia música, incluido el álbum 1008 W 25th St (2021). Elija una plataforma y pulse Cargar reproductor para escuchar aquí, o ábrala en su aplicación favorita.',
+    bandIntro: 'La banda en la que toqué cuando vivía en Argentina. Álbum: Smoke Sale (2016).',
+    openIn: 'Abrir en',
+    alsoOn: 'TAMBIÉN DISPONIBLE EN',
+    loadPlayer: '▶ CARGAR REPRODUCTOR',
+    loadPlayerLabel: 'Cargar el reproductor de {name}',
+    playerLoaded: 'Reproductor de {name} cargado.',
+    codeIntro: 'Lo que construyo, tomado en vivo de mi GitHub.',
+    loadingRepos: 'Cargando proyectos…',
+    reposError: 'GitHub no respondió, así que esta es una lista guardada. Use el botón de abajo para ver lo más reciente.',
+    noDescription: 'Todavía sin descripción.',
+    updated: 'Actualizado',
+    star: 'estrella',
+    stars: 'estrellas',
+    allGithub: 'Ver todo en GitHub',
+    photoIntro: 'Colecciones de mis fotografías. Abra una para ver todas las fotos.',
+    photoSoon: 'PRÓXIMA COLECCIÓN PENDIENTE',
+    collection: 'COLECCIÓN',
+    photoCount: '{n} FOTOS',
+    openGallery: 'Abrir galería',
+    memory: 'RECUERDO',
+    backToGrid: '▦ Todas las fotos',
+    toCarousel: '▶ Carrusel',
+    slideOf: '{n} de {total}',
+    closeGallery: 'Cerrar galería',
+    prevPhoto: 'Foto anterior',
+    nextPhoto: 'Foto siguiente',
+    photoError: 'Esta foto no cargó. Revise su conexión e intente de nuevo.',
+    translationIntro: 'Mi empresa de traducción, Notary Confi, ofrece traducción profesional entre español e inglés.',
+    esToEn: 'Español a inglés',
+    enToEs: 'Inglés a español',
+    quote: 'Visite Notary Confi para pedir una cotización',
+    backTop: '↑ Volver arriba',
+  },
+};
+
+let lang = 'en';
+try {
+  const saved = localStorage.getItem('bas_lang');
+  if (saved === 'en' || saved === 'es') lang = saved;
+  else if ((navigator.language || '').toLowerCase().startsWith('es')) lang = 'es';
+} catch {
+  if ((navigator.language || '').toLowerCase().startsWith('es')) lang = 'es';
+}
+
+export const getLang = () => lang;
+
+export function tr(key, vars = {}) {
+  const text = T[lang][key] ?? T.en[key] ?? key;
+  return text.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : ''));
+}
+
+export function setLang(next) {
+  lang = next === 'es' ? 'es' : 'en';
+  try { localStorage.setItem('bas_lang', lang); } catch { /* private mode: ignore */ }
+  applyPage();
+}
+
+export function applyPage() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    el.textContent = tr(el.dataset.i18n);
+  });
+}
