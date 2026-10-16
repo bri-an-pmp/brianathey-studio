@@ -761,9 +761,24 @@ html.gallery-open { overflow: hidden; }
 .xp-org { margin: 0; font-size: 19px; font-weight: 600; }
 .xp-role { margin: 2px 0 0; color: var(--text-dim); }
 .xp-note { margin: 6px 0 0; font-size: 15px; color: var(--text-dim); font-style: italic; }
+.xp-badge { margin-left: 8px; padding: 2px 7px; vertical-align: middle; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .14em; color: #6dff9c; border: 1px solid #6dff9c; }
+.xp-steps { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 3px; color: var(--text-dim); }
+.xp-steps li span:first-child { display: inline-block; min-width: 96px; font-family: var(--font-mono); font-size: 14px; color: var(--cyan); }
+.proj { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.proj a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 14px 16px; text-decoration: none; color: var(--text); border: 1px solid var(--line-cool); background: color-mix(in srgb, var(--ink) 85%, transparent); }
+.proj a:hover, .proj a:focus-visible { color: var(--text); border-color: var(--cyan); }
+.proj span { font-size: 15px; color: var(--text-dim); }
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0 28px; }
+.plain { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 10px; }
+.plain li { display: grid; gap: 2px; color: var(--text-dim); }
+.plain strong { color: var(--text); font-weight: 600; }
 .chips { list-style: none; margin: 0 0 26px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li { padding: 6px 12px; font-family: var(--font-mono); font-size: 14px; color: var(--text); border: 1px solid var(--line-cool); background: color-mix(in srgb, var(--cyan) 7%, transparent); }
 .chips-cert li { border-color: var(--line); background: color-mix(in srgb, var(--amber) 9%, transparent); color: var(--amber-hot); }
+@media (min-width: 901px) {
+  .id-card { position: sticky; top: 72px; align-self: start; }
+  .id-actions { margin-top: 0; }
+}
 @media (max-width: 900px) {
   .dossier { grid-template-columns: 1fr; }
   .id-card { border-right: 0; border-bottom: 1px solid var(--line); }
