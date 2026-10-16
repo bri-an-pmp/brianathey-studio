@@ -355,7 +355,6 @@ let timer = 0;
 let nextTime = 0;
 let stepIndex = 0;
 let playing = false;
-let pausedByHiding = false;
 const listeners = new Set();
 
 export const musicPlaying = () => playing;
@@ -363,8 +362,12 @@ export function onMusicChange(fn) { listeners.add(fn); }
 const notify = () => listeners.forEach((fn) => fn(playing));
 
 function tick() {
-  // Schedule a little ahead so timing stays steady even if the page is busy.
-  while (nextTime < ctx.currentTime + 0.3) {
+  // Schedule ahead so the music never gaps. Browsers slow timers in background
+  // tabs to about once a second, so look further ahead while the tab is hidden.
+  if (ctx.state === 'suspended') ctx.resume();
+  const ahead = document.hidden ? 2.5 : 0.4;
+  if (nextTime < ctx.currentTime) nextTime = ctx.currentTime + 0.05; // recover from a long stall
+  while (nextTime < ctx.currentTime + ahead) {
     playStep(stepIndex, nextTime);
     nextTime += STEP;
     stepIndex = (stepIndex + 1) % TOTAL_STEPS;
@@ -407,8 +410,5 @@ export function stopMusic() {
   notify();
 }
 
-// Pause when the visitor switches tabs; pick up again when they come back.
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden && playing) { pausedByHiding = true; stopMusic(); }
-  else if (!document.hidden && pausedByHiding) { pausedByHiding = false; startMusic(); }
-});
+// The soundtrack keeps playing and looping when the visitor switches tabs;
+// it only stops when they press the button.
