@@ -15,14 +15,14 @@ BIN="${TMPDIR:-/tmp}/bas-resize"
 [ -x "$BIN" ] && [ "$BIN" -nt tools/resize.swift ] || swiftc -O tools/resize.swift -o "$BIN"
 mkdir -p "$OUT"
 n=0; entries=""
-# oldest first by capture/modification time, so the gallery reads in order
+# in file-name order (IMG_0001, IMG_0002…), which follows the order the photos were taken
 while IFS= read -r f; do
   n=$((n+1)); id=$(printf %02d $n)
   read -r w h <<<"$("$BIN" "$f" "$OUT/$id.jpg" 1800 0.7)"
   read -r tw th <<<"$("$BIN" "$f" "$OUT/$id-thumb.jpg" 560 0.66)"
   entries+="      { w: $w, h: $h, tw: $tw, th: $th, en: 'TODO', es: 'TODO' }, // $(basename "$f")"$'\n'
   echo "  $id  ${w}x${h}  $(basename "$f")"
-done < <(find "$SRC" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) -print0 | xargs -0 stat -f '%m %N' | sort -n | cut -d' ' -f2-)
+done < <(find "$SRC" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.heic' -o -iname '*.png' \) | python3 -c 'import sys,re;fs=[l.rstrip("\n") for l in sys.stdin];fs.sort(key=lambda f:[int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)",f)]);print("\n".join(fs))')
 [ $n -gt 0 ] || { rmdir "$OUT"; echo "No photos found in $SRC"; exit 1; }
 echo
 echo "$n photos written to $OUT ($(du -sh "$OUT" | cut -f1))."

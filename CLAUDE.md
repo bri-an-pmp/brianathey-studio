@@ -6,7 +6,7 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 
 - Live on GitHub Pages from `main` of `bri-an-pmp/brianathey-studio` (custom domain in `CNAME`). DNS at GoDaddy: A records 185.199.108-111.153, CNAME `www` → `bri-an-pmp.github.io`. Never ask for GoDaddy passwords or API keys.
 - Pushing to `main` publishes the site. Preview first, and push only when the owner says "publish".
-- Open items: Santiago de Chile gallery (waiting for photos in `photo-inbox/Santiago de Chile/`), Notary Confi services and quote contact, Index tiles 07 and 08.
+- Open items: Notary Confi services and quote contact, Index tiles 07 and 08.
 
 ## Rules
 
