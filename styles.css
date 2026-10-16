@@ -614,6 +614,18 @@ html.gallery-open { overflow: hidden; }
   .film-thumb { width: 48px; height: 62px; }
 }
 
+/* Social */
+.social-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.social-card {
+  display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 22px 22px 20px; text-decoration: none; color: var(--text);
+  background: color-mix(in srgb, var(--void) 60%, transparent); border: 1px solid var(--line-cool); border-left: 3px solid var(--cyan);
+  transition: border-color .25s, box-shadow .25s;
+}
+.social-card:hover, .social-card:focus-visible { color: var(--text); border-color: var(--cyan); box-shadow: 0 0 24px color-mix(in srgb, var(--cyan) 22%, transparent); }
+.social-net { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .12em; text-transform: uppercase; }
+.social-handle { font-family: var(--font-mono); font-size: 16px; color: var(--cyan); overflow-wrap: anywhere; }
+.social-cta { margin-top: 8px; font-family: var(--font-mono); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); }
+
 /* Translation */
 .pairs { list-style: none; padding: 0; margin: 0 0 26px; display: flex; flex-wrap: wrap; gap: 14px; }
 .pair { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 1px solid var(--line); font-weight: 500; }

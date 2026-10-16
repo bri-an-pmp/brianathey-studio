@@ -181,7 +181,7 @@ setInterval(tickClock, 1000);
 /* ---------- File transitions + navigation ---------- */
 const access = document.getElementById('access');
 const accessFile = document.getElementById('access-file');
-const FILE_KEYS = { sound: 'fileSound', code: 'fileCode', memories: 'fileMemories', translation: 'fileTranslation' };
+const FILE_KEYS = { sound: 'fileSound', code: 'fileCode', memories: 'fileMemories', translation: 'fileTranslation', social: 'fileSocial' };
 let accessTimer = 0;
 
 function jumpTo(id, smooth) {
