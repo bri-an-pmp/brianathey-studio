@@ -726,11 +726,6 @@ html.gallery-open { overflow: hidden; }
   animation: id-scan 4s ease-in-out infinite;
 }
 @keyframes id-scan { 0%, 10% { top: -10%; } 60%, 100% { top: 100%; } }
-.id-stamp {
-  position: absolute; right: 10px; bottom: 10px; z-index: 3; padding: 4px 8px;
-  font-family: var(--font-mono); font-size: 13px; letter-spacing: .2em; color: #6dff9c;
-  border: 1px solid #6dff9c; background: rgba(0, 0, 0, .55); transform: rotate(-4deg);
-}
 @media (max-width: 900px) { .id-photo { max-width: 320px; } }
 .id-name {
   margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4vw, 42px); line-height: 1.05; letter-spacing: .08em; text-transform: uppercase;
