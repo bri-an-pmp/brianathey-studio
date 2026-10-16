@@ -445,6 +445,14 @@ main, .site-footer { position: relative; z-index: 1; }
 .file-card:hover, .file-card:focus-visible { background: var(--ink-hover); color: var(--text); }
 .file-card:hover::after, .file-card:focus-visible::after { opacity: 1; animation: scan 1.4s linear infinite; }
 @keyframes scan { to { top: 100%; } }
+.file-pending {
+  color: var(--text-dim);
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px), var(--well);
+}
+.file-pending:hover { background: repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px), var(--well); }
+.file-pending:hover::after { display: none; }
+.file-pending .fc-name { font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .2em; }
+@media (min-width: 1000px) { .file-grid { grid-template-columns: repeat(4, 1fr); } }
 .fc-num { font-family: var(--font-mono); font-size: 14px; color: var(--amber); letter-spacing: .2em; }
 .fc-kana { position: absolute; right: 20px; top: 16px; font-size: 34px; color: color-mix(in srgb, var(--amber) 22%, transparent); }
 .fc-name { margin-top: auto; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .14em; overflow-wrap: anywhere; }
