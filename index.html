@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.github.com; frame-src https://music.amazon.com https://open.spotify.com https://embed.music.apple.com https://www.youtube-nocookie.com https://w.soundcloud.com; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.github.com; frame-src https://music.amazon.com https://embed.tidal.com https://widget.deezer.com https://open.spotify.com https://embed.music.apple.com https://www.youtube-nocookie.com https://w.soundcloud.com; base-uri 'self'; form-action 'none'">
   <title>Brian Athey Studio</title>
   <meta name="description" content="Brian Athey Studio: music, code, photography and Spanish ⇄ English translation.">
   <meta name="theme-color" content="#07080b">
@@ -197,33 +197,43 @@
             <div class="player-slot" data-embed="pandora"></div>
             <a class="ext-link" href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
           </article>
-        </div>
-        <div class="stream-links">
-          <p class="stream-label" data-i18n="alsoOn">ALSO STREAMING ON</p>
-          <ul>
-            <li><a href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener">TIDAL <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener">Deezer <span aria-hidden="true">↗</span></a></li>
-          </ul>
+          <article class="player">
+            <h4>TIDAL</h4>
+            <div class="player-slot" data-embed="tidal"></div>
+            <a class="ext-link" href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> TIDAL ↗</a>
+          </article>
+          <article class="player">
+            <h4>Deezer</h4>
+            <div class="player-slot" data-embed="deezer"></div>
+            <a class="ext-link" href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Deezer ↗</a>
+          </article>
         </div>
       </div>
 
       <div class="panel">
         <h3 class="sub-heading"><span class="tag" data-i18n="band">BAND</span> Red Sun</h3>
         <p class="lede" data-i18n="bandIntro">The band I played in while living in Argentina.</p>
-        <div class="player-grid player-grid-single">
+        <div class="player-grid">
           <article class="player">
             <h4>Spotify</h4>
             <div class="player-slot" data-embed="spotify-band"></div>
             <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
           </article>
-        </div>
-        <div class="stream-links">
-          <p class="stream-label" data-i18n="alsoOn">ALSO STREAMING ON</p>
-          <ul>
-            <li><a href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener">Apple Music <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener">Amazon Music <span aria-hidden="true">↗</span></a></li>
-            <li><a href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener">Pandora <span aria-hidden="true">↗</span></a></li>
-          </ul>
+          <article class="player">
+            <h4>Apple Music</h4>
+            <div class="player-slot" data-embed="apple-band"></div>
+            <a class="ext-link" href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
+          </article>
+          <article class="player">
+            <h4>Amazon Music</h4>
+            <div class="player-slot" data-embed="amazon-band"></div>
+            <a class="ext-link" href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
+          </article>
+          <article class="player">
+            <h4>Pandora</h4>
+            <div class="player-slot" data-embed="pandora-band"></div>
+            <a class="ext-link" href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
+          </article>
         </div>
       </div>
     </section>

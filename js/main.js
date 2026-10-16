@@ -43,6 +43,32 @@ const EMBEDS = {
     name: 'Pandora',
     link: 'https://www.pandora.com/AL:10506770',
   },
+  tidal: {
+    name: 'TIDAL',
+    src: 'https://embed.tidal.com/albums/186270151',
+    height: 352,
+  },
+  deezer: {
+    name: 'Deezer',
+    src: 'https://widget.deezer.com/widget/dark/album/234173262',
+    height: 352,
+  },
+  // Red Sun (Smoke Sale)
+  'apple-band': {
+    name: 'Apple Music',
+    src: 'https://embed.music.apple.com/us/album/smoke-sale/1524150287',
+    height: 450,
+    sandbox: 'allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation',
+  },
+  'amazon-band': {
+    name: 'Amazon Music',
+    src: 'https://music.amazon.com/embed/B08D8BC8Z5',
+    height: 352,
+  },
+  'pandora-band': {
+    name: 'Pandora',
+    link: 'https://www.pandora.com/AL:6130021',
+  },
   soundcloud: {
     name: 'SoundCloud',
     src: 'https://w.soundcloud.com/player/?url=' + encodeURIComponent('https://soundcloud.com/user-473502514') +
