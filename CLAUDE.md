@@ -6,6 +6,7 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 
 - Live on GitHub Pages from `main` of `bri-an-pmp/brianathey-studio` (custom domain in `CNAME`). DNS at GoDaddy: A records 185.199.108-111.153, CNAME `www` → `bri-an-pmp.github.io`. Never ask for GoDaddy passwords or API keys.
 - Pushing to `main` publishes the site. Preview first, and push only when the owner says "publish".
+- Commits use the private GitHub address `169122214+bri-an-pmp@users.noreply.github.com` (set in this repo's git config). Never commit with the owner's personal email.
 - Before every publish run `python3 tools/stamp.py`: it stamps a new `?v=` on CSS/JS references so browsers (10-minute cache) never mix old and new files.
 - Open items: Notary Confi services and quote contact, Index tile 08.
 
@@ -13,7 +14,8 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 
 - **Style:** neo-noir sci-fi inspired by Blade Runner 2049 (night blue fog and red neon at the top; from the Code section down, a dusty red-gold brutalist "apartment view" and warm palette). All art and music must be original: no film, game or brand assets, names or logos.
 - **Two languages:** every visible phrase in English and Spanish (`js/i18n.js`, formal "usted"). Place names: use Spanish names when in doubt (e.g. "Mercado de las Brujas", "Catedral de La Paz").
-- **Security policy:** new outside services must be added to the Content-Security-Policy meta tag in `index.html`. Use `textContent`, not `innerHTML`, for any text.
+- **Security policy:** new outside services must be added to the Content-Security-Policy meta tag in `index.html`. Fonts are self-hosted (`fonts.css`, `assets/fonts/`); don't add Google Fonts or other third-party scripts/trackers. Music embeds stay click-to-load and sandboxed.
+- **Notary compliance:** keep the Texas Gov't Code §406.017 notice (English + Spanish) next to any notary wording, and never use "notario"/"notario público" or "notarial". Use `textContent`, not `innerHTML`, for any text.
 - **Accessibility/phones:** tap targets ≥ 44px, readable contrast, no horizontal scroll at 390px, respect reduced motion.
 - **Soundtrack (`js/music.js`):** original ambient film-score style, kept chill and soft; it only plays when the visitor presses the button.
 
