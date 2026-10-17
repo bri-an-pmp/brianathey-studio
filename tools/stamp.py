@@ -7,7 +7,7 @@ root = pathlib.Path(__file__).resolve().parent.parent
 v = time.strftime('%Y%m%d%H%M%S')
 html = root / 'index.html'
 s = html.read_text()
-s = re.sub(r'(href="styles\.css)(\?v=\w+)?"', rf'\1?v={v}"', s)
+s = re.sub(r'(href="(?:styles|fonts)\.css)(\?v=\w+)?"', rf'\1?v={v}"', s)
 s = re.sub(r'(src="js/main\.js)(\?v=\w+)?"', rf'\1?v={v}"', s)
 html.write_text(s)
 for js in (root / 'js').glob('*.js'):

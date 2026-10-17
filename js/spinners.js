@@ -119,6 +119,7 @@ export function startSpinners(canvas, { still = false } = {}) {
     if (!running) return;
     const dt = Math.min((now - last) / 1000, 0.05);
     last = now;
+    if (document.documentElement.classList.contains('motion-paused')) { requestAnimationFrame(frame); return; } // visitor paused motion
     for (let i = 0; i < cars.length; i++) {
       const car = cars[i];
       if (car.delay > 0) { car.delay -= dt; continue; }

@@ -1,7 +1,7 @@
 // Full-screen photo gallery. Opens as a swipeable carousel with a filmstrip of
 // thumbnails; "All photos" switches to a grid. Built on <dialog> for focus handling.
-import { tr, getLang } from './i18n.js?v=20261016193625';
-import { photoSrc } from './albums.js?v=20261016193625';
+import { tr, getLang } from './i18n.js?v=20261016194317';
+import { photoSrc } from './albums.js?v=20261016194317';
 
 const dialog = document.getElementById('gallery');
 const titleEl = document.getElementById('gallery-title');
@@ -43,10 +43,11 @@ function thumbImg(i) {
 function build() {
   // Carousel slides (large photos load as they come near the screen).
   track.replaceChildren(...album.photos.map((p, i) => {
-    const li = document.createElement('li');
+    const li = document.createElement('div');
     li.className = 'slide';
     li.setAttribute('role', 'group');
     li.setAttribute('aria-roledescription', 'slide');
+    li.lang = 'es'; // captions are written in Spanish
     const im = document.createElement('img');
     im.src = photoSrc(album, i);
     im.width = p.w;
@@ -64,6 +65,7 @@ function build() {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'film-thumb';
+    b.lang = 'es';
     b.append(thumbImg(i));
     b.addEventListener('click', () => goTo(i));
     li.append(b);
@@ -75,6 +77,7 @@ function build() {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'gal-thumb';
+    b.lang = 'es';
     b.append(thumbImg(i));
     b.addEventListener('click', () => { showCarousel(); goTo(i, false); toggleBtn.focus(); });
     li.append(b);
@@ -87,6 +90,7 @@ function renderText() {
   if (!album) return;
   const n = album.photos.length;
   titleEl.textContent = album.title[getLang()] || album.title.en;
+  titleEl.lang = 'es';
   countEl.textContent = tr('photoCount', { n });
   toggleBtn.textContent = inGrid() ? tr('toCarousel') : tr('backToGrid');
   document.getElementById('gal-close').setAttribute('aria-label', tr('closeGallery'));
@@ -109,6 +113,7 @@ function updateCurrent(i, announceIt = true) {
   const p = album.photos[index];
   posEl.textContent = `${tr('memory')} ${pad(index + 1)} / ${pad(n)}`;
   capEl.textContent = caption(p);
+  capEl.lang = 'es';
   [...film.children].forEach((li, j) => {
     const b = li.firstChild;
     if (j === index) {

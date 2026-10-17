@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016193625';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261016193625';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016193625';
-import { startRain } from './rain.js?v=20261016193625';
-import { startSpinners } from './spinners.js?v=20261016193625';
-import { ALBUMS, photoSrc } from './albums.js?v=20261016193625';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261016193625';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016194317';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261016194317';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016194317';
+import { startRain } from './rain.js?v=20261016194317';
+import { startSpinners } from './spinners.js?v=20261016194317';
+import { ALBUMS, photoSrc } from './albums.js?v=20261016194317';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261016194317';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -225,8 +225,41 @@ let scanQueued = false;
 new MutationObserver(() => {
   if (scanQueued) return;
   scanQueued = true;
-  requestAnimationFrame(() => { scanQueued = false; attachScans(); });
+  requestAnimationFrame(() => { scanQueued = false; attachScans(); markNewTabs(); });
 }).observe(document.querySelector('main'), { childList: true, subtree: true });
+
+/* ---------- Links that open a new tab ---------- */
+// Screen readers hear "(opens in a new tab)"; sighted visitors see the ↗.
+function markNewTabs() {
+  document.querySelectorAll('a[target="_blank"]').forEach((a) => {
+    let note = a.querySelector(':scope > .new-tab');
+    if (!note) {
+      note = document.createElement('span');
+      note.className = 'sr-only new-tab';
+      a.append(note);
+    }
+    note.textContent = ` (${tr('newTab')})`;
+  });
+}
+
+/* ---------- Pause motion ---------- */
+// Rain, flying cars, scan lines and dust can be paused (WCAG 2.2.2). Remembered per browser.
+const motionBtn = document.getElementById('motion-toggle');
+function setMotionPaused(on) {
+  document.documentElement.classList.toggle('motion-paused', on);
+  motionBtn.setAttribute('aria-pressed', String(on));
+  const label = motionBtn.querySelector('.motion-label');
+  label.dataset.i18n = on ? 'motionResume' : 'motionPause';
+  label.textContent = tr(label.dataset.i18n);
+  try { localStorage.setItem('bas_motion', on ? 'paused' : 'on'); } catch { /* ignore */ }
+}
+let motionStart = false;
+try { motionStart = localStorage.getItem('bas_motion') === 'paused'; } catch { /* ignore */ }
+motionBtn.addEventListener('click', () => {
+  const on = !document.documentElement.classList.contains('motion-paused');
+  setMotionPaused(on);
+  announce(tr(on ? 'motionPausedStatus' : 'motionOnStatus'));
+});
 
 /* ---------- Clock ---------- */
 const clock = document.getElementById('clock');
@@ -289,7 +322,11 @@ function renderPlayers() {
       a.href = embed.link;
       a.target = '_blank';
       a.rel = 'noopener';
-      a.textContent = `${tr('listenOn')} ${embed.name} ↗`;
+      a.textContent = `${tr('listenOn')} ${embed.name}`;
+      const arrow = document.createElement('span');
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = ' ↗';
+      a.append(arrow);
       slot.replaceChildren(a);
       return;
     }
@@ -305,7 +342,9 @@ function renderPlayers() {
       frame.title = `${embed.name} player`;
       frame.loading = 'lazy';
       frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-      if (embed.sandbox) frame.setAttribute('sandbox', embed.sandbox);
+      // Every player is sandboxed and gets no referrer: it can play music, not touch this page.
+      frame.setAttribute('sandbox', embed.sandbox || 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation');
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
       slot.replaceChildren(frame);
       sfx('select');
       announce(tr('playerLoaded', { name: embed.name }));
@@ -362,7 +401,7 @@ function renderRepos() {
     id.className = 'repo-id';
     id.textContent = `REC-${String(i + 1).padStart(3, '0')}`;
     id.setAttribute('aria-hidden', 'true');
-    const h = document.createElement('h4');
+    const h = document.createElement('h3');
     const a = document.createElement('a');
     a.href = `https://github.com/${GITHUB_USER}/${encodeURIComponent(r.name)}`;
     a.target = '_blank';
@@ -425,9 +464,11 @@ function renderPhotos() {
     label.textContent = `${tr('collection')} ${String(i + 1).padStart(2, '0')} · ${tr('photoCount', { n: album.photos.length })}`;
     const title = document.createElement('span');
     title.className = 'album-title';
+    title.lang = 'es';
     title.textContent = album.title[lang] || album.title.en;
     const sub = document.createElement('span');
     sub.className = 'album-sub';
+    sub.lang = 'es';
     sub.textContent = album.subtitle[lang] || album.subtitle.en;
     const open = document.createElement('span');
     open.className = 'album-open';
@@ -456,6 +497,9 @@ setInterval(() => {
 /* ---------- Start ---------- */
 function refreshAll() {
   applyPage();
+  setMotionPaused(document.documentElement.classList.contains('motion-paused') || motionStart);
+  motionStart = false;
+  markNewTabs();
   document.querySelectorAll('[data-i18n-alt]').forEach((el) => { el.alt = tr(el.dataset.i18nAlt); });
   document.querySelectorAll('[data-i18n-label]').forEach((el) => el.setAttribute('aria-label', tr(el.dataset.i18nLabel)));
   typeArchive();

@@ -3,25 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.github.com; frame-src https://music.amazon.com https://embed.tidal.com https://widget.deezer.com https://open.spotify.com https://embed.music.apple.com https://www.youtube-nocookie.com https://w.soundcloud.com; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src https://api.github.com; frame-src https://music.amazon.com https://embed.tidal.com https://widget.deezer.com https://open.spotify.com https://embed.music.apple.com https://www.youtube-nocookie.com https://w.soundcloud.com; base-uri 'self'; form-action 'none'">
   <title>Brian Athey Studio</title>
   <meta name="description" content="Brian Athey: Senior Solutions Engineer (agentic AI, MCP and APIs; DAM and PIM), bilingual English/Spanish. Music, code, photography and translation.">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Brian Athey · Senior Solutions Engineer">
   <meta property="og:description" content="Agentic AI, MCP and API integrations for DAM and PIM. Two-time #1 Global Solutions Engineer at Canto. Bilingual English/Spanish.">
   <meta property="og:url" content="https://brianathey.studio/">
-  <meta property="og:image" content="https://brianathey.studio/assets/brian-athey-id.jpg">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://brianathey.studio/assets/og-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Brian Athey Studio: the name glowing over a neon night city, with tabs for Career, Code, Translation, Music and Photography">
+  <meta property="og:site_name" content="Brian Athey Studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://brianathey.studio/assets/og-preview.jpg">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Brian Athey","jobTitle":"Senior Solutions Engineer","worksFor":{"@type":"Organization","name":"Canto"},"address":{"@type":"PostalAddress","addressLocality":"Austin","addressRegion":"TX","addressCountry":"US"},"knowsLanguage":["en","es"],"url":"https://brianathey.studio/","image":"https://brianathey.studio/assets/brian-athey-id.jpg","sameAs":["https://www.linkedin.com/in/brian-athey-91337155/","https://github.com/bri-an-pmp"]}
   </script>
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#07080b">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Syncopate:wght@400;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20261016193625">
-  <script type="module" src="js/main.js?v=20261016193625"></script>
+  <link rel="stylesheet" href="fonts.css?v=20261016194317">
+  <link rel="stylesheet" href="styles.css?v=20261016194317">
+  <script type="module" src="js/main.js?v=20261016194317"></script>
 </head>
 <body>
   <a class="skip-link" href="#index" data-i18n="skip">Skip to main content</a>
@@ -58,6 +62,10 @@
       <button type="button" id="music-toggle" class="bar-btn" aria-pressed="false">
         <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="music-label" data-i18n="musicOff">Soundtrack off</span>
+      </button>
+      <button type="button" id="motion-toggle" class="bar-btn" aria-pressed="false">
+        <span aria-hidden="true">◐</span>
+        <span class="motion-label" data-i18n="motionPause">Pause motion</span>
       </button>
       <button type="button" id="sound-toggle" class="bar-btn" aria-pressed="false">
         <span aria-hidden="true">◌</span>
@@ -176,7 +184,7 @@
         <h2 id="career-title" class="heading" tabindex="-1" data-i18n="fileCareer">CAREER</h2>
       </div>
       <div class="panel dossier">
-        <aside class="id-card">
+        <div class="id-card">
           <p class="id-file">SUBJECT FILE // BAS-0001</p>
           <figure class="id-photo">
             <img src="assets/brian-athey-id.jpg" width="402" height="374" alt="Brian Athey" data-i18n-alt="resumePhotoAlt" loading="lazy">
@@ -191,10 +199,10 @@
             <div><dt data-i18n="resumeCurrent">CURRENTLY</dt><dd class="id-status"><span class="id-dot" aria-hidden="true"></span><span>Canto</span></dd></div>
           </dl>
           <div class="id-actions">
-            <a class="btn btn-primary" href="assets/Brian-Athey-Resume.pdf" download><span data-i18n="resumeDownload">Download resume (PDF)</span> ↓</a>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/in/brian-athey-91337155/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn btn-primary" href="assets/Brian-Athey-Resume.pdf" download><span data-i18n="resumeDownload">Download resume (PDF)</span> <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/brian-athey-91337155/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
-        </aside>
+        </div>
 
         <div class="dossier-main">
           <p class="dossier-summary" data-i18n="resumeSummary">I lead enterprise pre-sales from technical discovery to executive demos, and build agentic AI: MCP connectors that give Claude, Copilot and other AI agents governed access to product content.</p>
@@ -235,7 +243,7 @@
           <h4 class="dossier-label" data-i18n="resumeProjects">PROJECTS</h4>
           <ul class="proj">
             <li><a href="#code" data-file="code"><strong>The Morning Frequency</strong><span data-i18n="resumeProjTmf">AI journaling app that turns writing into music · iOS, November 2026</span></a></li>
-            <li><a href="https://huggingface.co/spaces/cousinbrian/Career_Cono2" target="_blank" rel="noopener"><strong>AI Career Assistant ↗</strong><span data-i18n="resumeProjTwin">Digital-twin chatbot with OpenAI function calling and live alerts</span></a></li>
+            <li><a href="https://huggingface.co/spaces/cousinbrian/Career_Cono2" target="_blank" rel="noopener"><strong>AI Career Assistant <span aria-hidden="true">↗</span></strong><span data-i18n="resumeProjTwin">Digital-twin chatbot with OpenAI function calling and live alerts</span></a></li>
             <li><a href="#top"><strong>brianathey.studio</strong><span data-i18n="resumeProjSite">This site · built with Claude Code, published with GitHub Pages</span></a></li>
           </ul>
 
@@ -279,7 +287,7 @@
         <p class="lede" data-i18n="codeIntro">Things I build, pulled live from my GitHub.</p>
         <p class="status-line" id="repo-status" data-i18n="loadingRepos">Loading projects…</p>
         <ul class="repo-grid" id="repo-grid"></ul>
-        <a class="btn btn-ghost" href="https://github.com/bri-an-pmp" target="_blank" rel="noopener"><span data-i18n="allGithub">See everything on GitHub</span> ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/bri-an-pmp" target="_blank" rel="noopener"><span data-i18n="allGithub">See everything on GitHub</span> <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -296,7 +304,11 @@
           <li class="pair"><span class="pair-code" aria-hidden="true">ES → EN</span><span data-i18n="esToEn">Spanish to English</span></li>
           <li class="pair"><span class="pair-code" aria-hidden="true">EN → ES</span><span data-i18n="enToEs">English to Spanish</span></li>
         </ul>
-        <a class="btn btn-primary" href="https://notaryconfi.com" target="_blank" rel="noopener"><span data-i18n="quote">Visit Notary Confi to request a quote</span> ↗</a>
+        <a class="btn btn-primary" href="https://notaryconfi.com" target="_blank" rel="noopener"><span data-i18n="quote">Visit Notary Confi to request a quote</span> <span aria-hidden="true">↗</span></a>
+        <div class="legal-notice" role="note">
+          <p lang="en">I am not an attorney licensed to practice law in Texas and may not give legal advice or accept fees for legal advice.</p>
+          <p lang="es">No soy abogado con licencia para ejercer la abogacía en Texas y no puedo dar asesoría legal ni aceptar honorarios por asesoría legal.</p>
+        </div>
       </div>
     </section>
 
@@ -313,42 +325,42 @@
           <article class="player">
             <h4>Spotify</h4>
             <div class="player-slot" data-embed="spotify-solo"></div>
-            <a class="ext-link" href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
+            <a class="ext-link" href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Apple Music</h4>
             <div class="player-slot" data-embed="apple"></div>
-            <a class="ext-link" href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
+            <a class="ext-link" href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>YouTube Music</h4>
             <div class="player-slot" data-embed="youtube"></div>
-            <a class="ext-link" href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> YouTube ↗</a>
+            <a class="ext-link" href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> YouTube <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>SoundCloud</h4>
             <div class="player-slot" data-embed="soundcloud"></div>
-            <a class="ext-link" href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> SoundCloud ↗</a>
+            <a class="ext-link" href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> SoundCloud <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Amazon Music</h4>
             <div class="player-slot" data-embed="amazon"></div>
-            <a class="ext-link" href="https://music.amazon.com/albums/B096DX88Z7" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
+            <a class="ext-link" href="https://music.amazon.com/albums/B096DX88Z7" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Pandora</h4>
             <div class="player-slot" data-embed="pandora"></div>
-            <a class="ext-link" href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
+            <a class="ext-link" href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>TIDAL</h4>
             <div class="player-slot" data-embed="tidal"></div>
-            <a class="ext-link" href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> TIDAL ↗</a>
+            <a class="ext-link" href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> TIDAL <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Deezer</h4>
             <div class="player-slot" data-embed="deezer"></div>
-            <a class="ext-link" href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Deezer ↗</a>
+            <a class="ext-link" href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Deezer <span aria-hidden="true">↗</span></a>
           </article>
         </div>
       </div>
@@ -360,22 +372,22 @@
           <article class="player">
             <h4>Spotify</h4>
             <div class="player-slot" data-embed="spotify-band"></div>
-            <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
+            <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Apple Music</h4>
             <div class="player-slot" data-embed="apple-band"></div>
-            <a class="ext-link" href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
+            <a class="ext-link" href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Amazon Music</h4>
             <div class="player-slot" data-embed="amazon-band"></div>
-            <a class="ext-link" href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
+            <a class="ext-link" href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music <span aria-hidden="true">↗</span></a>
           </article>
           <article class="player">
             <h4>Pandora</h4>
             <div class="player-slot" data-embed="pandora-band"></div>
-            <a class="ext-link" href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
+            <a class="ext-link" href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora <span aria-hidden="true">↗</span></a>
           </article>
         </div>
       </div>
@@ -405,12 +417,12 @@
           <li><a class="social-card" href="https://www.tiktok.com/@brian_tok4vids" target="_blank" rel="noopener">
             <span class="social-net">TikTok</span>
             <span class="social-handle">@brian_tok4vids</span>
-            <span class="social-cta"><span data-i18n="socialTiktok">Watch on TikTok</span> ↗</span>
+            <span class="social-cta"><span data-i18n="socialTiktok">Watch on TikTok</span> <span aria-hidden="true">↗</span></span>
           </a></li>
           <li><a class="social-card" href="https://www.instagram.com/brian_athey_/" target="_blank" rel="noopener">
             <span class="social-net">Instagram</span>
             <span class="social-handle">@brian_athey_</span>
-            <span class="social-cta"><span data-i18n="socialInstagram">Follow on Instagram</span> ↗</span>
+            <span class="social-cta"><span data-i18n="socialInstagram">Follow on Instagram</span> <span aria-hidden="true">↗</span></span>
           </a></li>
         </ul>
       </div>
@@ -434,6 +446,7 @@
       <li><a href="https://www.linkedin.com/in/brian-athey-91337155/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://notaryconfi.com" target="_blank" rel="noopener">Notary Confi</a></li>
     </ul>
+    <p class="privacy" data-i18n="privacy">Privacy: this site uses no cookies, analytics or tracking. Your language, sound and motion choices are saved only in your browser. Music players load from their services only when you press Load player, and the Code section reads public project data from GitHub.</p>
     <p class="copyright">© <span id="year">2026</span> Brian Athey Studio</p>
   </footer>
 
@@ -459,7 +472,7 @@
     <div class="viewer" id="viewer" hidden>
       <div class="carousel-wrap">
         <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel">
-          <ul class="track" id="track"></ul>
+          <div class="track" id="track"></div>
         </div>
         <button type="button" class="viewer-nav viewer-prev" id="viewer-prev"><span aria-hidden="true">‹</span></button>
         <button type="button" class="viewer-nav viewer-next" id="viewer-next"><span aria-hidden="true">›</span></button>

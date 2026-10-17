@@ -35,6 +35,7 @@ export function startRain(canvas) {
   function frame(now) {
     const dt = Math.min((now - last) / 1000, 0.05);
     last = now;
+    if (document.documentElement.classList.contains('motion-paused')) { requestAnimationFrame(frame); return; } // visitor paused motion
     ctx.clearRect(0, 0, w, h);
     ctx.lineWidth = 1;
     for (const d of drops) {
