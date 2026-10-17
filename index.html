@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Syncopate:wght@400;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20261016192547">
-  <script type="module" src="js/main.js?v=20261016192547"></script>
+  <link rel="stylesheet" href="styles.css?v=20261016193224">
+  <script type="module" src="js/main.js?v=20261016193224"></script>
 </head>
 <body>
   <a class="skip-link" href="#index" data-i18n="skip">Skip to main content</a>
@@ -104,7 +104,13 @@
           </span>
           <span class="brand-sub"><span class="rule" aria-hidden="true"></span>STUDIO<span class="rule" aria-hidden="true"></span></span>
         </h1>
-        <p class="tagline" data-i18n="tagline">Music · Code · Photography · Translation</p>
+        <nav class="tabs" aria-label="Sections" data-i18n-label="tabsLabel">
+          <a href="#career" data-file="career" data-i18n="tabCareer">Career</a>
+          <a href="#code" data-file="code" data-i18n="tabCode">Code</a>
+          <a href="#translation" data-file="translation" data-i18n="tabTranslation">Translation</a>
+          <a href="#sound" data-file="sound" data-i18n="tabMusic">Music</a>
+          <a href="#memories" data-file="memories" data-i18n="tabPhoto">Photography</a>
+        </nav>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary" id="enter" data-i18n="enter">ENTER</button>
           <button type="button" class="btn btn-ghost" id="theme-play" aria-pressed="false">
@@ -123,11 +129,11 @@
         <h2 id="index-title" class="heading" tabindex="-1" data-i18n="indexTitle">INDEX</h2>
       </div>
       <ul class="file-grid">
-        <li><a class="file-card" href="#sound" data-file="sound">
+        <li><a class="file-card" href="#career" data-file="career">
           <span class="fc-num">01</span>
-          <span class="fc-kana" aria-hidden="true">音</span>
-          <span class="fc-name" data-i18n="fileSound">SOUND</span>
-          <span class="fc-sub" data-i18n="fileSoundSub">My music and band from Argentina</span>
+          <span class="fc-kana" aria-hidden="true">職歴</span>
+          <span class="fc-name" data-i18n="fileCareer">CAREER</span>
+          <span class="fc-sub" data-i18n="fileCareerSub">Resume, experience and LinkedIn</span>
         </a></li>
         <li><a class="file-card" href="#code" data-file="code">
           <span class="fc-num">02</span>
@@ -135,194 +141,39 @@
           <span class="fc-name" data-i18n="fileCode">CODE</span>
           <span class="fc-sub" data-i18n="fileCodeSub">Projects on GitHub</span>
         </a></li>
-        <li><a class="file-card" href="#memories" data-file="memories">
-          <span class="fc-num">03</span>
-          <span class="fc-kana" aria-hidden="true">記憶</span>
-          <span class="fc-name" data-i18n="fileMemories">MEMORIES</span>
-          <span class="fc-sub" data-i18n="fileMemoriesSub">Photography</span>
-        </a></li>
         <li><a class="file-card" href="#translation" data-file="translation">
-          <span class="fc-num">04</span>
+          <span class="fc-num">03</span>
           <span class="fc-kana" aria-hidden="true">訳</span>
           <span class="fc-name" data-i18n="fileTranslation">TRANSLATION</span>
           <span class="fc-sub" data-i18n="fileTranslationSub">Notary Confi · Spanish ⇄ English</span>
         </a></li>
-        <li><a class="file-card" href="#social" data-file="social">
+        <li><a class="file-card" href="#sound" data-file="sound">
+          <span class="fc-num">04</span>
+          <span class="fc-kana" aria-hidden="true">音</span>
+          <span class="fc-name" data-i18n="fileSound">SOUND</span>
+          <span class="fc-sub" data-i18n="fileSoundSub">My music and band from Argentina</span>
+        </a></li>
+        <li><a class="file-card" href="#memories" data-file="memories">
           <span class="fc-num">05</span>
+          <span class="fc-kana" aria-hidden="true">記憶</span>
+          <span class="fc-name" data-i18n="fileMemories">MEMORIES</span>
+          <span class="fc-sub" data-i18n="fileMemoriesSub">Photography</span>
+        </a></li>
+        <li><a class="file-card" href="#social" data-file="social">
+          <span class="fc-num">06</span>
           <span class="fc-kana" aria-hidden="true">信号</span>
           <span class="fc-name" data-i18n="fileSocial">SOCIAL</span>
           <span class="fc-sub" data-i18n="fileSocialSub">TikTok and Instagram</span>
         </a></li>
-        <li><a class="file-card" href="https://www.linkedin.com/in/brian-athey-91337155/" target="_blank" rel="noopener">
-          <span class="fc-num">06</span>
-          <span class="fc-kana" aria-hidden="true">職歴</span>
-          <span class="fc-name">LINKEDIN <span aria-hidden="true">↗</span></span>
-          <span class="fc-sub" data-i18n="fileLinkedinSub">Career and professional profile</span>
-        </a></li>
-        <li><a class="file-card" href="#resume" data-file="resume">
-          <span class="fc-num">07</span>
-          <span class="fc-kana" aria-hidden="true">履歴書</span>
-          <span class="fc-name" data-i18n="fileResume">RESUME</span>
-          <span class="fc-sub" data-i18n="fileResumeSub">Experience, skills and certifications</span>
-        </a></li>
-        <li><div class="file-card file-pending">
-          <span class="fc-num">08</span>
-          <span class="fc-name" data-i18n="filePending">FILE PENDING</span>
-        </div></li>
       </ul>
     </section>
 
-    <!-- 01 SOUND -->
-    <section id="sound" class="file file-sound" aria-labelledby="sound-title">
+    <!-- 01 CAREER -->
+    <section id="career" class="file file-career" aria-labelledby="career-title">
+      <span id="resume" aria-hidden="true"></span>
       <div class="section-head">
         <p class="readout">FILE 01 //</p>
-        <h2 id="sound-title" class="heading" tabindex="-1" data-i18n="fileSound">SOUND</h2>
-      </div>
-      <div class="panel">
-        <h3 class="sub-heading"><span class="tag" data-i18n="solo">SOLO</span> Brian Athey</h3>
-        <p class="lede" data-i18n="musicIntro">My own music. Choose a platform and press Load player to listen here, or open it in your favorite app.</p>
-        <div class="player-grid">
-          <article class="player">
-            <h4>Spotify</h4>
-            <div class="player-slot" data-embed="spotify-solo"></div>
-            <a class="ext-link" href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
-          </article>
-          <article class="player">
-            <h4>Apple Music</h4>
-            <div class="player-slot" data-embed="apple"></div>
-            <a class="ext-link" href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
-          </article>
-          <article class="player">
-            <h4>YouTube Music</h4>
-            <div class="player-slot" data-embed="youtube"></div>
-            <a class="ext-link" href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> YouTube ↗</a>
-          </article>
-          <article class="player">
-            <h4>SoundCloud</h4>
-            <div class="player-slot" data-embed="soundcloud"></div>
-            <a class="ext-link" href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> SoundCloud ↗</a>
-          </article>
-          <article class="player">
-            <h4>Amazon Music</h4>
-            <div class="player-slot" data-embed="amazon"></div>
-            <a class="ext-link" href="https://music.amazon.com/albums/B096DX88Z7" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
-          </article>
-          <article class="player">
-            <h4>Pandora</h4>
-            <div class="player-slot" data-embed="pandora"></div>
-            <a class="ext-link" href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
-          </article>
-          <article class="player">
-            <h4>TIDAL</h4>
-            <div class="player-slot" data-embed="tidal"></div>
-            <a class="ext-link" href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> TIDAL ↗</a>
-          </article>
-          <article class="player">
-            <h4>Deezer</h4>
-            <div class="player-slot" data-embed="deezer"></div>
-            <a class="ext-link" href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Deezer ↗</a>
-          </article>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3 class="sub-heading"><span class="tag" data-i18n="band">BAND</span> Red Sun</h3>
-        <p class="lede" data-i18n="bandIntro">The band I played in while living in Argentina.</p>
-        <div class="player-grid">
-          <article class="player">
-            <h4>Spotify</h4>
-            <div class="player-slot" data-embed="spotify-band"></div>
-            <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
-          </article>
-          <article class="player">
-            <h4>Apple Music</h4>
-            <div class="player-slot" data-embed="apple-band"></div>
-            <a class="ext-link" href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
-          </article>
-          <article class="player">
-            <h4>Amazon Music</h4>
-            <div class="player-slot" data-embed="amazon-band"></div>
-            <a class="ext-link" href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
-          </article>
-          <article class="player">
-            <h4>Pandora</h4>
-            <div class="player-slot" data-embed="pandora-band"></div>
-            <a class="ext-link" href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 CODE -->
-    <section id="code" class="file file-code" aria-labelledby="code-title">
-      <div class="section-head">
-        <p class="readout">FILE 02 //</p>
-        <h2 id="code-title" class="heading" tabindex="-1" data-i18n="fileCode">CODE</h2>
-      </div>
-      <div class="panel">
-        <p class="lede" data-i18n="codeIntro">Things I build, pulled live from my GitHub.</p>
-        <p class="status-line" id="repo-status" data-i18n="loadingRepos">Loading projects…</p>
-        <ul class="repo-grid" id="repo-grid"></ul>
-        <a class="btn btn-ghost" href="https://github.com/bri-an-pmp" target="_blank" rel="noopener"><span data-i18n="allGithub">See everything on GitHub</span> ↗</a>
-      </div>
-    </section>
-
-    <!-- 03 MEMORIES -->
-    <section id="memories" class="file file-memories" aria-labelledby="memories-title">
-      <div class="section-head">
-        <p class="readout">FILE 03 //</p>
-        <h2 id="memories-title" class="heading" tabindex="-1" data-i18n="fileMemories">MEMORIES</h2>
-      </div>
-      <div class="panel">
-        <p class="lede" data-i18n="photoIntro">A gallery of my photography is on its way.</p>
-        <ul class="photo-grid" id="photo-grid"></ul>
-      </div>
-    </section>
-
-    <!-- 04 TRANSLATION -->
-    <section id="translation" class="file file-translation" aria-labelledby="translation-title">
-      <div class="section-head">
-        <p class="readout">FILE 04 //</p>
-        <h2 id="translation-title" class="heading" tabindex="-1" data-i18n="fileTranslation">TRANSLATION</h2>
-      </div>
-      <div class="panel">
-        <h3 class="sub-heading"><span class="tag" data-i18n="company">COMPANY</span> Notary Confi</h3>
-        <p class="lede" data-i18n="translationIntro">My translation company, Notary Confi, offers professional translation between Spanish and English.</p>
-        <ul class="pairs">
-          <li class="pair"><span class="pair-code" aria-hidden="true">ES → EN</span><span data-i18n="esToEn">Spanish to English</span></li>
-          <li class="pair"><span class="pair-code" aria-hidden="true">EN → ES</span><span data-i18n="enToEs">English to Spanish</span></li>
-        </ul>
-        <a class="btn btn-primary" href="https://notaryconfi.com" target="_blank" rel="noopener"><span data-i18n="quote">Visit Notary Confi to request a quote</span> ↗</a>
-      </div>
-    </section>
-
-    <!-- 05 SOCIAL -->
-    <section id="social" class="file file-social" aria-labelledby="social-title">
-      <div class="section-head">
-        <p class="readout">FILE 05 //</p>
-        <h2 id="social-title" class="heading" tabindex="-1" data-i18n="fileSocial">SOCIAL</h2>
-      </div>
-      <div class="panel">
-        <p class="lede" data-i18n="socialIntro">Follow along for videos, photos and what I’m working on.</p>
-        <ul class="social-grid">
-          <li><a class="social-card" href="https://www.tiktok.com/@brian_tok4vids" target="_blank" rel="noopener">
-            <span class="social-net">TikTok</span>
-            <span class="social-handle">@brian_tok4vids</span>
-            <span class="social-cta"><span data-i18n="socialTiktok">Watch on TikTok</span> ↗</span>
-          </a></li>
-          <li><a class="social-card" href="https://www.instagram.com/brian_athey_/" target="_blank" rel="noopener">
-            <span class="social-net">Instagram</span>
-            <span class="social-handle">@brian_athey_</span>
-            <span class="social-cta"><span data-i18n="socialInstagram">Follow on Instagram</span> ↗</span>
-          </a></li>
-        </ul>
-      </div>
-    </section>
-    <!-- 07 RESUME -->
-    <section id="resume" class="file file-resume" aria-labelledby="resume-title">
-      <div class="section-head">
-        <p class="readout">FILE 07 //</p>
-        <h2 id="resume-title" class="heading" tabindex="-1" data-i18n="fileResume">RESUME</h2>
+        <h2 id="career-title" class="heading" tabindex="-1" data-i18n="fileCareer">CAREER</h2>
       </div>
       <div class="panel dossier">
         <aside class="id-card">
@@ -415,6 +266,153 @@
             <li>PMP®</li><li>PMI-ACP®</li><li>SAFe® 6 POPM</li><li>Scrum Master</li><li>Lean Six Sigma Black Belt</li><li>Pendo Admin</li><li data-i18n="resumeMicro">+ 7 PMI AI &amp; Agile micro-credentials</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- 02 CODE -->
+    <section id="code" class="file file-code" aria-labelledby="code-title">
+      <div class="section-head">
+        <p class="readout">FILE 02 //</p>
+        <h2 id="code-title" class="heading" tabindex="-1" data-i18n="fileCode">CODE</h2>
+      </div>
+      <div class="panel">
+        <p class="lede" data-i18n="codeIntro">Things I build, pulled live from my GitHub.</p>
+        <p class="status-line" id="repo-status" data-i18n="loadingRepos">Loading projects…</p>
+        <ul class="repo-grid" id="repo-grid"></ul>
+        <a class="btn btn-ghost" href="https://github.com/bri-an-pmp" target="_blank" rel="noopener"><span data-i18n="allGithub">See everything on GitHub</span> ↗</a>
+      </div>
+    </section>
+
+    <!-- 03 TRANSLATION -->
+    <section id="translation" class="file file-translation" aria-labelledby="translation-title">
+      <div class="section-head">
+        <p class="readout">FILE 03 //</p>
+        <h2 id="translation-title" class="heading" tabindex="-1" data-i18n="fileTranslation">TRANSLATION</h2>
+      </div>
+      <div class="panel">
+        <h3 class="sub-heading"><span class="tag" data-i18n="company">COMPANY</span> Notary Confi</h3>
+        <p class="lede" data-i18n="translationIntro">My translation company, Notary Confi, offers professional translation between Spanish and English.</p>
+        <ul class="pairs">
+          <li class="pair"><span class="pair-code" aria-hidden="true">ES → EN</span><span data-i18n="esToEn">Spanish to English</span></li>
+          <li class="pair"><span class="pair-code" aria-hidden="true">EN → ES</span><span data-i18n="enToEs">English to Spanish</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://notaryconfi.com" target="_blank" rel="noopener"><span data-i18n="quote">Visit Notary Confi to request a quote</span> ↗</a>
+      </div>
+    </section>
+
+    <!-- 04 SOUND -->
+    <section id="sound" class="file file-sound" aria-labelledby="sound-title">
+      <div class="section-head">
+        <p class="readout">FILE 04 //</p>
+        <h2 id="sound-title" class="heading" tabindex="-1" data-i18n="fileSound">SOUND</h2>
+      </div>
+      <div class="panel">
+        <h3 class="sub-heading"><span class="tag" data-i18n="solo">SOLO</span> Brian Athey</h3>
+        <p class="lede" data-i18n="musicIntro">My own music. Choose a platform and press Load player to listen here, or open it in your favorite app.</p>
+        <div class="player-grid">
+          <article class="player">
+            <h4>Spotify</h4>
+            <div class="player-slot" data-embed="spotify-solo"></div>
+            <a class="ext-link" href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
+          </article>
+          <article class="player">
+            <h4>Apple Music</h4>
+            <div class="player-slot" data-embed="apple"></div>
+            <a class="ext-link" href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
+          </article>
+          <article class="player">
+            <h4>YouTube Music</h4>
+            <div class="player-slot" data-embed="youtube"></div>
+            <a class="ext-link" href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> YouTube ↗</a>
+          </article>
+          <article class="player">
+            <h4>SoundCloud</h4>
+            <div class="player-slot" data-embed="soundcloud"></div>
+            <a class="ext-link" href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> SoundCloud ↗</a>
+          </article>
+          <article class="player">
+            <h4>Amazon Music</h4>
+            <div class="player-slot" data-embed="amazon"></div>
+            <a class="ext-link" href="https://music.amazon.com/albums/B096DX88Z7" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
+          </article>
+          <article class="player">
+            <h4>Pandora</h4>
+            <div class="player-slot" data-embed="pandora"></div>
+            <a class="ext-link" href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
+          </article>
+          <article class="player">
+            <h4>TIDAL</h4>
+            <div class="player-slot" data-embed="tidal"></div>
+            <a class="ext-link" href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> TIDAL ↗</a>
+          </article>
+          <article class="player">
+            <h4>Deezer</h4>
+            <div class="player-slot" data-embed="deezer"></div>
+            <a class="ext-link" href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Deezer ↗</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 class="sub-heading"><span class="tag" data-i18n="band">BAND</span> Red Sun</h3>
+        <p class="lede" data-i18n="bandIntro">The band I played in while living in Argentina.</p>
+        <div class="player-grid">
+          <article class="player">
+            <h4>Spotify</h4>
+            <div class="player-slot" data-embed="spotify-band"></div>
+            <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
+          </article>
+          <article class="player">
+            <h4>Apple Music</h4>
+            <div class="player-slot" data-embed="apple-band"></div>
+            <a class="ext-link" href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
+          </article>
+          <article class="player">
+            <h4>Amazon Music</h4>
+            <div class="player-slot" data-embed="amazon-band"></div>
+            <a class="ext-link" href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music ↗</a>
+          </article>
+          <article class="player">
+            <h4>Pandora</h4>
+            <div class="player-slot" data-embed="pandora-band"></div>
+            <a class="ext-link" href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 MEMORIES -->
+    <section id="memories" class="file file-memories" aria-labelledby="memories-title">
+      <div class="section-head">
+        <p class="readout">FILE 05 //</p>
+        <h2 id="memories-title" class="heading" tabindex="-1" data-i18n="fileMemories">MEMORIES</h2>
+      </div>
+      <div class="panel">
+        <p class="lede" data-i18n="photoIntro">A gallery of my photography is on its way.</p>
+        <ul class="photo-grid" id="photo-grid"></ul>
+      </div>
+    </section>
+
+    <!-- 06 SOCIAL -->
+    <section id="social" class="file file-social" aria-labelledby="social-title">
+      <div class="section-head">
+        <p class="readout">FILE 06 //</p>
+        <h2 id="social-title" class="heading" tabindex="-1" data-i18n="fileSocial">SOCIAL</h2>
+      </div>
+      <div class="panel">
+        <p class="lede" data-i18n="socialIntro">Follow along for videos, photos and what I’m working on.</p>
+        <ul class="social-grid">
+          <li><a class="social-card" href="https://www.tiktok.com/@brian_tok4vids" target="_blank" rel="noopener">
+            <span class="social-net">TikTok</span>
+            <span class="social-handle">@brian_tok4vids</span>
+            <span class="social-cta"><span data-i18n="socialTiktok">Watch on TikTok</span> ↗</span>
+          </a></li>
+          <li><a class="social-card" href="https://www.instagram.com/brian_athey_/" target="_blank" rel="noopener">
+            <span class="social-net">Instagram</span>
+            <span class="social-handle">@brian_athey_</span>
+            <span class="social-cta"><span data-i18n="socialInstagram">Follow on Instagram</span> ↗</span>
+          </a></li>
+        </ul>
       </div>
     </section>
   </main>

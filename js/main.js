@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016192547';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261016192547';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016192547';
-import { startRain } from './rain.js?v=20261016192547';
-import { startSpinners } from './spinners.js?v=20261016192547';
-import { ALBUMS, photoSrc } from './albums.js?v=20261016192547';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261016192547';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016193224';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261016193224';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016193224';
+import { startRain } from './rain.js?v=20261016193224';
+import { startSpinners } from './spinners.js?v=20261016193224';
+import { ALBUMS, photoSrc } from './albums.js?v=20261016193224';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261016193224';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -242,7 +242,7 @@ setInterval(tickClock, 1000);
 /* ---------- File transitions + navigation ---------- */
 const access = document.getElementById('access');
 const accessFile = document.getElementById('access-file');
-const FILE_KEYS = { sound: 'fileSound', code: 'fileCode', memories: 'fileMemories', translation: 'fileTranslation', social: 'fileSocial', resume: 'fileResume' };
+const FILE_KEYS = { career: 'fileCareer', code: 'fileCode', translation: 'fileTranslation', sound: 'fileSound', memories: 'fileMemories', social: 'fileSocial' };
 let accessTimer = 0;
 
 function jumpTo(id, smooth) {
@@ -460,6 +460,7 @@ setInterval(() => {
 function refreshAll() {
   applyPage();
   document.querySelectorAll('[data-i18n-alt]').forEach((el) => { el.alt = tr(el.dataset.i18nAlt); });
+  document.querySelectorAll('[data-i18n-label]').forEach((el) => el.setAttribute('aria-label', tr(el.dataset.i18nLabel)));
   typeArchive();
   refreshLangButton();
   refreshSoundButton();

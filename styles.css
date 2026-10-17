@@ -409,6 +409,25 @@ main, .site-footer { position: relative; z-index: 1; }
   margin: 0; font-family: var(--font-mono); font-size: clamp(15px, 2vw, 17px); letter-spacing: .12em;
   color: var(--text); padding: 6px 12px; background: color-mix(in srgb, var(--void) 45%, transparent);
 }
+.tabs {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0; max-width: 100%;
+  background: color-mix(in srgb, var(--void) 55%, transparent); border: 1px solid var(--line);
+}
+.tabs a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px;
+  font-family: var(--font-mono); font-size: clamp(14px, 1.8vw, 16px); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text); text-decoration: none; border-right: 1px solid var(--line); transition: color .2s, background .2s;
+}
+.tabs a:last-child { border-right: 0; }
+.tabs a:first-child { color: var(--amber); }
+.tabs a:hover, .tabs a:focus-visible { color: var(--amber-hot); background: color-mix(in srgb, var(--amber) 12%, transparent); }
+@media (max-width: 640px) {
+  .tabs { display: grid; grid-template-columns: repeat(6, 1fr); width: 100%; }
+  .tabs a { justify-content: center; padding: 8px 6px; letter-spacing: .08em; font-size: 14px; border-bottom: 1px solid var(--line); }
+  .tabs a:nth-child(-n+3) { grid-column: span 2; }
+  .tabs a:nth-child(n+4) { grid-column: span 3; border-bottom: 0; }
+  .tabs a:nth-child(3) { border-right: 0; }
+}
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -494,7 +513,7 @@ main, .site-footer { position: relative; z-index: 1; }
 .file-pending:hover { background: repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px), var(--well); }
 .file-pending:hover::after { display: none; }
 .file-pending .fc-name { font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .2em; }
-@media (min-width: 1000px) { .file-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 900px) { .file-grid { grid-template-columns: repeat(3, 1fr); } }
 .fc-num { font-family: var(--font-mono); font-size: 14px; color: var(--amber); letter-spacing: .2em; }
 .fc-kana { position: absolute; right: 20px; top: 16px; font-size: 34px; color: color-mix(in srgb, var(--amber) 22%, transparent); }
 .fc-name { margin-top: auto; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .14em; overflow-wrap: anywhere; }
