@@ -22,7 +22,7 @@ Please report security issues privately through GitHub: **Security → Report a 
 | Secret patterns (AWS, GitHub, OpenAI, Anthropic, Slack, Google, Twilio, Hugging Face keys; private keys; hard-coded tokens) in every file **and every past commit** | ✅ None found |
 | Credential files ever committed (`.env`, `*.pem`, `*.key`, `id_rsa`, credentials) | ✅ None found |
 | GitHub secret-scanning alerts | ✅ 0 open alerts |
-| Commit author emails | ⚠️ Some older commits list a personal email as author; new commits use GitHub's private no-reply address. A history rewrite to replace the old address is pending the owner's approval. |
+| Commit author emails | ✅ Resolved on 2026-10-16: history rewritten so every commit uses GitHub's private no-reply address |
 | Personal data in files and documents | ✅ None (résumé PDF is a public version with no phone, email or confidential figures) |
 | Photo metadata (469 published images) | ✅ No GPS or camera data; originals never committed |
 | Unsafe DOM patterns (`innerHTML`, `eval`, `document.write` in site code) | ✅ None; all text set with `textContent` |
