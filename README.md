@@ -1,6 +1,8 @@
 # Brian Athey Studio
 
-Personal website at **brianathey.studio**, in a neo-noir sci-fi style (blue fog, red neon, brutalist skyline, rain, flying cars): music, code, photography and translation (Notary Confi). English and Spanish.
+**Live site: [https://brianathey.studio](https://brianathey.studio)**
+
+Personal website in a neo-noir sci-fi style (blue fog, red neon, brutalist skyline, rain, flying cars): music, code, photography and translation (Notary Confi). English and Spanish.
 
 All art and music are original. Nothing is taken from any film, game or soundtrack.
 
