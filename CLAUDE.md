@@ -26,7 +26,7 @@ New galleries come through the drop folder, not chat uploads:
 3. Look at the **thumbnails** (`*-thumb.jpg`, small) to write captions in English and Spanish, pick a cover and six preview photos, and remove near-duplicates (delete the files and renumber).
 4. Preview, then publish when the owner says so.
 
-Use Spanish place names when in doubt (e.g. "Mercado de las Brujas", "Catedral de La Paz"). For unidentified places use a Spanish description in both languages (e.g. "Iglesia con campanarios"); never say "twin tower(s)".
+Captions, gallery titles and subtitles are foreignized: written in Spanish and shown in Spanish in both languages (`en` = `es`). Use Spanish place names (e.g. "Mercado de las Brujas", "Catedral de La Paz"). For unidentified places use a Spanish description in both languages (e.g. "Iglesia con campanarios"); never say "twin tower(s)".
 
 ## Preview
 
