@@ -881,6 +881,16 @@ html.gallery-open { overflow: hidden; }
 #teaching { scroll-margin-top: 80px; }
 #teaching:focus { outline: none; }
 
+/* Notary Confi services */
+.services { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.service { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border: 1px solid var(--line); background: color-mix(in srgb, var(--void) 55%, transparent); }
+.service-code { font-family: var(--font-mono); font-size: 14px; letter-spacing: .12em; color: var(--cyan); }
+.service h4 { margin: 0; font-size: 19px; font-weight: 600; }
+.service p { margin: 0; color: var(--text-dim); font-size: 16px; }
+/* Required Texas notice (Gov't Code 406.017): shown only on the Spanish version, as fine print */
+.fine-print { display: none; margin: 18px 0 0; font-size: 13px; line-height: 1.5; color: var(--text-dim); }
+html[lang="es"] .fine-print { display: block; }
+
 /* Notary notice and privacy */
 .legal-notice { margin-top: 22px; padding: 14px 16px; border: 1px solid var(--line); border-left: 3px solid var(--cyan); background: color-mix(in srgb, var(--void) 60%, transparent); }
 .legal-notice p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--text-dim); }
