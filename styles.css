@@ -424,8 +424,8 @@ main, .site-footer { position: relative; z-index: 1; }
 @media (max-width: 640px) {
   .tabs { display: grid; grid-template-columns: repeat(6, 1fr); width: 100%; }
   .tabs a { justify-content: center; padding: 8px 6px; letter-spacing: .08em; font-size: 14px; border-bottom: 1px solid var(--line); }
-  .tabs a:nth-child(-n+3) { grid-column: span 2; }
-  .tabs a:nth-child(n+4) { grid-column: span 3; border-bottom: 0; }
+  .tabs a { grid-column: span 2; }
+  .tabs a:nth-child(n+4) { border-bottom: 0; }
   .tabs a:nth-child(3) { border-right: 0; }
 }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
@@ -877,6 +877,9 @@ html.gallery-open { overflow: hidden; }
   .archive-head { letter-spacing: .3em; }
   .archive-rows div { grid-template-columns: 7.5em 1fr; }
 }
+
+#teaching { scroll-margin-top: 80px; }
+#teaching:focus { outline: none; }
 
 /* Notary notice and privacy */
 .legal-notice { margin-top: 22px; padding: 14px 16px; border: 1px solid var(--line); border-left: 3px solid var(--cyan); background: color-mix(in srgb, var(--void) 60%, transparent); }
