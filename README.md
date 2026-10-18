@@ -14,6 +14,7 @@ All art and music are original. Nothing is taken from any film, game or soundtra
 - `js/music.js`: the ambient soundtrack, generated live (no audio files)
 - `js/rain.js`: the rain in the background
 - `js/spinners.js`: the flying cars over the city
+- `tools/city.py`: generates the 3D night skyline (`assets/city-*.svg`); `tools/brutal.py` makes the desert towers
 - `js/albums.js` and `js/gallery.js`: photo collections and the carousel gallery
 - `js/i18n.js`: every English and Spanish phrase (edit both when changing text)
 - `js/sound.js`: optional interface sounds (off by default)

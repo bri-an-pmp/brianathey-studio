@@ -258,6 +258,19 @@ main, .site-footer { position: relative; z-index: 1; }
 .city-mid { bottom: 10%; height: 38%; background-image: url("assets/city-mid.svg"); background-size: 1600px 100%; opacity: .9; animation: drift 160s linear infinite reverse; }
 .city-near { bottom: 0; height: 26%; background-image: url("assets/city-near.svg"); background-size: 1600px 100%; }
 @keyframes drift { to { background-position-x: -1600px; } }
+/* Searchlights sweeping the night sky */
+.searchlight {
+  bottom: 18%; width: 90px; height: 120%; transform-origin: 50% 100%;
+  background: linear-gradient(to top, rgba(170, 210, 255, .28), rgba(170, 210, 255, .06) 60%, transparent);
+  clip-path: polygon(46% 100%, 54% 100%, 100% 0, 0 0);
+  filter: blur(6px); mix-blend-mode: screen; pointer-events: none;
+}
+.sl-1 { left: 22%; animation: sweep-a 18s ease-in-out infinite alternate; }
+.sl-2 { left: 70%; animation: sweep-b 23s ease-in-out infinite alternate; opacity: .7; }
+@keyframes sweep-a { from { transform: rotate(-28deg); } to { transform: rotate(18deg); } }
+@keyframes sweep-b { from { transform: rotate(24deg); } to { transform: rotate(-20deg); } }
+/* Parallax: main.js shifts each layer by its data-depth */
+.city { transition: transform .6s ease-out; will-change: transform; }
 .fog {
   left: -20%; right: -20%; height: 30%;
   background: radial-gradient(ellipse at 30% 50%, color-mix(in srgb, var(--haze) 45%, transparent), transparent 60%),

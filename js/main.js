@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018110502';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261018110502';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018110502';
-import { startRain } from './rain.js?v=20261018110502';
-import { startSpinners } from './spinners.js?v=20261018110502';
-import { ALBUMS, photoSrc } from './albums.js?v=20261018110502';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261018110502';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018110908';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261018110908';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018110908';
+import { startRain } from './rain.js?v=20261018110908';
+import { startSpinners } from './spinners.js?v=20261018110908';
+import { ALBUMS, photoSrc } from './albums.js?v=20261018110908';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261018110908';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -315,6 +315,27 @@ motionBtn.addEventListener('click', () => {
   setMotionPaused(on);
   announce(tr(on ? 'motionPausedStatus' : 'motionOnStatus'));
 });
+
+/* ---------- Parallax on the night city ---------- */
+// Nearer layers move more than far ones as the mouse moves or the page scrolls, for depth.
+(function parallax() {
+  const layers = [...document.querySelectorAll('.city[data-depth]')];
+  if (!layers.length || reducedMotion()) return;
+  let mx = 0;
+  let frame = 0;
+  const apply = () => {
+    frame = 0;
+    if (document.documentElement.classList.contains('motion-paused')) return;
+    const sy = Math.min(window.scrollY, window.innerHeight);
+    layers.forEach((el) => {
+      const d = Number(el.dataset.depth);
+      el.style.transform = `translate3d(${(-mx * d).toFixed(1)}px, ${(sy * d * 0.012).toFixed(1)}px, 0)`;
+    });
+  };
+  const queue = () => { if (!frame) frame = requestAnimationFrame(apply); };
+  window.addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse') { mx = e.clientX / window.innerWidth - 0.5; queue(); } }, { passive: true });
+  window.addEventListener('scroll', queue, { passive: true });
+})();
 
 /* ---------- Clock ---------- */
 const clock = document.getElementById('clock');
