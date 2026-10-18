@@ -803,6 +803,7 @@ html.gallery-open { overflow: hidden; }
 .plain { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 10px; }
 .plain li { display: grid; gap: 2px; color: var(--text-dim); }
 .plain strong { color: var(--text); font-weight: 600; }
+.plain .award-lead { color: var(--amber); font-weight: 600; }
 .chips { list-style: none; margin: 0 0 26px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li { padding: 6px 12px; font-family: var(--font-mono); font-size: 14px; color: var(--text); border: 1px solid var(--line-cool); background: color-mix(in srgb, var(--cyan) 7%, transparent); }
 .chips-cert li { border-color: var(--line); background: color-mix(in srgb, var(--amber) 9%, transparent); color: var(--amber-hot); }
