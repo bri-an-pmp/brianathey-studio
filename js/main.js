@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018110908';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261018110908';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018110908';
-import { startRain } from './rain.js?v=20261018110908';
-import { startSpinners } from './spinners.js?v=20261018110908';
-import { ALBUMS, photoSrc } from './albums.js?v=20261018110908';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261018110908';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018112751';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261018112751';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018112751';
+import { startRain } from './rain.js?v=20261018112751';
+import { startSpinners } from './spinners.js?v=20261018112751';
+import { ALBUMS, photoSrc } from './albums.js?v=20261018112751';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261018112751';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -81,8 +81,8 @@ const EMBEDS = {
 // description for these projects; `steps` shows as a numbered list.
 const REPO_TEXT = {
   'mi-ofrenda': {
-    en: { text: 'Build a Día de los Muertos altar for someone you love and learn Spanish: drag offerings onto an altar in a candlelit room, hear each word spoken, and share the finished altar as a picture.' },
-    es: { text: 'Ponga una ofrenda de Día de Muertos para un ser querido y aprenda español: arrastre ofrendas a un altar iluminado con velas, escuche cada palabra y comparta el altar terminado como imagen.' },
+    en: { text: 'A Day of the Dead game where you build an altar for someone you love while learning the Spanish word for each offering.' },
+    es: { text: 'Un juego de Día de Muertos en el que usted arma un altar para un ser querido mientras aprende en español el nombre de cada ofrenda.' },
   },
   'brianathey-studio': {
     en: { text: 'The code behind this website: a bilingual personal site for music, code, photography and translation, built with plain HTML, CSS and JavaScript and published on GitHub Pages.' },
@@ -246,7 +246,8 @@ tickSequence();
 if (!reducedMotion()) setInterval(tickSequence, 900);
 
 /* ---------- Dust: the amber view fades in as the Code section arrives ---------- */
-const codeSection = document.getElementById('code');
+// The desert begins with the first section after the Index (Career), so the change comes early.
+const codeSection = document.getElementById('career');
 function updateDust() {
   const vh = window.innerHeight;
   const top = codeSection.getBoundingClientRect().top;

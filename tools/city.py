@@ -12,6 +12,8 @@ import sys
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else 'assets'
 W = 1600
+# How much each layer animates (set per layer below); every animation re-renders the layer.
+ANIM = {'window': .12, 'sign': .3, 'beacon': True}
 NEON = ['#ff3b5c', '#ff5fae', '#4fd8e8', '#b07cff', '#ffb347']
 
 
@@ -40,7 +42,7 @@ def block(r, out, x, y, w, H, d, base, windows, win_p):
                     a = r.random()
                     col = '#ffd9a8' if a < .55 else ('#a8d8ff' if a < .93 else '#ff4a62')
                     op = .45 + .5 * r.random()
-                    if r.random() < .12:
+                    if r.random() < ANIM['window']:
                         dur = r.uniform(3, 9)
                         out.append(f'<rect x="{wx}" y="{wy}" width="4" height="3" fill="{col}" opacity="{op:.2f}"><animate attributeName="opacity" values="{op:.2f};{op:.2f};0.04;{op:.2f}" keyTimes="0;0.7;0.8;1" dur="{dur:.1f}s" begin="-{r.uniform(0, dur):.1f}s" repeatCount="indefinite"/></rect>')
                     else:
@@ -76,11 +78,11 @@ def tower(r, out, wins, signs, beacons, x, H, w, h, d, base, win_p, neon_p, beac
         for k in range(int(sh // 14)):  # glyph-like strokes, like vertical signage
             gy = sy + 6 + k * 14
             g += f'<rect x="{sx + 3:.0f}" y="{gy:.0f}" width="{sw - 6:.0f}" height="2" fill="{col}"/><rect x="{sx + sw / 2 - 1:.0f}" y="{gy + 3:.0f}" width="2" height="6" fill="{col}"/>'
-        if r.random() < .3:
+        if r.random() < ANIM['sign']:
             g += f'<animate attributeName="opacity" values="1;1;.25;1;.6;1" keyTimes="0;.6;.62;.66;.7;1" dur="{r.uniform(4, 9):.1f}s" repeatCount="indefinite"/>'
         out.append(g + '</g>')
     # blinking rooftop beacon
-    if r.random() < beacon_p:
+    if r.random() < beacon_p and ANIM['beacon']:
         col = '#ff3b4f' if r.random() < .75 else '#7fd3ff'
         dur = r.uniform(1.6, 3.2)
         beg = r.uniform(0, dur)
@@ -132,11 +134,16 @@ def megastructures(seed, H):
 
 
 if __name__ == '__main__':
-    files = {
-        'city-far.svg': megastructures(7, 480),
-        'city-mid.svg': layer(21, 380, '#0d1c3a', 130, 340, 50, 120, 22, .05, .45, .5),
-        'city-near.svg': layer(42, 280, '#04060d', 90, 250, 70, 170, 30, .07, .3, .65),
-    }
+    files = {'city-far.svg': megastructures(7, 480)}
+    # far layers: still (cheap to draw); front layers: a few blinking lights
+    for name, anim, args in [
+        ('city-back.svg', {'window': 0, 'sign': 0, 'beacon': False}, (5, 420, '#142c58', 190, 390, 38, 85, 14, .035, 0, .3)),
+        ('city-mid.svg', {'window': .03, 'sign': 0, 'beacon': True}, (21, 380, '#0d1c3a', 130, 340, 50, 120, 22, .05, .45, .35)),
+        ('city-fore.svg', {'window': 0, 'sign': 0, 'beacon': True}, (77, 320, '#081127', 110, 290, 60, 140, 26, .06, .35, .35)),
+        ('city-near.svg', {'window': .04, 'sign': .15, 'beacon': True}, (42, 280, '#04060d', 90, 250, 70, 170, 30, .07, .3, .5)),
+    ]:
+        ANIM.update(anim)
+        files[name] = layer(*args)
     for name, svg in files.items():
         open(f'{OUT}/{name}', 'w').write(svg)
         print(name, len(svg) // 1024, 'KB')
