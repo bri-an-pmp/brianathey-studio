@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261016194317';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261016194317';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261016194317';
-import { startRain } from './rain.js?v=20261016194317';
-import { startSpinners } from './spinners.js?v=20261016194317';
-import { ALBUMS, photoSrc } from './albums.js?v=20261016194317';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261016194317';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018000723';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261018000723';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018000723';
+import { startRain } from './rain.js?v=20261018000723';
+import { startSpinners } from './spinners.js?v=20261018000723';
+import { ALBUMS, photoSrc } from './albums.js?v=20261018000723';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261018000723';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -77,8 +77,54 @@ const EMBEDS = {
   },
 };
 
+// Descriptions written for this site, in both languages. They replace the one-line GitHub
+// description for these projects; `steps` shows as a numbered list.
+const REPO_TEXT = {
+  'mi-ofrenda': {
+    en: { text: 'Build a Día de los Muertos altar for someone you love and learn Spanish: drag offerings onto an altar in a candlelit room, hear each word spoken, and share the finished altar as a picture.' },
+    es: { text: 'Ponga una ofrenda de Día de Muertos para un ser querido y aprenda español: arrastre ofrendas a un altar iluminado con velas, escuche cada palabra y comparta el altar terminado como imagen.' },
+  },
+  'brianathey-studio': {
+    en: { text: 'The code behind this website: a bilingual personal site for music, code, photography and translation, built with plain HTML, CSS and JavaScript and published on GitHub Pages.' },
+    es: { text: 'El código de este sitio: un sitio personal bilingüe de música, código, fotografía y traducción, hecho con HTML, CSS y JavaScript y publicado en GitHub Pages.' },
+  },
+  'Brian-AI-Agent-Career': {
+    en: { text: 'An AI agent that answers questions about my career, grounded on my résumé. Built in Python with Gradio and OpenAI tool calling, it also logs questions it can’t answer and visitors who want to get in touch. Live on Hugging Face.' },
+    es: { text: 'Un agente de IA que responde preguntas sobre mi carrera a partir de mi currículum. Hecho en Python con Gradio y llamadas a herramientas de OpenAI; además registra las preguntas que no puede responder y a los visitantes que quieren contactarme. En vivo en Hugging Face.' },
+  },
+  'twilioquest-extension-template': {
+    en: {
+      text: 'A TwilioQuest game mission based on Notary Confi’s appointment reminders. Practice only: nothing is really sent.',
+      steps: [
+        'Text message (SMS): send the appointment reminder',
+        'WhatsApp: fill in the message template',
+        'Text and email replies: sort clients’ answers in English or Spanish',
+        'Fix the broken webhook to finish the mission',
+      ],
+    },
+    es: {
+      text: 'Una misión del juego TwilioQuest basada en los recordatorios de citas de Notary Confi. Solo es práctica: no se envía nada de verdad.',
+      steps: [
+        'Mensaje de texto (SMS): enviar el recordatorio de la cita',
+        'WhatsApp: completar la plantilla del mensaje',
+        'Respuestas por texto y por correo: clasificar las respuestas de los clientes en inglés o en español',
+        'Reparar el webhook averiado para terminar la misión',
+      ],
+    },
+  },
+  'the-morning-frequency': {
+    en: { text: 'Ambient journaling app: write a paragraph, press Enter twice, and hear choir-and-organ music tuned to your mood. Circle-of-fifths keys, 15 moods, streak sounds and story videos. Web + iPhone.' },
+    es: { text: 'App de diario ambiental: escriba un párrafo, presione Enter dos veces y escuche música de coro y órgano según su estado de ánimo. Tonalidades del círculo de quintas, 15 estados de ánimo, sonidos de racha y videos para historias. Web + iPhone.' },
+  },
+  'claude-skills': {
+    en: { text: 'A collection of Claude skills.' },
+    es: { text: 'Una colección de skills (habilidades) para Claude.' },
+  },
+};
+
 // Shown if the GitHub API can't be reached (it limits visitors to 60 requests an hour).
 const FALLBACK_REPOS = [
+  { name: 'mi-ofrenda', description: '', language: 'JavaScript', homepage: 'https://bri-an-pmp.github.io/mi-ofrenda/' },
   { name: 'the-morning-frequency', description: 'Ambient journaling app: write a paragraph, press Enter twice, hear choir-and-organ music for its mood.', language: 'JavaScript' },
   { name: 'Brian-AI-Agent-Career', description: '', language: 'Python' },
   { name: 'claude-skills', description: 'A collection of Claude skills.', language: 'JavaScript' },
@@ -275,7 +321,7 @@ setInterval(tickClock, 1000);
 /* ---------- File transitions + navigation ---------- */
 const access = document.getElementById('access');
 const accessFile = document.getElementById('access-file');
-const FILE_KEYS = { career: 'fileCareer', code: 'fileCode', translation: 'fileTranslation', sound: 'fileSound', memories: 'fileMemories', social: 'fileSocial' };
+const FILE_KEYS = { career: 'fileCareer', code: 'fileCode', translation: 'fileTranslationTeaching', sound: 'fileSound', memories: 'fileMemories', social: 'fileSocial' };
 let accessTimer = 0;
 
 function jumpTo(id, smooth) {
@@ -374,6 +420,7 @@ async function loadRepos() {
         language: typeof r.language === 'string' ? r.language : '',
         stars: Number.isFinite(r.stargazers_count) ? r.stargazers_count : 0,
         pushed: typeof r.pushed_at === 'string' ? r.pushed_at : '',
+        homepage: liveLink(r.homepage),
       }));
     if (!repos.length) throw new Error('No repos');
   } catch {
@@ -381,6 +428,17 @@ async function loadRepos() {
     reposFailed = true;
   }
   renderRepos();
+}
+
+// A project's live site from its GitHub "Website" field; only plain https links are used
+function liveLink(url) {
+  if (typeof url !== 'string') return '';
+  try {
+    const u = new URL(url);
+    return u.protocol === 'https:' ? u.href : '';
+  } catch {
+    return '';
+  }
 }
 
 function renderRepos() {
@@ -408,8 +466,20 @@ function renderRepos() {
     a.rel = 'noopener';
     a.textContent = r.name.replace(/[-_]/g, ' ');
     h.appendChild(a);
+    const own = REPO_TEXT[r.name]?.[getLang()];
     const p = document.createElement('p');
-    p.textContent = r.description || tr('noDescription');
+    p.textContent = own?.text || r.description || tr('noDescription');
+    let steps = null;
+    if (own?.steps) {
+      const list = document.createElement('ol');
+      list.className = 'repo-steps';
+      for (const step of own.steps) {
+        const li2 = document.createElement('li');
+        li2.textContent = step;
+        list.appendChild(li2);
+      }
+      steps = list;
+    }
     const meta = document.createElement('div');
     meta.className = 'repo-meta';
     if (r.language) {
@@ -429,7 +499,19 @@ function renderRepos() {
       u.textContent = `${tr('updated')} ${fmt.format(when)}`;
       meta.appendChild(u);
     }
-    li.append(id, h, p, meta);
+    li.append(id, h, p);
+    if (steps) li.append(steps);
+    if (r.homepage) {
+      const live = document.createElement('a');
+      live.className = 'repo-live';
+      live.href = r.homepage;
+      live.target = '_blank';
+      live.rel = 'noopener';
+      live.textContent = `${tr('liveDemo')} ↗`;
+      live.setAttribute('aria-label', tr('liveDemoLabel', { name: r.name.replace(/[-_]/g, ' ') }));
+      li.append(live);
+    }
+    li.append(meta);
     return li;
   }));
 }

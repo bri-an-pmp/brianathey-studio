@@ -569,8 +569,25 @@ a.load-btn { display: inline-flex; align-items: center; text-decoration: none; t
 .repo h3 a { color: var(--text); }
 .repo h3 a:hover { color: var(--amber-hot); }
 .repo p { margin: 0; color: var(--text-dim); flex: 1; }
+.repo p:has(+ .repo-steps) { flex: 0 0 auto; }
+.repo-steps { margin: 0; padding-left: 1.4em; color: var(--text-dim); flex: 1; display: grid; gap: 6px; }
+.repo-steps li::marker { color: var(--amber); font-family: var(--font-mono); }
 .repo-meta { display: flex; flex-wrap: wrap; gap: 14px; font-family: var(--font-mono); font-size: 14px; color: var(--text-dim); }
 .repo-lang { color: var(--amber); }
+.repo-live {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.repo-live:hover, .repo-live:focus-visible { color: var(--amber-hot); border-color: var(--amber-hot); }
 
 /* Memories */
 .photo-grid {
