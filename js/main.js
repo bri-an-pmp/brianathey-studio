@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018002028';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261018002028';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018002028';
-import { startRain } from './rain.js?v=20261018002028';
-import { startSpinners } from './spinners.js?v=20261018002028';
-import { ALBUMS, photoSrc } from './albums.js?v=20261018002028';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261018002028';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018110502';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261018110502';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018110502';
+import { startRain } from './rain.js?v=20261018110502';
+import { startSpinners } from './spinners.js?v=20261018110502';
+import { ALBUMS, photoSrc } from './albums.js?v=20261018110502';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261018110502';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -200,6 +200,15 @@ onMusicChange(refreshMusicButtons);
 /* ---------- Archive terminal ---------- */
 // Values "type" in one after another (the full text is always there for screen readers).
 let typeRun = 0;
+// The archive's RECORD line shows today's date (visitor's local time), e.g. 2026-10-18.
+function setRecordDate() {
+  const d = new Date();
+  const iso = [d.getFullYear(), d.getMonth() + 1, d.getDate()].map((n, i) => (i ? String(n).padStart(2, '0') : n)).join('-');
+  document.getElementById('record-date').dataset.text = iso;
+  document.getElementById('record-sr').textContent = iso;
+}
+setRecordDate();
+
 function typeArchive() {
   const run = ++typeRun; // a newer run (e.g. after a language switch) cancels this one
   const fields = [...document.querySelectorAll('.archive .type')];
