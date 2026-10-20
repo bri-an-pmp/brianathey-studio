@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261019224727';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261019224727';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261019224727';
-import { startRain } from './rain.js?v=20261019224727';
-import { startSpinners } from './spinners.js?v=20261019224727';
-import { ALBUMS, photoSrc } from './albums.js?v=20261019224727';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261019224727';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261019225153';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261019225153';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261019225153';
+import { startRain } from './rain.js?v=20261019225153';
+import { startSpinners } from './spinners.js?v=20261019225153';
+import { ALBUMS, photoSrc } from './albums.js?v=20261019225153';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261019225153';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -81,8 +81,8 @@ const EMBEDS = {
 // description for these projects; `steps` shows as a numbered list.
 const REPO_TEXT = {
   'mi-ofrenda': {
-    en: { text: 'A Day of the Dead game where you build an altar for someone you love while learning the Spanish word for each offering. Web + iPhone (submitted to the App Store, October 2026).' },
-    es: { text: 'Un juego de Día de Muertos en el que usted arma un altar para un ser querido mientras aprende en español el nombre de cada ofrenda. Web + iPhone (enviado a la App Store, octubre de 2026).' },
+    en: { text: 'Honor someone you love, and learn Spanish along the way. Build a Day of the Dead altar for a parent, a friend, a pet or a Mexican legend, and every candle, marigold and pan dulce you place speaks its name in Spanish. For every age and background, no Spanish needed. Free on the web; iPhone app coming to the App Store.' },
+    es: { text: 'Honre a alguien que quiere y aprenda español en el camino. Arme una ofrenda de Día de Muertos para su mamá, un amigo, su mascota o una leyenda de México, y cada vela, cempasúchil y pan dulce que coloque le dirá su nombre en español. Para todas las edades y orígenes, sin saber español. Gratis en la web; la app para iPhone llega pronto a la App Store.' },
   },
   'brianathey-studio': {
     en: { text: 'The code behind this website: a bilingual personal site for music, code, photography and translation, built with plain HTML, CSS and JavaScript and published on GitHub Pages.' },
