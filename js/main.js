@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261018112751';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261018112751';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261018112751';
-import { startRain } from './rain.js?v=20261018112751';
-import { startSpinners } from './spinners.js?v=20261018112751';
-import { ALBUMS, photoSrc } from './albums.js?v=20261018112751';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261018112751';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261019224727';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261019224727';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261019224727';
+import { startRain } from './rain.js?v=20261019224727';
+import { startSpinners } from './spinners.js?v=20261019224727';
+import { ALBUMS, photoSrc } from './albums.js?v=20261019224727';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261019224727';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -81,8 +81,8 @@ const EMBEDS = {
 // description for these projects; `steps` shows as a numbered list.
 const REPO_TEXT = {
   'mi-ofrenda': {
-    en: { text: 'A Day of the Dead game where you build an altar for someone you love while learning the Spanish word for each offering.' },
-    es: { text: 'Un juego de Día de Muertos en el que usted arma un altar para un ser querido mientras aprende en español el nombre de cada ofrenda.' },
+    en: { text: 'A Day of the Dead game where you build an altar for someone you love while learning the Spanish word for each offering. Web + iPhone (submitted to the App Store, October 2026).' },
+    es: { text: 'Un juego de Día de Muertos en el que usted arma un altar para un ser querido mientras aprende en español el nombre de cada ofrenda. Web + iPhone (enviado a la App Store, octubre de 2026).' },
   },
   'brianathey-studio': {
     en: { text: 'The code behind this website: a bilingual personal site for music, code, photography and translation, built with plain HTML, CSS and JavaScript and published on GitHub Pages.' },
