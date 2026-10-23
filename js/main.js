@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261019225153';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261019225153';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261019225153';
-import { startRain } from './rain.js?v=20261019225153';
-import { startSpinners } from './spinners.js?v=20261019225153';
-import { ALBUMS, photoSrc } from './albums.js?v=20261019225153';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261019225153';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261023002025';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261023002025';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261023002025';
+import { startRain } from './rain.js?v=20261023002025';
+import { startSpinners } from './spinners.js?v=20261023002025';
+import { ALBUMS, photoSrc } from './albums.js?v=20261023002025';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261023002025';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -81,8 +81,8 @@ const EMBEDS = {
 // description for these projects; `steps` shows as a numbered list.
 const REPO_TEXT = {
   'mi-ofrenda': {
-    en: { text: 'Honor someone you love, and learn Spanish along the way. Build a Day of the Dead altar for a parent, a friend, a pet or a Mexican legend, and every candle, marigold and pan dulce you place speaks its name in Spanish. For every age and background, no Spanish needed. Free on the web; iPhone app coming to the App Store.' },
-    es: { text: 'Honre a alguien que quiere y aprenda español en el camino. Arme una ofrenda de Día de Muertos para su mamá, un amigo, su mascota o una leyenda de México, y cada vela, cempasúchil y pan dulce que coloque le dirá su nombre en español. Para todas las edades y orígenes, sin saber español. Gratis en la web; la app para iPhone llega pronto a la App Store.' },
+    en: { text: 'Honor someone you love, and learn Spanish along the way. Build a Day of the Dead altar for a parent, a friend, a pet or a Mexican legend, and every candle, marigold and pan dulce you place speaks its name in Spanish. For every age and background, no Spanish needed. Free on the web and on the iPhone App Store.' },
+    es: { text: 'Honre a alguien que quiere y aprenda español en el camino. Arme una ofrenda de Día de Muertos para su mamá, un amigo, su mascota o una leyenda de México, y cada vela, cempasúchil y pan dulce que coloque le dirá su nombre en español. Para todas las edades y orígenes, sin saber español. Gratis en la web y en la App Store para iPhone.' },
   },
   'brianathey-studio': {
     en: { text: 'The code behind this website: a bilingual personal site for music, code, photography and translation, built with plain HTML, CSS and JavaScript and published on GitHub Pages.' },
@@ -120,6 +120,11 @@ const REPO_TEXT = {
     en: { text: 'A collection of Claude skills.' },
     es: { text: 'Una colección de skills (habilidades) para Claude.' },
   },
+};
+
+// Projects that are also an app in Apple's App Store (shown as a second button on the card)
+const REPO_STORE = {
+  'mi-ofrenda': 'https://apps.apple.com/us/app/mi-ofrenda/id6824747905',
 };
 
 // Shown if the GitHub API can't be reached (it limits visitors to 60 requests an hour).
@@ -532,16 +537,22 @@ function renderRepos() {
     }
     li.append(id, h, p);
     if (steps) li.append(steps);
-    if (r.homepage) {
-      const live = document.createElement('a');
-      live.className = 'repo-live';
-      live.href = r.homepage;
-      live.target = '_blank';
-      live.rel = 'noopener';
-      live.textContent = `${tr('liveDemo')} ↗`;
-      live.setAttribute('aria-label', tr('liveDemoLabel', { name: r.name.replace(/[-_]/g, ' ') }));
-      li.append(live);
-    }
+    const name = r.name.replace(/[-_]/g, ' ');
+    const links = document.createElement('div');
+    links.className = 'repo-links';
+    const linkTo = (href, text, label) => {
+      const a = document.createElement('a');
+      a.className = 'repo-live';
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = `${text} ↗`;
+      a.setAttribute('aria-label', label);
+      links.append(a);
+    };
+    if (r.homepage) linkTo(r.homepage, tr('liveDemo'), tr('liveDemoLabel', { name }));
+    if (Object.hasOwn(REPO_STORE, r.name)) linkTo(REPO_STORE[r.name], tr('appStore'), tr('appStoreLabel', { name }));
+    if (links.childElementCount) li.append(links);
     li.append(meta);
     return li;
   }));
