@@ -2,8 +2,8 @@
 // (the Alien theme plays "Hunt" from js/music-hunt.js instead; see setTrack).
 // Deep drones, swelling vintage-synth brass, a gliding lead, distant metal and rain,
 // all inside a large generated reverb. No audio files.
-import { audioCtx } from './sound.js?v=20261026164508';
-import { startHunt, stopHunt } from './music-hunt.js?v=20261026164508';
+import { audioCtx } from './sound.js?v=20261026165411';
+import { startHunt, stopHunt } from './music-hunt.js?v=20261026165411';
 
 const STEP = 0.25; // seconds per step (sixteenth notes at 60 BPM)
 const BLOCK = 64; // steps per chord (16 seconds)

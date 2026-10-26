@@ -1,8 +1,8 @@
 // Theme menu (top right): Neon Noir (default), Alien (black-and-red machine HUD on this page) and
 // 16-Bit Zone (a separate version of the site at /16-bit/). Remembered per browser.
-import { tr } from './i18n.js?v=20261026164508';
-import { sfx } from './sound.js?v=20261026164508';
-import { setTrack } from './music.js?v=20261026164508';
+import { tr } from './i18n.js?v=20261026165411';
+import { sfx } from './sound.js?v=20261026165411';
+import { setTrack } from './music.js?v=20261026165411';
 
 const root = document.documentElement;
 const select = document.getElementById('theme-select');

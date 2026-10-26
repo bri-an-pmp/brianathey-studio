@@ -1,14 +1,16 @@
-// "Hunt": an original jungle-action soundtrack for the Alien theme, played live in the browser.
-// Tribal log drums and hand drums in a stalking 7/8, military snare rolls, grinding low strings,
-// tense brass stabs, a dark drone, an eerie whistle and dry clicks. No audio files.
-import { audioCtx } from './sound.js?v=20261026164508';
+// "Hunt": an original jungle-action score for the Alien theme, played live in the browser,
+// in the style of an '80s action-thriller main title: a long stretch of suspense (low drone,
+// string tremolo, deep ringing hits, a swelling timpani roll), then a driving military
+// tom-and-snare march with low strings and brass punching back, a low-brass theme, and an
+// all-out assault before it falls back into suspense. Original music: no film melodies are used.
+import { audioCtx } from './sound.js?v=20261026165411';
 
-const BPM = 104;
+const BPM = 100;
 const STEP = 60 / BPM / 4; // one sixteenth note
-const BAR = 14; // 7/8: grouped 3 + 2 + 2 eighths (accents on 0, 6 and 10)
+const BAR = 16; // 4/4
 const BARS = 8; // per section
-const SECTIONS = ['stalk', 'chase', 'attack', 'breakdown'];
-const LEVELS = { stalk: 0.5, chase: 0.75, attack: 1, breakdown: 0.45 };
+const SECTIONS = ['suspense', 'march', 'theme', 'assault', 'breakdown'];
+const LEVELS = { suspense: 0.42, march: 0.72, theme: 0.85, assault: 1, breakdown: 0.4 };
 const TOTAL = BAR * BARS * SECTIONS.length;
 
 const NOTE = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
@@ -18,9 +20,22 @@ function midi(name) {
 }
 const hz = (m) => 440 * 2 ** ((m - 69) / 12);
 
-// Low-string ostinato: grinds between E and F, drops to the tritone on bars 4 and 8
-const OSTINATO = ['E2', 'E2', 'F2', 'E2', 'G2', 'F2', 'E2'].map(midi);
-const OSTINATO_TURN = ['E2', 'E2', 'F2', 'E2', 'Bb1', 'B1', 'E2'].map(midi);
+// The march: syncopated toms (high, mid, low) with accents, over a steady military snare.
+// [step, drum (0 high, 1 mid, 2 low), velocity]
+const TOMS = [[0, 2, 1], [2, 2, 0.6], [3, 1, 0.8], [6, 2, 0.9], [8, 2, 1], [10, 1, 0.7], [11, 0, 0.8], [14, 2, 0.9], [15, 1, 0.6]];
+const TOMS_FILL = [[0, 2, 1], [4, 2, 0.9], [8, 1, 0.9], [9, 1, 0.7], [10, 0, 0.8], [11, 0, 0.8], [12, 1, 0.9], [13, 1, 0.9], [14, 2, 1], [15, 2, 1]];
+const SNARE = [[4, 0.8], [12, 0.85], [7, 0.3], [13, 0.35], [15, 0.3]];
+// Low strings punch on the off-beats the toms leave open
+const STRING_HITS = [[0, 'E2', 1], [3, 'E2', 0.7], [6, 'G2', 0.8], [8, 'E2', 1], [11, 'F2', 0.8], [14, 'E2', 0.8]];
+// Brass answers on the syncopations
+const BRASS_HITS = [[3, ['E3', 'B3']], [11, ['F3', 'C4']]];
+// The low-brass theme (original): a falling, menacing line over four bars
+const THEME = [
+  [[0, 'E3', 6], [6, 'G3', 4], [10, 'F#3', 6]],
+  [[0, 'E3', 10], [12, 'B2', 4]],
+  [[0, 'E3', 6], [6, 'A3', 4], [10, 'G3', 6]],
+  [[0, 'F3', 8], [8, 'E3', 8]],
+];
 // Brass stab clusters (a minor second inside each one keeps them tense)
 const STAB_A = ['E3', 'B3', 'F4'].map(midi);
 const STAB_B = ['D3', 'A3', 'Eb4'].map(midi);
@@ -61,7 +76,16 @@ function setupGraph() {
   shelf.type = 'highshelf';
   shelf.frequency.value = 6000;
   shelf.gain.value = -4;
-  master.connect(level).connect(shelf).connect(comp).connect(ctx.destination);
+  // A fast limiter last, so no pile-up of drums and brass can ever distort
+  const limiter = ctx.createDynamicsCompressor();
+  limiter.threshold.value = -4;
+  limiter.knee.value = 0;
+  limiter.ratio.value = 20;
+  limiter.attack.value = 0.001;
+  limiter.release.value = 0.12;
+  const trim = ctx.createGain();
+  trim.gain.value = 0.85;
+  master.connect(level).connect(shelf).connect(comp).connect(limiter).connect(trim).connect(ctx.destination);
   // A humid, medium-sized space: shorter and drier than the Neon Noir reverb
   verb = ctx.createGain();
   const conv = ctx.createConvolver();
@@ -296,60 +320,190 @@ function whistle(t, from, to, len) {
   o.stop(t + len + 0.1); lfo.stop(t + len + 0.1);
 }
 
+/* ---------- Orchestral percussion and suspense ---------- */
+
+// Concert toms: three pitches, a punchy attack and a short ring
+function tom(t, drum, vel) {
+  const f = [220, 150, 98][drum];
+  const o = ctx.createOscillator();
+  o.frequency.setValueAtTime(f * 1.6, t);
+  o.frequency.exponentialRampToValueAtTime(f, t + 0.05);
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.linearRampToValueAtTime(0.42 * vel, t + 0.003);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.38);
+  const pan = ctx.createStereoPanner();
+  pan.pan.value = [-0.35, 0, 0.35][drum];
+  o.connect(g).connect(pan).connect(master);
+  send(pan, 0.3);
+  o.start(t);
+  o.stop(t + 0.4);
+  const skin = noiseSource(t, 0.05);
+  const bp = ctx.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.value = f * 6;
+  bp.Q.value = 1;
+  const sg = ctx.createGain();
+  sg.gain.setValueAtTime(0.18 * vel, t);
+  sg.gain.exponentialRampToValueAtTime(0.0001, t + 0.04);
+  skin.connect(bp).connect(sg).connect(pan);
+}
+
+// Timpani: a tuned low boom that rings
+function timpani(t, m, vel, ring = 2.2) {
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.linearRampToValueAtTime(0.5 * vel, t + 0.006);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + ring);
+  g.connect(master);
+  send(g, 0.55);
+  for (const [mult, amp] of [[1, 1], [1.5, 0.35], [1.98, 0.2]]) {
+    const o = ctx.createOscillator();
+    o.frequency.setValueAtTime(hz(m) * mult * 1.03, t);
+    o.frequency.exponentialRampToValueAtTime(hz(m) * mult, t + 0.12);
+    const og = ctx.createGain();
+    og.gain.value = amp;
+    o.connect(og).connect(g);
+    o.start(t);
+    o.stop(t + ring + 0.1);
+  }
+}
+
+// A timpani roll that swells, leading into the next section
+function timpaniRoll(t, len, m) {
+  const hits = Math.floor(len / 0.055);
+  for (let i = 0; i < hits; i++) timpani(t + i * 0.055, m, 0.05 + (i / hits) * 0.25, i === hits - 1 ? 2.2 : 0.18);
+}
+
+// String tremolo: bowed fast, swelling in and out (the sound of something coming)
+function tremolo(t, ms, len, peak) {
+  const lp = ctx.createBiquadFilter();
+  lp.type = 'lowpass';
+  lp.frequency.setValueAtTime(500, t);
+  lp.frequency.linearRampToValueAtTime(1600, t + len * 0.8);
+  const shake = ctx.createGain();
+  shake.gain.value = 0.5;
+  const lfo = ctx.createOscillator();
+  lfo.frequency.value = 13;
+  const depth = ctx.createGain();
+  depth.gain.value = 0.5;
+  lfo.connect(depth).connect(shake.gain);
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.linearRampToValueAtTime(peak, t + len * 0.85);
+  g.gain.linearRampToValueAtTime(0.0001, t + len);
+  lp.connect(shake).connect(g).connect(master);
+  send(g, 0.5);
+  for (const m of ms) {
+    for (const d of [-9, 9]) {
+      const o = ctx.createOscillator();
+      o.type = 'sawtooth';
+      o.frequency.value = hz(m);
+      o.detune.value = d;
+      o.connect(lp);
+      o.start(t);
+      o.stop(t + len + 0.05);
+    }
+  }
+  lfo.start(t);
+  lfo.stop(t + len + 0.05);
+}
+
+// A deep, ringing low note, like the bottom of a piano struck hard
+function lowHit(t, m) {
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.linearRampToValueAtTime(0.3, t + 0.004);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 4);
+  g.connect(master);
+  send(g, 0.8);
+  for (const [mult, type, amp] of [[1, 'triangle', 1], [2, 'sine', 0.4], [3.01, 'sine', 0.15]]) {
+    const o = ctx.createOscillator();
+    o.type = type;
+    o.frequency.value = hz(m) * mult;
+    const og = ctx.createGain();
+    og.gain.value = amp;
+    o.connect(og).connect(g);
+    o.start(t);
+    o.stop(t + 4.1);
+  }
+}
+
+// Cymbal swell into a downbeat
+function cymbalSwell(t, len) {
+  const src = noiseSource(t, len + 0.1);
+  const hp = ctx.createBiquadFilter();
+  hp.type = 'highpass';
+  hp.frequency.setValueAtTime(3000, t);
+  hp.frequency.linearRampToValueAtTime(7000, t + len);
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.12, t + len);
+  g.gain.linearRampToValueAtTime(0.0001, t + len + 0.05);
+  src.connect(hp).connect(g).connect(master);
+  send(g, 0.4);
+}
+
 /* ---------- The arrangement ---------- */
 function playStep(i, t) {
   const section = SECTIONS[Math.floor(i / (BAR * BARS))];
-  const barInSection = Math.floor(i / BAR) % BARS;
+  const bar = Math.floor(i / BAR) % BARS;
   const s = i % BAR;
-  const lastBar = barInSection === BARS - 1;
-  const accent = s === 0 || s === 6 || s === 10;
+  const lastBar = bar === BARS - 1;
+  const drive = section === 'march' || section === 'theme' || section === 'assault';
 
-  // Drone, section loudness and the section-opening boom
-  if (barInSection === 0 && s === 0) {
+  // Section loudness, the drone, and a big hit at the start of every driving section
+  if (bar === 0 && s === 0) {
     level.gain.cancelScheduledValues(t);
     level.gain.setValueAtTime(level.gain.value, t);
-    level.gain.linearRampToValueAtTime(LEVELS[section], t + (section === 'attack' ? 0.05 : 1.5));
+    level.gain.linearRampToValueAtTime(LEVELS[section], t + (drive ? 0.05 : 2));
     drone(t, BAR * BARS * STEP);
-    logDrum(t, 1, true);
-    if (section === 'attack') brass(t, LOW_BRASS, 1.6, 1);
+    if (drive) { timpani(t, midi('E2'), 1); logDrum(t, 1, true); }
+    if (section === 'assault') brass(t + STEP * 8, LOW_BRASS, 1.2, 0.8);
   }
 
-  // Log drums: the 3+2+2 heartbeat, busier as the hunt closes in
-  if (accent) logDrum(t, s === 0 ? 1 : 0.75);
-  if (section !== 'stalk' && s === 3) logDrum(t, 0.4);
-  if (section === 'attack' && (s === 12 || s === 13)) logDrum(t, 0.55);
-
-  // Hand drums
-  const hands = section === 'stalk' ? [8, 12] : section === 'breakdown' ? [2, 8, 12] : [2, 4, 8, 9, 12, 13];
-  if (hands.includes(s)) handDrum(t, s % 4 === 0, 0.6 + Math.random() * 0.4);
-
-  // Shaker on every other sixteenth once the chase starts
-  if ((section === 'chase' || section === 'attack') && s % 2 === 1) shaker(t, s % 4 === 1 ? 1 : 0.6);
-
-  // Snare: roll building into the next section, plus backbeats in the attack
-  if ((section === 'chase' || section === 'attack') && lastBar && s >= 6) {
-    const vel = 0.35 + (s - 6) * 0.09;
-    snare(t, vel);
-    snare(t + STEP / 2, vel * 0.85);
-  } else if (section === 'attack' && (s === 6 || s === 10)) snare(t, 0.7);
-
-  // Low strings on every eighth (the grinding ostinato)
-  if ((section === 'chase' || section === 'attack') && s % 2 === 0) {
-    const line = barInSection % 4 === 3 ? OSTINATO_TURN : OSTINATO;
-    string(t, line[s / 2], accent ? 1 : 0.7);
+  /* Suspense and breakdown: tremolo, ringing low hits, clicks, the whistle, a swelling roll */
+  if (section === 'suspense' || section === 'breakdown') {
+    if (s === 0 && bar % 2 === 0) lowHit(t, midi(bar % 4 === 0 ? 'E1' : 'F1'));
+    if (s === 0 && bar === 0) tremolo(t, [midi('E2'), midi('B2')], BAR * STEP * 4, 0.05);
+    if (s === 0 && bar === 4) tremolo(t, [midi('F2'), midi('B2'), midi('E3')], BAR * STEP * 3, 0.07);
+    if (s === 8 && (bar === 1 || bar === 5)) logDrum(t, 0.5, true);
+    if (s === 6 && (bar === 2 || bar === 5)) clicks(t);
+    if (s === 0 && bar === 1) whistle(t, midi('E6'), midi('B5'), BAR * STEP * 1.6);
+    if (section === 'suspense') {
+      if (bar >= 6 && s === 0 && bar === 6) timpaniRoll(t, BAR * STEP * 2 - 0.1, midi('E2'));
+      if (bar === 7 && s === 8) cymbalSwell(t, STEP * 8);
+      if (bar >= 6 && s % 2 === 0) snare(t, 0.15 + ((bar - 6) * 16 + s) / 32 * 0.5);
+    } else if (bar >= 4 && [0, 6, 10].includes(s)) {
+      handDrum(t, s === 6, 0.5); // a lone heartbeat before the loop starts over
+    }
+    return;
   }
-  if (section === 'breakdown' && barInSection >= 4 && s === 0) string(t, midi('E2'), 0.8, STEP * 10);
 
-  // Brass stabs on the downbeats of the attack, answered low on the last accent
-  if (section === 'attack' && s === 0 && barInSection % 2 === 0) brass(t, barInSection % 4 === 0 ? STAB_A : STAB_B, 0.75);
-  if (section === 'attack' && s === 10 && barInSection % 2 === 1) brass(t, LOW_BRASS, 0.5, 0.8);
+  /* The march, the theme and the assault */
+  const pattern = lastBar ? TOMS_FILL : TOMS;
+  for (const [at, drum, vel] of pattern) if (at === s) tom(t, drum, vel);
+  for (const [at, vel] of SNARE) if (at === s) snare(t, vel);
+  if (lastBar && s >= 8) { snare(t, 0.4 + (s - 8) * 0.07); snare(t + STEP / 2, 0.35 + (s - 8) * 0.07); }
+  if (lastBar && s === 8 && section !== 'assault') cymbalSwell(t, STEP * 8);
+  if (s === 0 && bar % 4 === 0) timpani(t, midi('E2'), 0.9);
+  if (s % 2 === 1) shaker(t, s % 4 === 1 ? 0.8 : 0.5);
+  if ([2, 10].includes(s) && section !== 'march') handDrum(t, s === 10, 0.7);
 
-  // Eerie whistle and clicks when the jungle goes quiet
-  if ((section === 'stalk' || section === 'breakdown') && s === 0 && barInSection % 4 === 1) {
-    whistle(t, midi(barInSection === 1 ? 'E6' : 'B5'), midi(barInSection === 1 ? 'B5' : 'F5'), BAR * STEP * 1.8);
+  for (const [at, n, vel] of STRING_HITS) if (at === s) string(t, midi(n), vel);
+
+  if (section !== 'march' || bar >= 4) {
+    for (const [at, ns] of BRASS_HITS) if (at === s && bar % 2 === 1) brass(t, ns.map(midi), 0.35, 0.7);
   }
-  if ((section === 'stalk' || section === 'breakdown') && s === 7 && (barInSection === 2 || barInSection === 6)) clicks(t);
-  if (section === 'attack' && s === 13 && barInSection === 3) clicks(t);
+  if (section === 'theme' || section === 'assault') {
+    const phrase = THEME[bar % 4];
+    for (const [at, n, len] of phrase) if (at === s) brass(t, [midi(n), midi(n) - 12], len * STEP + 0.25, 1);
+  }
+  if (section === 'assault') {
+    if (s === 0 && bar > 0) brass(t, bar % 2 === 0 ? STAB_A : STAB_B, 0.6, 0.8);
+    if (s === 8) logDrum(t, 0.8, true);
+  }
+  if (s === 14 && bar === 3) clicks(t);
 }
 
 /* ---------- Transport ---------- */

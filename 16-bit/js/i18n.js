@@ -1,7 +1,7 @@
 // English and Spanish text. Page elements use data-i18n="key".
 // Content phrases come from the main site (js/i18n.js at the site root), so both pages always match.
 // Only the game-style labels below are specific to this page.
-import { T as SITE } from '../../js/i18n.js?v=20261026164508';
+import { T as SITE } from '../../js/i18n.js?v=20261026165411';
 
 const ZONE = {
   en: {

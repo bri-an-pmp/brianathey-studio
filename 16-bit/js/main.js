@@ -1,9 +1,9 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026164508';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261026164508';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026164508';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026165411';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261026165411';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026165411';
 // Shared with the main site, so every theme shows the same projects, players and photos
-import { GITHUB_USER, HIDDEN_REPOS, EMBEDS, REPO_TEXT, REPO_STORE, FALLBACK_REPOS } from '../../js/content.js?v=20261026164508';
-import { ALBUMS, photoSrc } from '../../js/albums.js?v=20261026164508';
+import { GITHUB_USER, HIDDEN_REPOS, EMBEDS, REPO_TEXT, REPO_STORE, FALLBACK_REPOS } from '../../js/content.js?v=20261026165411';
+import { ALBUMS, photoSrc } from '../../js/albums.js?v=20261026165411';
 
 const status = document.getElementById('status');
 const announce = (msg) => {
