@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261023002025';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261023002025';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261023002025';
-import { startRain } from './rain.js?v=20261023002025';
-import { startSpinners } from './spinners.js?v=20261023002025';
-import { ALBUMS, photoSrc } from './albums.js?v=20261023002025';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261023002025';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026134022';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261026134022';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026134022';
+import { startRain } from './rain.js?v=20261026134022';
+import { startSpinners } from './spinners.js?v=20261026134022';
+import { ALBUMS, photoSrc } from './albums.js?v=20261026134022';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261026134022';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -80,6 +80,24 @@ const EMBEDS = {
 // Descriptions written for this site, in both languages. They replace the one-line GitHub
 // description for these projects; `steps` shows as a numbered list.
 const REPO_TEXT = {
+  'spanish-translation-skills': {
+    en: {
+      text: 'A Claude Code plugin for English ⇄ Spanish translators, built from my own translation practice. Tested with and without the plugin: on a question about Spanish usage rules, Claude was right 3 out of 3 times with it and 0 out of 3 without.',
+      steps: [
+        'translator-en-es: legal, technical, business and arts translations, with a glossary and notes on every judgment call',
+        'rae-spanish: checks spelling and grammar against current Real Academia Española sources and cites them',
+        'l10n-qa: catches broken placeholders, lost tags and buttons that are too long in translated app files',
+      ],
+    },
+    es: {
+      text: 'Un plugin de Claude Code para traductores de inglés ⇄ español, creado a partir de mi propia práctica como traductor. Probado con y sin el plugin: ante una consulta sobre las normas del español, Claude acertó 3 de 3 veces con él y 0 de 3 sin él.',
+      steps: [
+        'translator-en-es: traducciones jurídicas, técnicas, empresariales y de arte, con glosario y notas sobre cada decisión',
+        'rae-spanish: revisa la ortografía y la gramática con fuentes vigentes de la Real Academia Española y las cita',
+        'l10n-qa: detecta variables rotas, etiquetas perdidas y botones demasiado largos en los archivos traducidos de una app',
+      ],
+    },
+  },
   'mi-ofrenda': {
     en: { text: 'Honor someone you love, and learn Spanish along the way. Build a Day of the Dead altar for a parent, a friend, a pet or a Mexican legend, and every candle, marigold and pan dulce you place speaks its name in Spanish. For every age and background, no Spanish needed. Free on the web and on the iPhone App Store.' },
     es: { text: 'Honre a alguien que quiere y aprenda español en el camino. Arme una ofrenda de Día de Muertos para su mamá, un amigo, su mascota o una leyenda de México, y cada vela, cempasúchil y pan dulce que coloque le dirá su nombre en español. Para todas las edades y orígenes, sin saber español. Gratis en la web y en la App Store para iPhone.' },
@@ -129,6 +147,7 @@ const REPO_STORE = {
 
 // Shown if the GitHub API can't be reached (it limits visitors to 60 requests an hour).
 const FALLBACK_REPOS = [
+  { name: 'spanish-translation-skills', description: '', language: 'Python' },
   { name: 'mi-ofrenda', description: '', language: 'JavaScript', homepage: 'https://bri-an-pmp.github.io/mi-ofrenda/' },
   { name: 'the-morning-frequency', description: 'Ambient journaling app: write a paragraph, press Enter twice, hear choir-and-organ music for its mood.', language: 'JavaScript' },
   { name: 'Brian-AI-Agent-Career', description: '', language: 'Python' },
