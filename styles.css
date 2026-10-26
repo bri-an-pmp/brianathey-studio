@@ -1007,12 +1007,12 @@ html.alien .machine {
 html.alien body { background: #050506; }
 html.alien .haze > *, html.alien .dust, html.alien .rain, html.alien .kana { display: none; }
 html.alien .hero { background: transparent; }
-/* Photos turn black and red */
-html.alien main img { filter: url(#red-duotone); }
+/* Photos, app screenshots and the portrait keep their real colors */
+html.alien .id-photo::before { background: none; }
 
 /* Scan lines and a slow red sweep */
 html.alien .hud { display: block; position: fixed; inset: 0; z-index: 40; pointer-events: none; }
-.hud-scan { position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, rgba(255, 40, 40, .03) 0 1px, transparent 1px 3px); }
+.hud-scan { position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .14) 0 1px, transparent 1px 3px); }
 .hud-sweep { position: absolute; left: 0; right: 0; height: 14vh; top: -16vh;
   background: linear-gradient(to bottom, transparent, rgba(255, 30, 30, .05) 70%, rgba(255, 60, 50, .12) 98%, transparent);
   animation: sweep 8s linear infinite; }
@@ -1043,7 +1043,8 @@ html.alien .hud { display: block; position: fixed; inset: 0; z-index: 40; pointe
 .hud-cells { display: grid; gap: 4px; }
 .hud-cell { display: flex; justify-content: center; align-items: center; min-width: 74px; height: 30px; padding: 0 6px;
   background: #020202; border: 1px solid #000; box-shadow: inset 0 2px 6px #000, 0 1px 0 #2c3036; }
-@media (max-width: 720px) { .hud-gauntlet { display: none; } }
+/* Only where the page has empty margin for it, so it never covers content */
+@media (max-width: 1439px) { .hud-gauntlet { display: none; } }
 
 /* Original glyphs, drawn as glowing red segments in black display windows.
    The real number stays readable to screen readers (and is visible outside this theme). */
@@ -1096,5 +1097,5 @@ html.alien .glyphs { align-self: flex-start; }
 html.alien .file-card .glyphs, html.alien .repo .glyphs { font-size: 22px; }
 html.alien .bar-clock .glyphs { font-size: 17px; }
 .hud-cell .glyph { font-size: 20px; }
-html.alien .readout { color: #ff2a2a; }
+html.alien .readout, html.alien.dusty .readout, html.alien .file .readout, html.alien.dusty .file .readout { color: #ff2a2a; }
 html.alien .file .section-head, html.alien.dusty .file .section-head { background: linear-gradient(90deg, rgba(12, 13, 15, .92), rgba(12, 13, 15, .55)); }

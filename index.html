@@ -23,9 +23,9 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#07080b">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="fonts.css?v=20261026151617">
-  <link rel="stylesheet" href="styles.css?v=20261026151617">
-  <script type="module" src="js/main.js?v=20261026151617"></script>
+  <link rel="stylesheet" href="fonts.css?v=20261026152000">
+  <link rel="stylesheet" href="styles.css?v=20261026152000">
+  <script type="module" src="js/main.js?v=20261026152000"></script>
 </head>
 <body>
   <a class="skip-link" href="#index" data-i18n="skip">Skip to main content</a>
@@ -49,18 +49,8 @@
     <div class="dust-frame"></div>
   </div>
   <canvas class="rain" id="rain" aria-hidden="true"></canvas>
-  <!-- Alien theme: machine background, red photo filter, scan overlay, targeting dots, wrist device (decorative) -->
+  <!-- Alien theme: machine background, scan overlay, targeting dots, wrist device (decorative) -->
   <div class="machine" aria-hidden="true"></div>
-  <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
-    <filter id="red-duotone" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix" values="0.3 0.55 0.15 0 0  0.3 0.55 0.15 0 0  0.3 0.55 0.15 0 0  0 0 0 1 0"/>
-      <feComponentTransfer>
-        <feFuncR type="table" tableValues="0 0.3 0.78 1 1"/>
-        <feFuncG type="table" tableValues="0 0 0.04 0.28 0.85"/>
-        <feFuncB type="table" tableValues="0 0 0.04 0.26 0.8"/>
-      </feComponentTransfer>
-    </filter>
-  </svg>
   <div class="hud" aria-hidden="true">
     <div class="hud-scan"></div>
     <div class="hud-sweep"></div>
