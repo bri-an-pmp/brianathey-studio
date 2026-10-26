@@ -1,0 +1,3 @@
+/* Self-hosted fonts (SIL Open Font License): Nunito and Press Start 2P, Latin subset */
+@font-face { font-family: 'Nunito'; font-style: normal; font-weight: 500 800; font-display: swap; src: url("assets/fonts/nunito-latin.woff2") format("woff2"); }
+@font-face { font-family: 'Press Start 2P'; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/press-start-2p-latin.woff2") format("woff2"); }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="240" viewBox="0 0 1200 240" shape-rendering="crispEdges">
+  <!-- far range -->
+  <polygon fill="#4878c8" points="0,240 0,150 80,90 150,130 240,60 330,120 400,80 480,140 560,70 650,110 720,50 820,130 900,90 980,140 1060,70 1140,120 1200,150 1200,240"/>
+  <!-- snow caps -->
+  <polygon fill="#e8f0ff" points="240,60 262,76 250,80 232,72 220,75"/>
+  <polygon fill="#e8f0ff" points="720,50 744,68 730,72 712,64 700,66"/>
+  <polygon fill="#e8f0ff" points="1060,70 1080,84 1068,88 1052,80 1042,82"/>
+  <!-- near range -->
+  <polygon fill="#2858a8" points="0,240 0,190 100,150 190,180 290,130 380,175 470,140 560,185 660,135 760,180 850,145 950,185 1050,140 1130,175 1200,190 1200,240"/>
+  <!-- waterfall -->
+  <rect x="644" y="150" width="20" height="90" fill="#88c0ff"/>
+  <rect x="650" y="150" width="4" height="90" fill="#e8f4ff"/>
+  <rect x="658" y="160" width="2" height="80" fill="#e8f4ff"/>
+</svg>

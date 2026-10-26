@@ -22,6 +22,8 @@ const PATTERNS = {
   // [frequency Hz, start s, length s]
   select: [[1760, 0, 0.09]],
   start: [[587, 0, 0.5], [880, 0.12, 0.9]],
+  // Thermal theme: a quick run of dry clicks, like a scanner locking on
+  hunt: [[2600, 0, 0.025], [2300, 0.06, 0.025], [2800, 0.12, 0.025], [2100, 0.2, 0.03], [3000, 0.26, 0.025]],
 };
 
 export function sfx(name) {

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="300" viewBox="0 0 1200 300" shape-rendering="crispEdges">
+  <defs>
+    <pattern id="checker" width="32" height="32" patternUnits="userSpaceOnUse">
+      <rect width="32" height="32" fill="#a85010"/>
+      <rect width="16" height="16" fill="#e08830"/>
+      <rect x="16" y="16" width="16" height="16" fill="#e08830"/>
+    </pattern>
+    <g id="palm">
+      <rect x="-5" y="0" width="10" height="16" fill="#8a4a10"/>
+      <rect x="-5" y="16" width="10" height="16" fill="#c87828"/>
+      <rect x="-5" y="32" width="10" height="16" fill="#8a4a10"/>
+      <rect x="-5" y="48" width="10" height="16" fill="#c87828"/>
+      <rect x="-5" y="64" width="10" height="16" fill="#8a4a10"/>
+      <polygon fill="#109818" points="0,-4 -46,6 -60,26 -40,14 -8,6"/>
+      <polygon fill="#109818" points="0,-4 46,6 60,26 40,14 8,6"/>
+      <polygon fill="#28c030" points="0,-6 -30,-26 -54,-22 -26,-14 -4,2"/>
+      <polygon fill="#28c030" points="0,-6 30,-26 54,-22 26,-14 4,2"/>
+      <polygon fill="#0a7010" points="0,-8 -6,-34 6,-34"/>
+      <rect x="-10" y="-4" width="8" height="8" fill="#6a3008"/>
+      <rect x="2" y="-2" width="8" height="8" fill="#6a3008"/>
+    </g>
+  </defs>
+  <!-- hill bodies -->
+  <path fill="url(#checker)" d="M0,300 L0,140 Q150,60 300,140 L300,300 Z"/>
+  <path fill="url(#checker)" d="M260,300 L260,180 Q470,90 680,180 L680,300 Z"/>
+  <path fill="url(#checker)" d="M640,300 L640,120 Q800,40 960,120 L960,300 Z"/>
+  <path fill="url(#checker)" d="M920,300 L920,170 Q1060,100 1200,140 L1200,300 Z"/>
+  <!-- grass caps -->
+  <path fill="none" stroke="#0a7010" stroke-width="22" d="M0,143 Q150,63 300,143"/>
+  <path fill="none" stroke="#28c030" stroke-width="12" d="M0,138 Q150,58 300,138"/>
+  <path fill="none" stroke="#0a7010" stroke-width="22" d="M260,183 Q470,93 680,183"/>
+  <path fill="none" stroke="#28c030" stroke-width="12" d="M260,178 Q470,88 680,178"/>
+  <path fill="none" stroke="#0a7010" stroke-width="22" d="M640,123 Q800,43 960,123"/>
+  <path fill="none" stroke="#28c030" stroke-width="12" d="M640,118 Q800,38 960,118"/>
+  <path fill="none" stroke="#0a7010" stroke-width="22" d="M920,173 Q1060,103 1200,143"/>
+  <path fill="none" stroke="#28c030" stroke-width="12" d="M920,168 Q1060,98 1200,138"/>
+  <!-- palms -->
+  <use xlink:href="#palm" transform="translate(150 22)"/>
+  <use xlink:href="#palm" transform="translate(800 4)"/>
+  <use xlink:href="#palm" transform="translate(470 54) scale(0.8)"/>
+  <!-- flowers -->
+  <g fill="#ff4080">
+    <rect x="60" y="112" width="8" height="8"/><rect x="380" y="126" width="8" height="8"/>
+    <rect x="720" y="88" width="8" height="8"/><rect x="1100" y="118" width="8" height="8"/>
+  </g>
+  <g fill="#ffe000">
+    <rect x="62" y="114" width="4" height="4"/><rect x="382" y="128" width="4" height="4"/>
+    <rect x="722" y="90" width="4" height="4"/><rect x="1102" y="120" width="4" height="4"/>
+  </g>
+</svg>

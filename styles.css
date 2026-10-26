@@ -960,3 +960,105 @@ html.motion-paused { scroll-behavior: auto; }
   .rain { display: none; }
   .dust { transition: none; }
 }
+
+/* ================================================================
+   Theme menu (top right) and the Thermal theme: heat vision, scan
+   lines, three-dot targeting, lock-on brackets and original glyphs.
+   All original art: no film names, images or lettering.
+   ================================================================ */
+.theme-pick { position: relative; display: inline-flex; align-items: center; }
+.theme-icon { position: absolute; left: 10px; pointer-events: none; color: var(--amber); }
+#theme-select { appearance: none; -webkit-appearance: none; padding-left: 30px; padding-right: 14px; font: 500 15px var(--font-mono); }
+#theme-select option { background: var(--void); color: var(--text); }
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.hud { display: none; }
+
+html.thermal, html.thermal.dusty {
+  --void: #07020f;
+  --ink: #120623;
+  --ink-hover: #1d0a36;
+  --well: #05010a;
+  --panel: rgba(18, 6, 35, 0.84);
+  --line: rgba(255, 74, 36, 0.42);
+  --line-cool: rgba(255, 150, 30, 0.38);
+  --amber: #ff4a24;
+  --amber-hot: #ffd447;
+  --cyan: #ff9a1f;
+  --haze: #6a1bb0;
+  --holo: #ff4a24;
+  --gold: #ffd447;
+  --gold-soft: #ffb36b;
+  --gold-hi: #ffe27a;
+  --text: #fff2dc;
+  --text-dim: #f0c7a6;
+}
+/* Heat map over the scenery and photos; the city stops drifting so the scan holds still */
+html.thermal .haze, html.thermal main img { filter: url(#thermal-map); }
+html.thermal .dust { filter: url(#thermal-map) brightness(.5) contrast(1.1); }
+html.thermal .city, html.thermal .dust > * { animation-play-state: paused; }
+html.thermal .rain { opacity: .25; }
+html.thermal .hero { background: linear-gradient(#030008 0%, #12042a 40%, #3a0a52 70%, #7a1230 88%, var(--void) 100%); }
+
+/* Scan lines, a slow sweep and the vignette of a heads-up display */
+html.thermal .hud { display: block; position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+.hud-scan { position: absolute; inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(255, 220, 180, .035) 0 1px, transparent 1px 3px),
+              radial-gradient(ellipse at center, transparent 55%, rgba(5, 0, 12, .55) 100%); }
+.hud-sweep { position: absolute; left: 0; right: 0; height: 18vh; top: -20vh;
+  background: linear-gradient(to bottom, transparent, rgba(255, 90, 40, .07) 60%, rgba(255, 212, 71, .12) 98%, transparent);
+  animation: sweep 7s linear infinite; }
+@keyframes sweep { to { transform: translateY(140vh); } }
+
+/* Three red targeting dots that follow the mouse and tighten over anything clickable */
+.hud-reticle { position: fixed; left: 0; top: 0; width: 0; height: 0; transform: translate(-100px, -100px); }
+.hud-reticle i { position: absolute; width: 6px; height: 6px; margin: -3px; border-radius: 50%;
+  background: #ff2a14; box-shadow: 0 0 6px #ff2a14, 0 0 14px rgba(255, 42, 20, .7); transition: transform .18s ease; }
+.hud-reticle i:nth-child(1) { transform: translate(0, -14px); }
+.hud-reticle i:nth-child(2) { transform: translate(-12px, 7px); }
+.hud-reticle i:nth-child(3) { transform: translate(12px, 7px); }
+.hud-reticle.locked i:nth-child(1) { transform: translate(0, -6px); }
+.hud-reticle.locked i:nth-child(2) { transform: translate(-5px, 3px); }
+.hud-reticle.locked i:nth-child(3) { transform: translate(5px, 3px); }
+.hud-reticle.locked i { background: #ffd447; box-shadow: 0 0 6px #ffd447, 0 0 16px rgba(255, 140, 20, .8); }
+@media (pointer: coarse) { .hud-reticle { display: none; } }
+
+/* Wrist readout, bottom left: page depth in glyphs and a heat bar */
+.hud-gauntlet { position: fixed; left: 16px; bottom: 16px; display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border: 1px solid var(--line); background: rgba(10, 2, 20, .78);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  font: 600 13px var(--font-mono); letter-spacing: .2em; color: var(--amber-hot); }
+.hud-heat { width: 70px; height: 6px; background: rgba(255, 255, 255, .08); }
+.hud-heat i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #6a1bb0, #ff4a24, #ffd447); }
+@media (max-width: 720px) { .hud-gauntlet { display: none; } }
+
+/* Original glyphs beside numbers; the real number stays readable to screen readers */
+.glyphs { display: inline-flex; gap: 2px; vertical-align: middle; margin-right: 6px; }
+.glyph { width: .75em; height: 1.2em; fill: currentColor; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; color: var(--amber); }
+.glyph .spine, .glyph .tick { fill: none; }
+html.thermal .glyph-src { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hud .glyph { color: var(--amber-hot); }
+
+/* Lock-on brackets: corners close in when a card is targeted */
+html.thermal :is(.repo, .file-card) {
+  --b: 14px;
+  background-image:
+    linear-gradient(var(--amber), var(--amber)), linear-gradient(var(--amber), var(--amber)),
+    linear-gradient(var(--amber), var(--amber)), linear-gradient(var(--amber), var(--amber)),
+    linear-gradient(var(--amber), var(--amber)), linear-gradient(var(--amber), var(--amber)),
+    linear-gradient(var(--amber), var(--amber)), linear-gradient(var(--amber), var(--amber));
+  background-repeat: no-repeat;
+  background-size: var(--b) 2px, 2px var(--b), var(--b) 2px, 2px var(--b), var(--b) 2px, 2px var(--b), var(--b) 2px, 2px var(--b);
+  background-position: top left, top left, top right, top right, bottom left, bottom left, bottom right, bottom right;
+  background-color: color-mix(in srgb, var(--void) 70%, transparent);
+  transition: background-size .2s ease;
+}
+html.thermal :is(.repo, .file-card):is(:hover, :focus-within) { --b: 26px; }
+html.thermal .repo { border-left-color: var(--amber); }
+html.thermal .bar { border-bottom-color: var(--amber); }
+html.thermal .brand-name { text-shadow: 0 0 18px rgba(255, 74, 36, .55); }
+html.thermal .scan-red { --scan: #ff4a24; }
+html.thermal .scan-blue { --scan: #ffd447; }
+
+/* Respect "pause motion" and reduced motion */
+html.motion-paused .hud-sweep { animation: none; display: none; }
+@media (prefers-reduced-motion: reduce) { .hud-sweep { display: none; } .hud-reticle { display: none; } }

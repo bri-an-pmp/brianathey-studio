@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="180" viewBox="0 0 1200 180" shape-rendering="crispEdges">
+  <defs>
+    <g id="cloud">
+      <rect x="24" y="0" width="56" height="8" fill="#fff"/>
+      <rect x="8" y="8" width="96" height="8" fill="#fff"/>
+      <rect x="0" y="16" width="136" height="16" fill="#fff"/>
+      <rect x="0" y="32" width="160" height="8" fill="#d8e8ff"/>
+      <rect x="96" y="0" width="40" height="16" fill="#fff"/>
+      <rect x="104" y="-8" width="24" height="8" fill="#fff"/>
+      <rect x="8" y="40" width="144" height="8" fill="#a8c8f8"/>
+    </g>
+  </defs>
+  <use xlink:href="#cloud" x="40" y="40"/>
+  <use xlink:href="#cloud" x="380" y="100" transform="translate(380 100) scale(0.7) translate(-380 -100)"/>
+  <use xlink:href="#cloud" x="640" y="30"/>
+  <use xlink:href="#cloud" x="980" y="90" transform="translate(980 90) scale(0.8) translate(-980 -90)"/>
+</svg>

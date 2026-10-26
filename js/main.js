@@ -1,10 +1,11 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026144329';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261026144329';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026144329';
-import { startRain } from './rain.js?v=20261026144329';
-import { startSpinners } from './spinners.js?v=20261026144329';
-import { ALBUMS, photoSrc } from './albums.js?v=20261026144329';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261026144329';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026145436';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261026145436';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026145436';
+import { startRain } from './rain.js?v=20261026145436';
+import { startSpinners } from './spinners.js?v=20261026145436';
+import { ALBUMS, photoSrc } from './albums.js?v=20261026145436';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261026145436';
+import { initTheme } from './theme.js?v=20261026145436';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -356,6 +357,9 @@ function setMotionPaused(on) {
 }
 let motionStart = false;
 try { motionStart = localStorage.getItem('bas_motion') === 'paused'; } catch { /* ignore */ }
+/* ---------- Theme menu ---------- */
+initTheme(announce);
+
 motionBtn.addEventListener('click', () => {
   const on = !document.documentElement.classList.contains('motion-paused');
   setMotionPaused(on);
