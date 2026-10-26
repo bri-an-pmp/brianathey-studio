@@ -1,7 +1,7 @@
-// Theme menu (top right): Neon Noir (default), Thermal (black-and-red machine HUD on this page) and
+// Theme menu (top right): Neon Noir (default), Alien (black-and-red machine HUD on this page) and
 // 16-Bit Zone (a separate version of the site at /16-bit/). Remembered per browser.
-import { tr } from './i18n.js?v=20261026151405';
-import { sfx } from './sound.js?v=20261026151405';
+import { tr } from './i18n.js?v=20261026151617';
+import { sfx } from './sound.js?v=20261026151617';
 
 const root = document.documentElement;
 const select = document.getElementById('theme-select');
@@ -67,8 +67,8 @@ function unglyphifyAll() {
   document.querySelectorAll('.glyph-src').forEach((el) => { el.classList.remove('glyph-src'); delete el.dataset.glyphText; });
 }
 
-// Clock ticks and GitHub cards arrive later: keep their glyphs current while Thermal is on
-const watcher = new MutationObserver(() => { if (root.classList.contains('thermal')) glyphifyAll(); });
+// Clock ticks and GitHub cards arrive later: keep their glyphs current while Alien is on
+const watcher = new MutationObserver(() => { if (root.classList.contains('alien')) glyphifyAll(); });
 
 /* ---------- Targeting dots ---------- */
 const reticle = document.querySelector('.hud-reticle');
@@ -98,8 +98,8 @@ let ticker = 0;
 function tick() { show(cells[2], String(new Date().getSeconds()).padStart(2, '0')); }
 
 /* ---------- Switching ---------- */
-function setThermal(on) {
-  root.classList.toggle('thermal', on);
+function setAlien(on) {
+  root.classList.toggle('alien', on);
   if (on) {
     glyphifyAll();
     watcher.observe(document.body, { subtree: true, childList: true, characterData: true });
@@ -124,9 +124,10 @@ function save(theme) {
 export function initTheme(announce) {
   let theme = 'noir';
   try { theme = localStorage.getItem('bas_theme') || 'noir'; } catch { /* ignore */ }
+  if (theme === 'thermal') theme = 'alien'; // the theme's earlier name
   if (theme === 'zone') theme = 'noir'; // the 16-Bit Zone is its own page; this page shows Neon Noir
   select.value = theme;
-  setThermal(theme === 'thermal');
+  setAlien(theme === 'alien');
   select.addEventListener('change', () => {
     const next = select.value;
     if (next === 'zone') {
@@ -135,8 +136,8 @@ export function initTheme(announce) {
       return;
     }
     save(next);
-    setThermal(next === 'thermal');
-    if (next === 'thermal') sfx('hunt');
-    announce(tr(next === 'thermal' ? 'themeThermalStatus' : 'themeNoirStatus'));
+    setAlien(next === 'alien');
+    if (next === 'alien') sfx('hunt');
+    announce(tr(next === 'alien' ? 'themeAlienStatus' : 'themeNoirStatus'));
   });
 }

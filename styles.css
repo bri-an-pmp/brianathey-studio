@@ -962,7 +962,7 @@ html.motion-paused { scroll-behavior: auto; }
 }
 
 /* ================================================================
-   Theme menu (top right) and the Thermal theme: heat vision, scan
+   Theme menu (top right) and the Alien theme: black and red machine, scan
    lines, three-dot targeting, lock-on brackets and original glyphs.
    All original art: no film names, images or lettering.
    ================================================================ */
@@ -973,7 +973,7 @@ html.motion-paused { scroll-behavior: auto; }
 .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .hud { display: none; }
 
-html.thermal, html.thermal.dusty {
+html.alien, html.alien.dusty {
   --void: #050506;
   --ink: #0d0e10;
   --ink-hover: #16181b;
@@ -997,21 +997,21 @@ html.thermal, html.thermal.dusty {
 /* The machine: a dark gunmetal wall of plates, vents, cables and red lights behind everything
    (assets/machine.svg, drawn by tools/machine.py). The night city, desert and rain step aside. */
 .machine { display: none; }
-html.thermal .machine {
+html.alien .machine {
   display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
     radial-gradient(ellipse at 50% 35%, transparent 30%, rgba(0, 0, 0, .72) 100%),
     url("assets/machine.svg") center top / 960px 960px repeat,
     #050506;
 }
-html.thermal body { background: #050506; }
-html.thermal .haze > *, html.thermal .dust, html.thermal .rain, html.thermal .kana { display: none; }
-html.thermal .hero { background: transparent; }
+html.alien body { background: #050506; }
+html.alien .haze > *, html.alien .dust, html.alien .rain, html.alien .kana { display: none; }
+html.alien .hero { background: transparent; }
 /* Photos turn black and red */
-html.thermal main img { filter: url(#red-duotone); }
+html.alien main img { filter: url(#red-duotone); }
 
 /* Scan lines and a slow red sweep */
-html.thermal .hud { display: block; position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+html.alien .hud { display: block; position: fixed; inset: 0; z-index: 40; pointer-events: none; }
 .hud-scan { position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, rgba(255, 40, 40, .03) 0 1px, transparent 1px 3px); }
 .hud-sweep { position: absolute; left: 0; right: 0; height: 14vh; top: -16vh;
   background: linear-gradient(to bottom, transparent, rgba(255, 30, 30, .05) 70%, rgba(255, 60, 50, .12) 98%, transparent);
@@ -1054,10 +1054,10 @@ html.thermal .hud { display: block; position: fixed; inset: 0; z-index: 40; poin
   fill: currentColor; stroke: currentColor; stroke-width: 2.1; stroke-linecap: round;
   filter: drop-shadow(0 0 2px #ff1a1a) drop-shadow(0 0 5px rgba(255, 26, 26, .6)); }
 .glyph .spine, .glyph .tick { fill: none; }
-html.thermal .glyph-src { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+html.alien .glyph-src { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Machined panels: beveled black metal with rivets in the corners and a red edge light */
-html.thermal :is(.panel, .repo, .file-card, .archive) {
+html.alien :is(.panel, .repo, .file-card, .archive) {
   background-color: #0c0d0f;
   background-image:
     radial-gradient(circle at 10px 10px, #5a6068 0 2px, #050506 2.6px, transparent 3.4px),
@@ -1069,32 +1069,32 @@ html.thermal :is(.panel, .repo, .file-card, .archive) {
   box-shadow: inset 1px 1px 0 #34383f, inset -1px -1px 0 #000, 0 12px 32px rgba(0, 0, 0, .65);
   backdrop-filter: none;
 }
-html.thermal .panel::before, html.thermal .panel::after { border-color: #ff2a2a; filter: drop-shadow(0 0 4px #ff1a1a); }
-html.thermal .repo { border-left: 3px solid #ff2a2a; }
-html.thermal .file-grid { background: #000; border-color: #1a1c1f; gap: 4px; }
-html.thermal :is(.repo, .file-card):is(:hover, :focus-within) {
+html.alien .panel::before, html.alien .panel::after { border-color: #ff2a2a; filter: drop-shadow(0 0 4px #ff1a1a); }
+html.alien .repo { border-left: 3px solid #ff2a2a; }
+html.alien .file-grid { background: #000; border-color: #1a1c1f; gap: 4px; }
+html.alien :is(.repo, .file-card):is(:hover, :focus-within) {
   box-shadow: inset 1px 1px 0 #34383f, inset -1px -1px 0 #000, 0 0 0 1px #ff2a2a, 0 0 22px rgba(255, 26, 26, .35);
 }
-html.thermal .scan-red, html.thermal .scan-blue { --scan: #ff2a2a; }
+html.alien .scan-red, html.alien .scan-blue { --scan: #ff2a2a; }
 
 /* Status bar and headings: dark metal strip with a red rule; the name glows red */
-html.thermal .bar { background: linear-gradient(#141619, #08090a); border-bottom: 1px solid #ff2a2a; box-shadow: 0 1px 12px rgba(255, 26, 26, .35); }
-html.thermal .bar-btn, html.thermal #theme-select { background: #050506; border-color: #3a1214; }
-html.thermal .bar-btn:hover { border-color: #ff2a2a; }
-html.thermal .brand-name { color: #ffd9d4; text-shadow: 0 0 10px #ff1a1a, 0 0 28px rgba(255, 26, 26, .75), 0 0 60px rgba(255, 26, 26, .4); }
-html.thermal .brand-sub, html.thermal .heading { color: #f1e6e6; }
-html.thermal .heading { text-shadow: 0 0 18px rgba(255, 26, 26, .35); }
-html.thermal .tabs a { background: rgba(5, 5, 6, .85); }
-html.thermal .btn-primary { color: #050506; background: #ff2a2a; border-color: #ff2a2a; }
-html.thermal .btn-primary:hover { background: #ff6b5e; box-shadow: 0 0 24px rgba(255, 26, 26, .6); }
-html.thermal .site-footer { background: linear-gradient(#0c0d0f, #050506); border-top: 1px solid #ff2a2a; }
+html.alien .bar { background: linear-gradient(#141619, #08090a); border-bottom: 1px solid #ff2a2a; box-shadow: 0 1px 12px rgba(255, 26, 26, .35); }
+html.alien .bar-btn, html.alien #theme-select { background: #050506; border-color: #3a1214; }
+html.alien .bar-btn:hover { border-color: #ff2a2a; }
+html.alien .brand-name { color: #ffd9d4; text-shadow: 0 0 10px #ff1a1a, 0 0 28px rgba(255, 26, 26, .75), 0 0 60px rgba(255, 26, 26, .4); }
+html.alien .brand-sub, html.alien .heading { color: #f1e6e6; }
+html.alien .heading { text-shadow: 0 0 18px rgba(255, 26, 26, .35); }
+html.alien .tabs a { background: rgba(5, 5, 6, .85); }
+html.alien .btn-primary { color: #050506; background: #ff2a2a; border-color: #ff2a2a; }
+html.alien .btn-primary:hover { background: #ff6b5e; box-shadow: 0 0 24px rgba(255, 26, 26, .6); }
+html.alien .site-footer { background: linear-gradient(#0c0d0f, #050506); border-top: 1px solid #ff2a2a; }
 
 /* Respect "pause motion" and reduced motion */
 html.motion-paused .hud-sweep { animation: none; display: none; }
 @media (prefers-reduced-motion: reduce) { .hud-sweep { display: none; } .hud-reticle { display: none; } }
-html.thermal .glyphs { align-self: flex-start; }
-html.thermal .file-card .glyphs, html.thermal .repo .glyphs { font-size: 22px; }
-html.thermal .bar-clock .glyphs { font-size: 17px; }
+html.alien .glyphs { align-self: flex-start; }
+html.alien .file-card .glyphs, html.alien .repo .glyphs { font-size: 22px; }
+html.alien .bar-clock .glyphs { font-size: 17px; }
 .hud-cell .glyph { font-size: 20px; }
-html.thermal .readout { color: #ff2a2a; }
-html.thermal .file .section-head, html.thermal.dusty .file .section-head { background: linear-gradient(90deg, rgba(12, 13, 15, .92), rgba(12, 13, 15, .55)); }
+html.alien .readout { color: #ff2a2a; }
+html.alien .file .section-head, html.alien.dusty .file .section-head { background: linear-gradient(90deg, rgba(12, 13, 15, .92), rgba(12, 13, 15, .55)); }

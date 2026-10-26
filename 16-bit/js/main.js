@@ -328,7 +328,7 @@ document.getElementById('year').textContent = String(new Date().getFullYear());
 refreshAll();
 loadRepos();
 
-/* ---------- Theme menu: back to the main site in Neon Noir or Thermal ---------- */
+/* ---------- Theme menu: back to the main site in Neon Noir or Alien ---------- */
 const siteTheme = document.getElementById('theme-select');
 siteTheme.value = 'zone';
 siteTheme.addEventListener('change', () => {
