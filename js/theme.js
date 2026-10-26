@@ -1,7 +1,7 @@
-// Theme menu (top right): Neon Noir (default), Thermal (heat vision on this page) and
+// Theme menu (top right): Neon Noir (default), Thermal (black-and-red machine HUD on this page) and
 // 16-Bit Zone (a separate version of the site at /16-bit/). Remembered per browser.
-import { tr } from './i18n.js?v=20261026145436';
-import { sfx } from './sound.js?v=20261026145436';
+import { tr } from './i18n.js?v=20261026151343';
+import { sfx } from './sound.js?v=20261026151343';
 
 const root = document.documentElement;
 const select = document.getElementById('theme-select');
@@ -9,36 +9,31 @@ const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)'
 const finePointer = () => window.matchMedia('(pointer: fine)').matches;
 
 /* ---------- Original glyphs ----------
-   Each digit is a slanted spine with four marks; a mark on the right is a 1 bit,
-   a dot on the left is a 0 bit (top = 8, bottom = 1). Drawn here, not from any font. */
+   Each digit is a slanted spine with four marks, drawn as glowing bar segments:
+   a long bar to the right is a 1 bit, a short bar to the left is a 0 bit (top = 8, bottom = 1).
+   Drawn here, not taken from any font or film. */
 const NS = 'http://www.w3.org/2000/svg';
 function glyph(ch) {
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('viewBox', '0 0 10 18');
   svg.setAttribute('class', 'glyph');
-  const add = (tag, attrs) => {
-    const n = document.createElementNS(NS, tag);
-    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  const bar = (d) => {
+    const n = document.createElementNS(NS, 'path');
+    n.setAttribute('d', d);
+    n.setAttribute('class', 'tick');
     svg.append(n);
   };
-  if (ch === ':') {
-    add('circle', { cx: 5, cy: 6, r: 1.2 });
-    add('circle', { cx: 5, cy: 12, r: 1.2 });
-    return svg;
-  }
-  if (ch === '▲') { // three-dot mark used in place of letters
-    add('circle', { cx: 5, cy: 4, r: 1.5 }); add('circle', { cx: 2.2, cy: 13, r: 1.5 }); add('circle', { cx: 7.8, cy: 13, r: 1.5 });
-    return svg;
-  }
+  if (ch === ':') { bar('M4.2 6 h1.6'); bar('M4.2 12 h1.6'); return svg; }
+  if (ch === '▲') { bar('M4 4 l2 -1'); bar('M1.5 13 l2 1'); bar('M6.5 14 l2 -1'); return svg; } // mark used in place of letters
   const d = Number(ch);
   if (!Number.isInteger(d)) return null;
-  add('path', { d: 'M3.5 1 L6.5 17', class: 'spine' });
+  bar('M3.6 1.5 L6.4 16.5');
   [8, 4, 2, 1].forEach((bit, i) => {
-    const y = 3.5 + i * 3.6, x = 3.5 + (y - 1) * (3 / 16);
-    if (d & bit) add('path', { d: `M${x} ${y} l3.6 -1.6`, class: 'tick' });
-    else add('circle', { cx: x - 1.8, cy: y, r: 0.9 });
+    const y = 3.6 + i * 3.5, x = 3.6 + (y - 1.5) * (2.8 / 15);
+    if (d & bit) bar(`M${(x + 1).toFixed(2)} ${y.toFixed(2)} l3.4 -1.3`);
+    else bar(`M${(x - 3).toFixed(2)} ${(y + 0.6).toFixed(2)} l1.6 -0.6`);
   });
-  if (d === 0) add('path', { d: 'M2 17 h6', class: 'tick' });
+  if (d === 0) bar('M2.4 17.4 h5.2');
   return svg;
 }
 
@@ -68,7 +63,7 @@ function glyphifyAll() {
   glyphify(document.getElementById('clock'));
 }
 function unglyphifyAll() {
-  document.querySelectorAll('.glyphs:not(#hud-depth .glyphs)').forEach((g) => g.remove());
+  document.querySelectorAll('.glyphs:not(.hud-cell .glyphs)').forEach((g) => g.remove());
   document.querySelectorAll('.glyph-src').forEach((el) => { el.classList.remove('glyph-src'); delete el.dataset.glyphText; });
 }
 
@@ -89,15 +84,18 @@ function onPointer(e) {
   if (!raf) raf = requestAnimationFrame(moveReticle);
 }
 
-/* ---------- Wrist readout: how far down the page you are ---------- */
-const depth = document.getElementById('hud-depth');
-const heat = document.getElementById('hud-heat-bar');
+/* ---------- Wrist device: page depth, the section in view, and a ticking counter ---------- */
+const cells = ['hud-depth', 'hud-section', 'hud-tick'].map((id) => document.getElementById(id));
+const sections = [...document.querySelectorAll('main > section')];
+const show = (cell, text) => cell.replaceChildren(glyphRow(text));
 function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
-  const pct = Math.round((scrollY / Math.max(1, max)) * 100);
-  depth.replaceChildren(glyphRow(String(pct).padStart(3, '0')));
-  heat.style.width = `${pct}%`;
+  show(cells[0], String(Math.round((scrollY / Math.max(1, max)) * 100)).padStart(3, '0'));
+  const current = sections.findLastIndex((sec) => sec.getBoundingClientRect().top < innerHeight * 0.4);
+  show(cells[1], String(Math.max(0, current)).padStart(2, '0'));
 }
+let ticker = 0;
+function tick() { show(cells[2], String(new Date().getSeconds()).padStart(2, '0')); }
 
 /* ---------- Switching ---------- */
 function setThermal(on) {
@@ -107,12 +105,15 @@ function setThermal(on) {
     watcher.observe(document.body, { subtree: true, childList: true, characterData: true });
     addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+    tick();
+    if (!reducedMotion()) ticker = setInterval(tick, 1000);
     if (finePointer() && !reducedMotion()) addEventListener('pointermove', onPointer, { passive: true });
   } else {
     watcher.disconnect();
     unglyphifyAll();
     removeEventListener('scroll', onScroll);
     removeEventListener('pointermove', onPointer);
+    clearInterval(ticker);
   }
 }
 
