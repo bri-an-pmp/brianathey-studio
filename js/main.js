@@ -1,10 +1,10 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026134022';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261026134022';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026134022';
-import { startRain } from './rain.js?v=20261026134022';
-import { startSpinners } from './spinners.js?v=20261026134022';
-import { ALBUMS, photoSrc } from './albums.js?v=20261026134022';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261026134022';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026144329';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261026144329';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026144329';
+import { startRain } from './rain.js?v=20261026144329';
+import { startSpinners } from './spinners.js?v=20261026144329';
+import { ALBUMS, photoSrc } from './albums.js?v=20261026144329';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261026144329';
 
 const GITHUB_USER = 'bri-an-pmp';
 // Repositories to leave out of the Code section.
@@ -80,6 +80,26 @@ const EMBEDS = {
 // Descriptions written for this site, in both languages. They replace the one-line GitHub
 // description for these projects; `steps` shows as a numbered list.
 const REPO_TEXT = {
+  'translation-desk': {
+    en: {
+      text: 'My English ⇄ Spanish translation assistant, built on the Claude API and running on my own Mac. Claude drafts each passage and explains its judgment calls; I edit and approve every one before anything is delivered. Tested against my own past translations.',
+      steps: [
+        'Certified translations of official documents: reads photos and scans, keeps every seal and signature in brackets, and adds my certificate of accuracy',
+        'Legal, museum, business and technical text, each with its own rules, in both directions',
+        'Checks names, numbers, dates, glossary terms and character limits',
+        'Keeps my glossary and remembers every passage I approve',
+      ],
+    },
+    es: {
+      text: 'Mi asistente de traducción inglés ⇄ español, creado con la API de Claude y que funciona en mi propia Mac. Claude redacta cada pasaje y explica sus decisiones; yo corrijo y apruebo cada uno antes de entregar. Probado con mis propias traducciones anteriores.',
+      steps: [
+        'Traducciones certificadas de documentos oficiales: lee fotos y escaneos, conserva cada sello y firma entre corchetes y agrega mi certificado de exactitud',
+        'Textos legales, de museos, empresariales y técnicos, cada uno con sus propias reglas, en ambas direcciones',
+        'Revisa nombres, números, fechas, términos del glosario y límites de caracteres',
+        'Respeta mi glosario y recuerda cada pasaje que apruebo',
+      ],
+    },
+  },
   'spanish-translation-skills': {
     en: {
       text: 'A Claude Code plugin for English ⇄ Spanish translators, built from my own translation practice. Tested with and without the plugin: on a question about Spanish usage rules, Claude was right 3 out of 3 times with it and 0 out of 3 without.',
@@ -147,6 +167,7 @@ const REPO_STORE = {
 
 // Shown if the GitHub API can't be reached (it limits visitors to 60 requests an hour).
 const FALLBACK_REPOS = [
+  { name: 'translation-desk', description: '', language: 'JavaScript' },
   { name: 'spanish-translation-skills', description: '', language: 'Python' },
   { name: 'mi-ofrenda', description: '', language: 'JavaScript', homepage: 'https://bri-an-pmp.github.io/mi-ofrenda/' },
   { name: 'the-morning-frequency', description: 'Ambient journaling app: write a paragraph, press Enter twice, hear choir-and-organ music for its mood.', language: 'JavaScript' },
