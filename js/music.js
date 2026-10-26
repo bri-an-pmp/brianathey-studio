@@ -1,7 +1,9 @@
-// "Haze": an original, slow neo-noir ambient soundtrack, played live in the browser.
+// "Haze": an original, slow neo-noir ambient soundtrack for Neon Noir, played live in the browser
+// (the Alien theme plays "Hunt" from js/music-hunt.js instead; see setTrack).
 // Deep drones, swelling vintage-synth brass, a gliding lead, distant metal and rain,
 // all inside a large generated reverb. No audio files.
-import { audioCtx } from './sound.js?v=20261026153026';
+import { audioCtx } from './sound.js?v=20261026164508';
+import { startHunt, stopHunt } from './music-hunt.js?v=20261026164508';
 
 const STEP = 0.25; // seconds per step (sixteenth notes at 60 BPM)
 const BLOCK = 64; // steps per chord (16 seconds)
@@ -374,8 +376,25 @@ function tick() {
   }
 }
 
+// Which piece plays: 'haze' (Neon Noir) or 'hunt' (the Alien theme, js/music-hunt.js)
+let track = 'haze';
+export function setTrack(name) {
+  const next = name === 'hunt' ? 'hunt' : 'haze';
+  if (next === track) return;
+  const wasPlaying = playing;
+  if (wasPlaying) stopMusic();
+  track = next;
+  if (wasPlaying) startMusic();
+}
+
 export function startMusic() {
   if (playing) return true;
+  if (track === 'hunt') {
+    if (!startHunt()) return false;
+    playing = true;
+    notify();
+    return true;
+  }
   try {
     setupGraph();
     master.gain.setValueAtTime(0, ctx.currentTime);
@@ -394,6 +413,12 @@ export function startMusic() {
 
 export function stopMusic() {
   if (!playing) return;
+  if (track === 'hunt') {
+    stopHunt();
+    playing = false;
+    notify();
+    return;
+  }
   clearInterval(timer);
   playing = false;
   const g = master;

@@ -1,7 +1,8 @@
 // Theme menu (top right): Neon Noir (default), Alien (black-and-red machine HUD on this page) and
 // 16-Bit Zone (a separate version of the site at /16-bit/). Remembered per browser.
-import { tr } from './i18n.js?v=20261026153026';
-import { sfx } from './sound.js?v=20261026153026';
+import { tr } from './i18n.js?v=20261026164508';
+import { sfx } from './sound.js?v=20261026164508';
+import { setTrack } from './music.js?v=20261026164508';
 
 const root = document.documentElement;
 const select = document.getElementById('theme-select');
@@ -100,6 +101,7 @@ function tick() { show(cells[2], String(new Date().getSeconds()).padStart(2, '0'
 /* ---------- Switching ---------- */
 function setAlien(on) {
   root.classList.toggle('alien', on);
+  setTrack(on ? 'hunt' : 'haze');
   if (on) {
     glyphifyAll();
     watcher.observe(document.body, { subtree: true, childList: true, characterData: true });

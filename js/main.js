@@ -1,12 +1,12 @@
-import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026153026';
-import { sfx, setSound, soundEnabled } from './sound.js?v=20261026153026';
-import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026153026';
-import { startRain } from './rain.js?v=20261026153026';
-import { startSpinners } from './spinners.js?v=20261026153026';
-import { ALBUMS, photoSrc } from './albums.js?v=20261026153026';
-import { openAlbum, refreshGallery } from './gallery.js?v=20261026153026';
-import { initTheme } from './theme.js?v=20261026153026';
-import { GITHUB_USER, HIDDEN_REPOS, EMBEDS, REPO_TEXT, REPO_STORE, FALLBACK_REPOS } from './content.js?v=20261026153026';
+import { tr, getLang, setLang, applyPage } from './i18n.js?v=20261026164508';
+import { sfx, setSound, soundEnabled } from './sound.js?v=20261026164508';
+import { startMusic, stopMusic, musicPlaying, onMusicChange } from './music.js?v=20261026164508';
+import { startRain } from './rain.js?v=20261026164508';
+import { startSpinners } from './spinners.js?v=20261026164508';
+import { ALBUMS, photoSrc } from './albums.js?v=20261026164508';
+import { openAlbum, refreshGallery } from './gallery.js?v=20261026164508';
+import { initTheme } from './theme.js?v=20261026164508';
+import { GITHUB_USER, HIDDEN_REPOS, EMBEDS, REPO_TEXT, REPO_STORE, FALLBACK_REPOS } from './content.js?v=20261026164508';
 
 const PHOTO_PLACEHOLDERS = 6;
 
