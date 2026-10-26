@@ -10,6 +10,14 @@ Brian Athey Studio: personal website for brianathey.studio (music, code, photogr
 - Before every publish run `python3 tools/stamp.py`: it stamps a new `?v=` on CSS/JS references so browsers (10-minute cache) never mix old and new files.
 - Open items: Notary Confi services and quote contact, Index tile 08.
 
+## Themes
+
+- A Theme menu (top right) offers **Neon Noir** (default), **Alien** (black-and-red machine HUD: `html.alien`, `js/theme.js`, background `assets/machine.svg` drawn by `tools/machine.py`) and **16-Bit Zone** (the console-game page in `16-bit/`). Photos, app screenshots and the portrait keep their real colors in every theme.
+- **One source of content for every theme.** Edit the main page and shared files only:
+  - `js/content.js`: GitHub user, project descriptions (`REPO_TEXT`), App Store links, music players. `js/albums.js`: photo collections. `js/i18n.js`: all English/Spanish text (the 16-bit page merges it with its few game-style labels).
+  - Blocks in `index.html` between `<!-- SHARE:name -->` and `<!-- /SHARE:name -->` (career, services, teaching, sound, social, footer links) are copied into `16-bit/index.html` by `tools/sync-16bit.py`. `tools/stamp.py` runs it automatically, so running stamp before publishing keeps all three themes current. Never edit inside the `SYNC` blocks of the 16-bit page.
+- No film or game names, images or lettering in any theme (the original glyphs are drawn in `js/theme.js`).
+
 ## Rules
 
 - **Style:** neo-noir sci-fi inspired by Blade Runner 2049 (night blue fog and red neon at the top; from the Code section down, a dusty red-gold brutalist "apartment view" and warm palette). All art and music must be original: no film, game or brand assets, names or logos.

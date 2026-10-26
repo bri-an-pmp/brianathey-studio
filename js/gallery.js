@@ -1,7 +1,7 @@
 // Full-screen photo gallery. Opens as a swipeable carousel with a filmstrip of
 // thumbnails; "All photos" switches to a grid. Built on <dialog> for focus handling.
-import { tr, getLang } from './i18n.js?v=20261026152000';
-import { photoSrc } from './albums.js?v=20261026152000';
+import { tr, getLang } from './i18n.js?v=20261026153026';
+import { photoSrc } from './albums.js?v=20261026153026';
 
 const dialog = document.getElementById('gallery');
 const titleEl = document.getElementById('gallery-title');

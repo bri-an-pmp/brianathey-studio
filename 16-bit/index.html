@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src https://api.github.com; frame-src https://open.spotify.com https://embed.music.apple.com https://www.youtube-nocookie.com https://w.soundcloud.com; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src https://api.github.com; frame-src https://music.amazon.com https://embed.tidal.com https://widget.deezer.com https://open.spotify.com https://embed.music.apple.com https://www.youtube-nocookie.com https://w.soundcloud.com; base-uri 'self'; form-action 'none'">
   <title>Brian Athey Studio</title>
-  <meta name="description" content="Brian Athey Studio: music, code, photography and Spanish ⇄ English translation.">
+  <meta name="description" content="Brian Athey: Senior Solutions Engineer (agentic AI, MCP and APIs; DAM and PIM), bilingual English/Spanish. Music, code, photography and translation. 16-bit edition.">
   <meta name="theme-color" content="#1840b0">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="fonts.css">
-  <link rel="stylesheet" href="styles.css">
-  <script type="module" src="js/main.js"></script>
+  <link rel="stylesheet" href="fonts.css?v=20261026153026">
+  <link rel="stylesheet" href="styles.css?v=20261026153026">
+  <script type="module" src="js/main.js?v=20261026153026"></script>
 </head>
 <body>
   <a class="skip-link" href="#zones" data-i18n="skip">Skip to main content</a>
@@ -63,7 +63,7 @@
         <button type="button" class="theme-btn" id="theme-play" aria-pressed="false">
           <span aria-hidden="true">♫</span> <span id="theme-play-label" data-i18n="playTheme">Play theme music</span>
         </button>
-        <a class="biz-link" href="#translation" data-zone="translation" data-i18n="bizLink">Need a translation? Go straight to Notary Confi</a>
+        <a class="biz-link" href="#translation" data-zone="translation" data-i18n="bizLink">Need a Notarization or Translation?</a>
       </div>
 
       <div class="records" id="title-records"></div>
@@ -73,73 +73,149 @@
     <section id="zones" class="level-select" aria-labelledby="zones-title">
       <h2 id="zones-title" class="pixel-heading" tabindex="-1" data-i18n="selectZone">SELECT ZONE</h2>
       <ul class="zone-grid">
-        <li><a class="zone-card zc-music" href="#music" data-zone="music">
-          <span class="zc-icon" aria-hidden="true">♫</span>
-          <span class="zc-name" data-i18n="zoneMusic">MUSIC ZONE</span>
-          <span class="zc-sub" data-i18n="zoneMusicSub">Albums, singles and my band</span>
+        <li><a class="zone-card zc-career" href="#career" data-zone="career">
+          <span class="zc-icon" aria-hidden="true">★</span>
+          <span class="zc-name" data-i18n="zoneCareer">CAREER ZONE</span>
+          <span class="zc-sub" data-i18n="fileCareerSub">Resume, experience and LinkedIn</span>
         </a></li>
         <li><a class="zone-card zc-code" href="#code" data-zone="code">
           <span class="zc-icon" aria-hidden="true">&lt;/&gt;</span>
           <span class="zc-name" data-i18n="zoneCode">CODE ZONE</span>
-          <span class="zc-sub" data-i18n="zoneCodeSub">Projects on GitHub</span>
-        </a></li>
-        <li><a class="zone-card zc-photo" href="#photo" data-zone="photo">
-          <span class="zc-icon" aria-hidden="true">◉</span>
-          <span class="zc-name" data-i18n="zonePhoto">PHOTO ZONE</span>
-          <span class="zc-sub" data-i18n="zonePhotoSub">Bonus stage: photography</span>
+          <span class="zc-sub" data-i18n="fileCodeSub">Projects on GitHub</span>
         </a></li>
         <li><a class="zone-card zc-translation" href="#translation" data-zone="translation">
           <span class="zc-icon" aria-hidden="true">⇄</span>
           <span class="zc-name" data-i18n="zoneTranslation">TRANSLATION ZONE</span>
-          <span class="zc-sub" data-i18n="zoneTranslationSub">Notary Confi · Spanish ⇄ English</span>
+          <span class="zc-sub" data-i18n="fileTranslationSub">Notary Confi · free Spanish conversation classes</span>
+        </a></li>
+        <li><a class="zone-card zc-music" href="#music" data-zone="music">
+          <span class="zc-icon" aria-hidden="true">♫</span>
+          <span class="zc-name" data-i18n="zoneMusic">MUSIC ZONE</span>
+          <span class="zc-sub" data-i18n="fileSoundSub">My music and band from Argentina</span>
+        </a></li>
+        <li><a class="zone-card zc-photo" href="#photo" data-zone="photo">
+          <span class="zc-icon" aria-hidden="true">◉</span>
+          <span class="zc-name" data-i18n="zonePhoto">PHOTO ZONE</span>
+          <span class="zc-sub" data-i18n="fileMemoriesSub">Photography</span>
+        </a></li>
+        <li><a class="zone-card zc-social" href="#social" data-zone="social">
+          <span class="zc-icon" aria-hidden="true">✦</span>
+          <span class="zc-name" data-i18n="zoneSocial">SOCIAL ZONE</span>
+          <span class="zc-sub" data-i18n="fileSocialSub">TikTok and Instagram</span>
         </a></li>
       </ul>
     </section>
 
-    <!-- MUSIC ZONE -->
-    <section id="music" class="zone zone-music" aria-labelledby="music-title">
+    <!-- The blocks between SYNC markers are copied from the main page (../index.html) by
+         tools/sync-16bit.py, which tools/stamp.py runs before every publish: edit them there. -->
+
+    <!-- CAREER ZONE -->
+    <section id="career" class="zone zone-career" aria-labelledby="career-title">
       <div class="zone-banner">
-        <h2 id="music-title" class="pixel-heading" tabindex="-1"><span data-i18n="zoneMusic">MUSIC ZONE</span></h2>
+        <h2 id="career-title" class="pixel-heading" tabindex="-1"><span data-i18n="zoneCareer">CAREER ZONE</span></h2>
       </div>
       <div class="zone-body">
-        <div class="panel">
-          <h3 class="act-title"><span class="act-tag" data-i18n="act1">ACT 1</span> Brian Athey</h3>
-          <p data-i18n="musicIntro">My own music. Pick a platform and press Load player to listen here, or open it in your favorite app.</p>
-          <div class="player-grid">
-            <article class="cart cart-spotify">
-              <h4>Spotify</h4>
-              <div class="player-slot" data-embed="spotify-solo"></div>
-              <a class="ext-link" href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
-            </article>
-            <article class="cart cart-apple">
-              <h4>Apple Music</h4>
-              <div class="player-slot" data-embed="apple"></div>
-              <a class="ext-link" href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music ↗</a>
-            </article>
-            <article class="cart cart-youtube">
-              <h4>YouTube Music</h4>
-              <div class="player-slot" data-embed="youtube"></div>
-              <a class="ext-link" href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> YouTube ↗</a>
-            </article>
-            <article class="cart cart-soundcloud">
-              <h4>SoundCloud</h4>
-              <div class="player-slot" data-embed="soundcloud"></div>
-              <a class="ext-link" href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> SoundCloud ↗</a>
-            </article>
+        <!-- SYNC:career -->
+      <div class="panel dossier">
+        <div class="id-card">
+          <p class="id-file">SUBJECT FILE // BAS-0001</p>
+          <figure class="id-photo">
+            <img src="../assets/brian-athey-id.jpg" width="402" height="374" alt="Brian Athey" data-i18n-alt="resumePhotoAlt" loading="lazy">
+            <span class="id-reticle" aria-hidden="true"></span>
+          </figure>
+          <h3 class="id-name">Brian<br>Athey</h3>
+          <p class="id-title" data-i18n="resumeRole">Senior Solutions Engineer</p>
+          <dl class="id-meta">
+            <div><dt data-i18n="resumeBase">BASE</dt><dd>Austin, TX</dd></div>
+            <div><dt data-i18n="resumeLangs">LANGUAGES</dt><dd>English · Español</dd></div>
+            <div><dt data-i18n="resumeFocus">FOCUS</dt><dd data-i18n="resumeFocusVal">Agentic AI · MCP · APIs · DAM &amp; PIM</dd></div>
+            <div><dt data-i18n="resumeCurrent">CURRENTLY</dt><dd class="id-status"><span class="id-dot" aria-hidden="true"></span><span>Canto</span></dd></div>
+          </dl>
+          <div class="id-actions">
+            <a class="btn btn-primary" href="../assets/Brian-Athey-Resume.pdf" download><span data-i18n="resumeDownload">Download resume (PDF)</span> <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/brian-athey-91337155/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
-        <div class="panel">
-          <h3 class="act-title"><span class="act-tag" data-i18n="act2">ACT 2</span> Red Sun</h3>
-          <p data-i18n="bandIntro">The band I played in while living in Argentina.</p>
-          <div class="player-grid player-grid-single">
-            <article class="cart cart-spotify">
-              <h4>Spotify</h4>
-              <div class="player-slot" data-embed="spotify-band"></div>
-              <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify ↗</a>
-            </article>
+        <div class="dossier-main">
+          <p class="dossier-summary" data-i18n="resumeSummary">I lead enterprise pre-sales from technical discovery to executive demos, and build agentic AI: MCP connectors that give Claude, Copilot and other AI agents governed access to product content.</p>
+
+          <ul class="stats">
+            <li><span class="stat-num">#1</span><span class="stat-label" data-i18n="resumeStat1">Global Solutions Engineer at Canto, twice</span></li>
+            <li><span class="stat-num">15</span><span class="stat-label" data-i18n="resumeStat2">certifications and credentials, incl. PMP</span></li>
+            <li><span class="stat-num">6+</span><span class="stat-label" data-i18n="resumeStat3">years in SaaS solutions and pre-sales</span></li>
+            <li><span class="stat-num">2</span><span class="stat-label" data-i18n="resumeStat4">languages, with an M.A. in translation</span></li>
+          </ul>
+
+          <h4 class="dossier-label" data-i18n="resumeExperience">EXPERIENCE</h4>
+          <ol class="xp">
+            <li class="xp-item">
+              <span class="xp-date">2022 — <span data-i18n="resumeNow">NOW</span></span>
+              <div><p class="xp-org">Canto <span class="xp-badge" data-i18n="resumePromoted">PROMOTED 2×</span></p>
+                <ul class="xp-steps">
+                  <li><span>2025 –</span> <span data-i18n="resumeCantoSr">Senior Solutions Engineer</span></li>
+                  <li><span>2023 – 2025</span> <span data-i18n="resumeCantoSe">Solutions Engineer · #1 Global SE, FY2024</span></li>
+                  <li><span>2022 – 2023</span> <span data-i18n="resumeCantoIm">Implementation Manager</span></li>
+                </ul>
+                <p class="xp-note" data-i18n="resumeCantoNote">Agentic AI on the DAM for Products MCP connector; Amazon and Shopify integrations; SE mentoring and enablement.</p></div>
+            </li>
+            <li class="xp-item">
+              <span class="xp-date">2020 — <span data-i18n="resumeNow">NOW</span></span>
+              <div><p class="xp-org">Notary Confi</p><p class="xp-role" data-i18n="resumeConfi">Founder · notary and certified translation services</p></div>
+            </li>
+            <li class="xp-item">
+              <span class="xp-date">2024 — <span data-i18n="resumeNow">NOW</span></span>
+              <div><p class="xp-org">Austin Public Library</p><p class="xp-role"><span data-i18n="resumeApl">Spanish conversation facilitator ·</span> <a href="https://library.austintexas.gov/events/practiquemos-espanol" target="_blank" rel="noopener" lang="es">Practiquemos Español</a></p></div>
+            </li>
+            <li class="xp-item">
+              <span class="xp-date">2020 — 2022</span>
+              <div><p class="xp-org">Watermark Insights</p><p class="xp-role" data-i18n="resumeWatermark">Solutions Consultant and Subject Matter Expert</p></div>
+            </li>
+            <li class="xp-item">
+              <span class="xp-date">2018 — 2021</span>
+              <div><p class="xp-org">Texas A&amp;M International University</p><p class="xp-role" data-i18n="resumeTamiu">Adjunct Professor · Spanish-to-English translation</p></div>
+            </li>
+          </ol>
+
+          <h4 class="dossier-label" data-i18n="resumeProjects">PROJECTS</h4>
+          <ul class="proj">
+            <li><a href="#code"><strong>The Morning Frequency</strong><span data-i18n="resumeProjTmf">AI journaling app that turns writing into music · iOS, November 2026</span></a></li>
+            <li><a href="https://bri-an-pmp.github.io/mi-ofrenda/" target="_blank" rel="noopener"><strong>Mi Ofrenda <span aria-hidden="true">↗</span></strong><span data-i18n="resumeProjOfrenda">Día de los Muertos altar game for learning Spanish · web and iPhone (App Store), October 2026</span></a></li>
+            <li><a href="https://huggingface.co/spaces/cousinbrian/careerbotbrian" target="_blank" rel="noopener"><strong>AI Career Assistant <span aria-hidden="true">↗</span></strong><span data-i18n="resumeProjTwin">Digital-twin chatbot with OpenAI function calling and live alerts</span></a></li>
+            <li><a href="#title"><strong>brianathey.studio</strong><span data-i18n="resumeProjSite">This site · built with Claude Code, published with GitHub Pages</span></a></li>
+          </ul>
+
+          <div class="two-col">
+            <div>
+              <h4 class="dossier-label" data-i18n="resumeAwards">AWARDS</h4>
+              <ul class="plain">
+                <li class="award-lead" data-i18n="resumeAwardLead">Two-time Canto Company Value Award winner, one of only two employees to receive two</li>
+                <li><strong>“We Treat Everyone with Empathy and Respect”</strong> <span data-i18n="resumeAward3">Canto Company Value Award, Q3 2026</span></li>
+                <li><strong>“We Are Customer Obsessed”</strong> <span data-i18n="resumeAward1">Canto Company Value Award, 2024 · one of four per quarter</span></li>
+                <li><strong>“Wingperson of the Year”</strong> <span data-i18n="resumeAward2">voted by the Account Executive team, 2023</span></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="dossier-label" data-i18n="resumeEducation">EDUCATION</h4>
+              <ul class="plain">
+                <li><strong data-i18n="resumeMa">M.A. Spanish Translation</strong> University of Texas Rio Grande Valley</li>
+                <li><strong data-i18n="resumeBa">B.A. English &amp; Comparative Literature</strong> University of Texas System / CUNY</li>
+              </ul>
+            </div>
           </div>
+
+          <h4 class="dossier-label" data-i18n="resumeSkills">SKILLS</h4>
+          <ul class="chips">
+            <li>MCP</li><li>Claude</li><li>Agentic AI</li><li>REST APIs</li><li>Webhooks</li><li>OAuth 2.0</li><li>SSO / SAML</li><li>Python</li><li>JavaScript</li><li>DAM</li><li>PIM</li><li>Shopify</li><li>Amazon Seller Central</li><li>AWS</li><li>Salesforce</li><li>MEDDIC</li><li data-i18n="resumeChipPoc">Proof of Concept</li><li>RFP</li>
+          </ul>
+
+          <h4 class="dossier-label" data-i18n="resumeCerts">CERTIFICATIONS</h4>
+          <ul class="chips chips-cert">
+            <li>PMP®</li><li>PMI-ACP®</li><li>SAFe® 6 POPM</li><li>Scrum Master</li><li>Lean Six Sigma Black Belt</li><li>Pendo Admin</li><li data-i18n="resumeMicro">+ 7 PMI AI &amp; Agile micro-credentials</li>
+          </ul>
         </div>
+      </div>
+        <!-- /SYNC:career -->
       </div>
     </section>
 
@@ -154,21 +230,7 @@
           <p data-i18n="codeIntro">Things I build, pulled live from my GitHub.</p>
           <p class="status-line" id="repo-status" data-i18n="loadingRepos">Loading projects…</p>
           <ul class="repo-grid" id="repo-grid"></ul>
-          <a class="btn" href="https://github.com/bri-an-pmp" target="_blank" rel="noopener"><span data-i18n="allGithub">See everything on GitHub</span> ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHOTO ZONE -->
-    <section id="photo" class="zone zone-photo" aria-labelledby="photo-title">
-      <div class="zone-banner">
-        <h2 id="photo-title" class="pixel-heading" tabindex="-1"><span data-i18n="zonePhoto">PHOTO ZONE</span></h2>
-      </div>
-      <div class="zone-body">
-        <div class="panel">
-          <h3 class="act-title"><span class="act-tag" data-i18n="bonus">BONUS STAGE</span> <span data-i18n="photoAct">Photography</span></h3>
-          <p data-i18n="photoIntro">A gallery of my photography is on its way.</p>
-          <ul class="photo-grid" id="photo-grid"></ul>
+          <a class="btn" id="github-link" href="https://github.com/bri-an-pmp" target="_blank" rel="noopener"><span data-i18n="allGithub">See everything on GitHub</span> ↗</a>
         </div>
       </div>
     </section>
@@ -179,32 +241,223 @@
         <h2 id="translation-title" class="pixel-heading" tabindex="-1"><span data-i18n="zoneTranslation">TRANSLATION ZONE</span></h2>
       </div>
       <div class="zone-body">
-        <div class="panel">
-          <h3 class="act-title"><span class="act-tag" data-i18n="act1">ACT 1</span> Notary Confi</h3>
-          <p data-i18n="translationIntro">My translation company, Notary Confi, offers professional translation between Spanish and English.</p>
-          <ul class="powerups">
-            <li class="powerup"><span class="pu-box" aria-hidden="true">ES→EN</span><span data-i18n="esToEn">Spanish to English</span></li>
-            <li class="powerup"><span class="pu-box" aria-hidden="true">EN→ES</span><span data-i18n="enToEs">English to Spanish</span></li>
-          </ul>
-          <a class="btn btn-gold" href="https://notaryconfi.com" target="_blank" rel="noopener"><span data-i18n="quote">Visit Notary Confi to request a quote</span> ↗</a>
-          <p class="fine-print"><span lang="es">No soy abogado con licencia para ejercer la abogacía en Texas y no puedo dar asesoría legal ni aceptar honorarios por asesoría legal.</span> <span lang="en">I am not an attorney licensed to practice law in Texas and may not give legal advice or accept fees for legal advice.</span></p>
+        <!-- SYNC:services -->
+      <div class="panel">
+        <h3 class="sub-heading"><span class="tag" data-i18n="company">COMPANY</span> Notary Confi</h3>
+        <p class="lede" data-i18n="translationIntro">Spanish ⇄ English translation and mobile notary services from Notary Confi, my business with an office on Austin’s east side.</p>
+        <ul class="services">
+          <li class="service">
+            <span class="service-code" aria-hidden="true">ES ⇄ EN</span>
+            <h4 data-i18n="svcTranslation">Translation</h4>
+            <p data-i18n="svcTranslationText">English-to-Spanish and Spanish-to-English translation of documents, including certified translations.</p>
+          </li>
+          <li class="service">
+            <span class="service-code" aria-hidden="true">◎</span>
+            <h4 data-i18n="svcMobile">Mobile notary</h4>
+            <p data-i18n="svcMobileText">I come to you: home, office or hospital, on your schedule.</p>
+          </li>
+          <li class="service">
+            <span class="service-code" aria-hidden="true">⌂</span>
+            <h4 data-i18n="svcOffice">East Austin office</h4>
+            <p data-i18n="svcOfficeText">Prefer to come in? Meet at the office on Austin’s east side.</p>
+          </li>
+        </ul>
+        <a class="btn btn-primary" href="https://notaryconfi.com" target="_blank" rel="noopener"><span data-i18n="quote">Visit Notary Confi to request a quote</span> <span aria-hidden="true">↗</span></a>
+        <p class="fine-print"><span lang="es">No soy abogado con licencia para ejercer la abogacía en Texas y no puedo dar asesoría legal ni aceptar honorarios por asesoría legal.</span> <span lang="en">I am not an attorney licensed to practice law in Texas and may not give legal advice or accept fees for legal advice.</span></p>
+      </div>
+        <!-- /SYNC:services -->
+        <!-- SYNC:teaching -->
+      <div class="panel teaching" id="teaching" tabindex="-1">
+        <h3 class="sub-heading"><span class="tag" data-i18n="community">COMMUNITY</span> <span data-i18n="teachTitle">Free Spanish Conversation Classes in Austin</span></h3>
+        <p class="lede"><span data-i18n="teachIntro1">Since January 2024 I’ve led</span> <strong lang="es">Practiquemos Español</strong><span data-i18n="teachIntro2">, a free Spanish conversation group at Austin Public Library. Adults who know a little Spanish practice speaking in a relaxed, friendly setting.</span></p>
+        <ul class="pairs">
+          <li class="pair"><span class="pair-code" aria-hidden="true">2024 –</span><span data-i18n="teachSince">Teaching since January 2024</span></li>
+          <li class="pair"><span class="pair-code" aria-hidden="true">$0</span><span data-i18n="teachFree">Free and open to adults</span></li>
+          <li class="pair"><span class="pair-code" aria-hidden="true">ES</span><span data-i18n="teachLevel">Some Spanish needed</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://library.austintexas.gov/events/practiquemos-espanol" target="_blank" rel="noopener"><span data-i18n="teachLink">See dates and branches at Austin Public Library</span> <span aria-hidden="true">↗</span></a>
+        <div class="app-feature" id="mi-ofrenda">
+          <h4 class="app-feature-title"><span class="tag" data-i18n="ofrendaTag">APP</span> <span lang="es">Mi Ofrenda</span></h4>
+          <p class="lede" data-i18n="ofrendaIntro">For Día de Muertos I built Mi Ofrenda, a free game for my students: build an altar for someone you love, and every offering teaches its Spanish word, how to say it and a sentence with their name. Now on the iPhone App Store and on the web.</p>
+          <div class="app-shots">
+            <figure class="app-shot"><img src="../assets/mi-ofrenda/altar.jpg" width="552" height="1200" loading="lazy" decoding="async" data-i18n-alt="ofrendaAltAltar" alt="Mi Ofrenda on an iPhone: Frida Kahlo’s altar with candles, marigolds, pan dulce and papel picado in a candlelit room"><figcaption data-i18n="ofrendaShotAltar">Build the altar</figcaption></figure>
+            <figure class="app-shot"><img src="../assets/mi-ofrenda/palabra.jpg" width="552" height="1200" loading="lazy" decoding="async" data-i18n-alt="ofrendaAltWord" alt="Mi Ofrenda word card for el xoloitzcuintle, with pronunciation, a recorded voice and a sentence in Spanish and English"><figcaption data-i18n="ofrendaShotWord">Learn each word</figcaption></figure>
+            <figure class="app-qr"><a href="https://apps.apple.com/us/app/mi-ofrenda/id6824747905" target="_blank" rel="noopener"><img src="../assets/mi-ofrenda/qr-app-store.svg" width="200" height="200" loading="lazy" data-i18n-alt="ofrendaAltQr" alt="QR code that opens Mi Ofrenda on the App Store"></a><figcaption data-i18n="ofrendaShotQr">Scan with your iPhone camera</figcaption></figure>
+          </div>
+          <div class="app-links">
+            <a class="btn btn-primary" href="https://apps.apple.com/us/app/mi-ofrenda/id6824747905" target="_blank" rel="noopener"><span data-i18n="ofrendaStoreBtn">Download on the App Store</span> <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="https://bri-an-pmp.github.io/mi-ofrenda/" target="_blank" rel="noopener"><span data-i18n="ofrendaWebBtn">Play on the web</span> <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
+      </div>
+        <!-- /SYNC:teaching -->
+      </div>
+    </section>
+
+    <!-- MUSIC ZONE -->
+    <section id="music" class="zone zone-music" aria-labelledby="music-title">
+      <div class="zone-banner">
+        <h2 id="music-title" class="pixel-heading" tabindex="-1"><span data-i18n="zoneMusic">MUSIC ZONE</span></h2>
+      </div>
+      <div class="zone-body">
+        <!-- SYNC:sound -->
+      <div class="panel">
+        <h3 class="sub-heading"><span class="tag" data-i18n="solo">SOLO</span> Brian Athey</h3>
+        <p class="lede" data-i18n="musicIntro">My own music. Choose a platform and press Load player to listen here, or open it in your favorite app.</p>
+        <div class="player-grid">
+          <article class="player">
+            <h4>Spotify</h4>
+            <div class="player-slot" data-embed="spotify-solo"></div>
+            <a class="ext-link" href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Apple Music</h4>
+            <div class="player-slot" data-embed="apple"></div>
+            <a class="ext-link" href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>YouTube Music</h4>
+            <div class="player-slot" data-embed="youtube"></div>
+            <a class="ext-link" href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> YouTube <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>SoundCloud</h4>
+            <div class="player-slot" data-embed="soundcloud"></div>
+            <a class="ext-link" href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> SoundCloud <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Amazon Music</h4>
+            <div class="player-slot" data-embed="amazon"></div>
+            <a class="ext-link" href="https://music.amazon.com/albums/B096DX88Z7" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Pandora</h4>
+            <div class="player-slot" data-embed="pandora"></div>
+            <a class="ext-link" href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>TIDAL</h4>
+            <div class="player-slot" data-embed="tidal"></div>
+            <a class="ext-link" href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> TIDAL <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Deezer</h4>
+            <div class="player-slot" data-embed="deezer"></div>
+            <a class="ext-link" href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Deezer <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 class="sub-heading"><span class="tag" data-i18n="band">BAND</span> Red Sun</h3>
+        <p class="lede" data-i18n="bandIntro">The band I played in while living in Argentina.</p>
+        <div class="player-grid">
+          <article class="player">
+            <h4>Spotify</h4>
+            <div class="player-slot" data-embed="spotify-band"></div>
+            <a class="ext-link" href="https://open.spotify.com/artist/1dkXeNw0SlSWuEIjlAeQAf" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Spotify <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Apple Music</h4>
+            <div class="player-slot" data-embed="apple-band"></div>
+            <a class="ext-link" href="https://music.apple.com/us/album/smoke-sale/1524150287" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Apple Music <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Amazon Music</h4>
+            <div class="player-slot" data-embed="amazon-band"></div>
+            <a class="ext-link" href="https://music.amazon.com/albums/B08D8BC8Z5" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Amazon Music <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="player">
+            <h4>Pandora</h4>
+            <div class="player-slot" data-embed="pandora-band"></div>
+            <a class="ext-link" href="https://www.pandora.com/AL:6130021" target="_blank" rel="noopener"><span data-i18n="openIn">Open in</span> Pandora <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+        <!-- /SYNC:sound -->
+      </div>
+    </section>
+
+    <!-- PHOTO ZONE: collections come from ../js/albums.js -->
+    <section id="photo" class="zone zone-photo" aria-labelledby="photo-title">
+      <div class="zone-banner">
+        <h2 id="photo-title" class="pixel-heading" tabindex="-1"><span data-i18n="zonePhoto">PHOTO ZONE</span></h2>
+      </div>
+      <div class="zone-body">
+        <div class="panel">
+          <h3 class="act-title"><span class="act-tag" data-i18n="bonus">BONUS STAGE</span> <span data-i18n="photoAct">Photography</span></h3>
+          <p data-i18n="photoIntro">Collections of my photography. Open one to see every photo.</p>
+          <ul class="album-grid" id="album-grid"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL ZONE -->
+    <section id="social" class="zone zone-social" aria-labelledby="social-title">
+      <div class="zone-banner">
+        <h2 id="social-title" class="pixel-heading" tabindex="-1"><span data-i18n="zoneSocial">SOCIAL ZONE</span></h2>
+      </div>
+      <div class="zone-body">
+        <!-- SYNC:social -->
+      <div class="panel">
+        <p class="lede" data-i18n="socialIntro">Follow along for videos, photos and what I’m working on.</p>
+        <ul class="social-grid">
+          <li><a class="social-card" href="https://www.tiktok.com/@brian_tok4vids" target="_blank" rel="noopener">
+            <span class="social-net">TikTok</span>
+            <span class="social-handle">@brian_tok4vids</span>
+            <span class="social-cta"><span data-i18n="socialTiktok">Watch on TikTok</span> <span aria-hidden="true">↗</span></span>
+          </a></li>
+          <li><a class="social-card" href="https://www.instagram.com/brian_athey_/" target="_blank" rel="noopener">
+            <span class="social-net">Instagram</span>
+            <span class="social-handle">@brian_athey_</span>
+            <span class="social-cta"><span data-i18n="socialInstagram">Follow on Instagram</span> <span aria-hidden="true">↗</span></span>
+          </a></li>
+        </ul>
+      </div>
+        <!-- /SYNC:social -->
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <a class="continue" href="#title" data-i18n="continue">CONTINUE? ▲ Back to start</a>
+    <!-- SYNC:footer-links -->
     <ul class="footer-links">
       <li><a href="https://open.spotify.com/artist/2guWNPvgF5ltdCS2ia94FI" target="_blank" rel="noopener">Spotify</a></li>
-      <li><a href="https://music.apple.com/us/album/1008-w-25th-st/1570236871" target="_blank" rel="noopener">Apple Music</a></li>
+      <li><a href="https://music.apple.com/us/artist/brian-athey/1524150295" target="_blank" rel="noopener">Apple Music</a></li>
       <li><a href="https://www.youtube.com/watch?v=TEOkmkDkkLQ&amp;list=OLAK5uy_nm7WH1wzca9GumA-9pk5EoQIsvH75X6fM" target="_blank" rel="noopener">YouTube</a></li>
       <li><a href="https://soundcloud.com/user-473502514" target="_blank" rel="noopener">SoundCloud</a></li>
+      <li><a href="https://music.amazon.com/albums/B096DX88Z7" target="_blank" rel="noopener">Amazon Music</a></li>
+      <li><a href="https://listen.tidal.com/album/186270151" target="_blank" rel="noopener">TIDAL</a></li>
+      <li><a href="https://www.deezer.com/album/234173262" target="_blank" rel="noopener">Deezer</a></li>
+      <li><a href="https://www.pandora.com/AL:10506770" target="_blank" rel="noopener">Pandora</a></li>
       <li><a href="https://github.com/bri-an-pmp" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.tiktok.com/@brian_tok4vids" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.instagram.com/brian_athey_/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/in/brian-athey-91337155/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://notaryconfi.com" target="_blank" rel="noopener">Notary Confi</a></li>
     </ul>
+    <!-- /SYNC:footer-links -->
+    <p class="privacy" data-i18n="privacy">Privacy: this site uses no cookies, analytics or tracking.</p>
     <p class="copyright">© <span id="year">2026</span> Brian Athey Studio</p>
   </footer>
+
+  <!-- Photo viewer -->
+  <dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+    <div class="viewer-bar">
+      <h2 class="viewer-title" id="viewer-title"></h2>
+      <button type="button" class="hud-btn" id="viewer-close" data-i18n="closeGallery">Close gallery</button>
+    </div>
+    <figure class="viewer-figure">
+      <img id="viewer-img" alt="">
+      <figcaption id="viewer-caption"></figcaption>
+    </figure>
+    <div class="viewer-nav">
+      <button type="button" class="hud-btn" id="viewer-prev"><span aria-hidden="true">◀</span> <span data-i18n="prevPhoto">Previous photo</span></button>
+      <span class="viewer-count" id="viewer-count" aria-live="polite"></span>
+      <button type="button" class="hud-btn" id="viewer-next"><span data-i18n="nextPhoto">Next photo</span> <span aria-hidden="true">▶</span></button>
+    </div>
+  </dialog>
 
   <!-- Zone title card (visual only) -->
   <div class="title-card" id="title-card" aria-hidden="true">
