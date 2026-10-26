@@ -1097,4 +1097,4 @@ html.thermal .file-card .glyphs, html.thermal .repo .glyphs { font-size: 22px; }
 html.thermal .bar-clock .glyphs { font-size: 17px; }
 .hud-cell .glyph { font-size: 20px; }
 html.thermal .readout { color: #ff2a2a; }
-html.thermal .section-head { background: linear-gradient(90deg, rgba(12, 13, 15, .92), rgba(12, 13, 15, .55)); }
+html.thermal .file .section-head, html.thermal.dusty .file .section-head { background: linear-gradient(90deg, rgba(12, 13, 15, .92), rgba(12, 13, 15, .55)); }

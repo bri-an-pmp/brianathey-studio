@@ -1,7 +1,7 @@
 // Theme menu (top right): Neon Noir (default), Thermal (black-and-red machine HUD on this page) and
 // 16-Bit Zone (a separate version of the site at /16-bit/). Remembered per browser.
-import { tr } from './i18n.js?v=20261026151343';
-import { sfx } from './sound.js?v=20261026151343';
+import { tr } from './i18n.js?v=20261026151405';
+import { sfx } from './sound.js?v=20261026151405';
 
 const root = document.documentElement;
 const select = document.getElementById('theme-select');
